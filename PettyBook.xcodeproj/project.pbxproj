@@ -1,0 +1,411 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		32DC7CD01AC7126600A074E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC7CCF1AC7126600A074E8 /* main.m */; };
+		32DC7CD31AC7126600A074E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC7CD21AC7126600A074E8 /* AppDelegate.m */; };
+		32DC7CD51AC7126600A074E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32DC7CD41AC7126600A074E8 /* Images.xcassets */; };
+		32DC7CD81AC7126600A074E8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DC7CD61AC7126600A074E8 /* LaunchScreen.xib */; };
+		32DC7CE41AC7126600A074E8 /* PettyBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC7CE31AC7126600A074E8 /* PettyBookTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		32DC7CDE1AC7126600A074E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32DC7CC21AC7126600A074E8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 32DC7CC91AC7126600A074E8;
+			remoteInfo = PettyBook;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		32DC7CCA1AC7126600A074E8 /* PettyBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PettyBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		32DC7CCE1AC7126600A074E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32DC7CCF1AC7126600A074E8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32DC7CD11AC7126600A074E8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		32DC7CD21AC7126600A074E8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		32DC7CD41AC7126600A074E8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		32DC7CD71AC7126600A074E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		32DC7CDD1AC7126600A074E8 /* PettyBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PettyBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		32DC7CE21AC7126600A074E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32DC7CE31AC7126600A074E8 /* PettyBookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PettyBookTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		32DC7CC71AC7126600A074E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32DC7CDA1AC7126600A074E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		32DC7CC11AC7126600A074E8 = {
+			isa = PBXGroup;
+			children = (
+				32DC7CCC1AC7126600A074E8 /* PettyBook */,
+				32DC7CE01AC7126600A074E8 /* PettyBookTests */,
+				32DC7CCB1AC7126600A074E8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		32DC7CCB1AC7126600A074E8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32DC7CCA1AC7126600A074E8 /* PettyBook.app */,
+				32DC7CDD1AC7126600A074E8 /* PettyBookTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32DC7CCC1AC7126600A074E8 /* PettyBook */ = {
+			isa = PBXGroup;
+			children = (
+				32DC7CD11AC7126600A074E8 /* AppDelegate.h */,
+				32DC7CD21AC7126600A074E8 /* AppDelegate.m */,
+				32DC7CD41AC7126600A074E8 /* Images.xcassets */,
+				32DC7CD61AC7126600A074E8 /* LaunchScreen.xib */,
+				32DC7CCD1AC7126600A074E8 /* Supporting Files */,
+			);
+			path = PettyBook;
+			sourceTree = "<group>";
+		};
+		32DC7CCD1AC7126600A074E8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				32DC7CCE1AC7126600A074E8 /* Info.plist */,
+				32DC7CCF1AC7126600A074E8 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		32DC7CE01AC7126600A074E8 /* PettyBookTests */ = {
+			isa = PBXGroup;
+			children = (
+				32DC7CE31AC7126600A074E8 /* PettyBookTests.m */,
+				32DC7CE11AC7126600A074E8 /* Supporting Files */,
+			);
+			path = PettyBookTests;
+			sourceTree = "<group>";
+		};
+		32DC7CE11AC7126600A074E8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				32DC7CE21AC7126600A074E8 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		32DC7CC91AC7126600A074E8 /* PettyBook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32DC7CE71AC7126600A074E8 /* Build configuration list for PBXNativeTarget "PettyBook" */;
+			buildPhases = (
+				32DC7CC61AC7126600A074E8 /* Sources */,
+				32DC7CC71AC7126600A074E8 /* Frameworks */,
+				32DC7CC81AC7126600A074E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PettyBook;
+			productName = PettyBook;
+			productReference = 32DC7CCA1AC7126600A074E8 /* PettyBook.app */;
+			productType = "com.apple.product-type.application";
+		};
+		32DC7CDC1AC7126600A074E8 /* PettyBookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32DC7CEA1AC7126600A074E8 /* Build configuration list for PBXNativeTarget "PettyBookTests" */;
+			buildPhases = (
+				32DC7CD91AC7126600A074E8 /* Sources */,
+				32DC7CDA1AC7126600A074E8 /* Frameworks */,
+				32DC7CDB1AC7126600A074E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				32DC7CDF1AC7126600A074E8 /* PBXTargetDependency */,
+			);
+			name = PettyBookTests;
+			productName = PettyBookTests;
+			productReference = 32DC7CDD1AC7126600A074E8 /* PettyBookTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		32DC7CC21AC7126600A074E8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Carmelo Ruymán Quintana Santana";
+				TargetAttributes = {
+					32DC7CC91AC7126600A074E8 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					32DC7CDC1AC7126600A074E8 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 32DC7CC91AC7126600A074E8;
+					};
+				};
+			};
+			buildConfigurationList = 32DC7CC51AC7126600A074E8 /* Build configuration list for PBXProject "PettyBook" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 32DC7CC11AC7126600A074E8;
+			productRefGroup = 32DC7CCB1AC7126600A074E8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				32DC7CC91AC7126600A074E8 /* PettyBook */,
+				32DC7CDC1AC7126600A074E8 /* PettyBookTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		32DC7CC81AC7126600A074E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32DC7CD81AC7126600A074E8 /* LaunchScreen.xib in Resources */,
+				32DC7CD51AC7126600A074E8 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32DC7CDB1AC7126600A074E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		32DC7CC61AC7126600A074E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32DC7CD31AC7126600A074E8 /* AppDelegate.m in Sources */,
+				32DC7CD01AC7126600A074E8 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32DC7CD91AC7126600A074E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32DC7CE41AC7126600A074E8 /* PettyBookTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		32DC7CDF1AC7126600A074E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 32DC7CC91AC7126600A074E8 /* PettyBook */;
+			targetProxy = 32DC7CDE1AC7126600A074E8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		32DC7CD61AC7126600A074E8 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32DC7CD71AC7126600A074E8 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		32DC7CE51AC7126600A074E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		32DC7CE61AC7126600A074E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		32DC7CE81AC7126600A074E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PettyBook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		32DC7CE91AC7126600A074E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PettyBook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		32DC7CEB1AC7126600A074E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PettyBookTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PettyBook.app/PettyBook";
+			};
+			name = Debug;
+		};
+		32DC7CEC1AC7126600A074E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PettyBookTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PettyBook.app/PettyBook";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		32DC7CC51AC7126600A074E8 /* Build configuration list for PBXProject "PettyBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32DC7CE51AC7126600A074E8 /* Debug */,
+				32DC7CE61AC7126600A074E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32DC7CE71AC7126600A074E8 /* Build configuration list for PBXNativeTarget "PettyBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32DC7CE81AC7126600A074E8 /* Debug */,
+				32DC7CE91AC7126600A074E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		32DC7CEA1AC7126600A074E8 /* Build configuration list for PBXNativeTarget "PettyBookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32DC7CEB1AC7126600A074E8 /* Debug */,
+				32DC7CEC1AC7126600A074E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 32DC7CC21AC7126600A074E8 /* Project object */;
+}
