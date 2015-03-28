@@ -8,9 +8,16 @@
 
 #import "AGTLibraryTableViewCell.h"
 
+@interface AGTLibraryTableViewCell()
+@property (weak, nonatomic) IBOutlet UIView *backView;
+
+@end
+
 @implementation AGTLibraryTableViewCell
 
 - (void)awakeFromNib {
+    self.backView.layer.cornerRadius = 10;
+    self.backgroundColor = [UIColor clearColor];
     // Initialization code
 }
 
@@ -18,6 +25,9 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
++(CGFloat)cellHeight{
+    return 318;
 }
 
 @end

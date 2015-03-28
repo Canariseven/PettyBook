@@ -9,7 +9,7 @@
 #import "AGTLibraryTableViewController.h"
 #import "AGTBook.h"
 #import "AGTLibrary.h"
-
+#import "AGTLibraryTableViewCell.h"
 @implementation AGTLibraryTableViewController
 -(id)initWihtModel:(AGTLibrary *)model{
     if(self = [super initWithNibName:nil bundle:nil]){
@@ -21,6 +21,13 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.tableView.backgroundColor = [UIColor clearColor];
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [AGTLibraryTableViewCell cellHeight];
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return self.model.tags[section];
@@ -34,22 +41,19 @@
     
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     AGTBook * book = [self.model bookForTag:self.model.tags[indexPath.section] atIndex:indexPath.row];
-    static NSString *cellId = @"bookCell";
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    AGTLibraryTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CELL_FOR_LIBRARY];
     if (cell == nil) {
         // La tenemos que crear nosotros desde cero
-        cell = [[UITableViewCell alloc]
-                initWithStyle:UITableViewCellStyleSubtitle
-                reuseIdentifier:cellId];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AGTLibraryTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
     }
     // Configurarla
     // Sincronizar model (personaje) -> vista(celda)
-    cell.imageView.image = [UIImage imageNamed:book.urlImage];
-    cell.textLabel.text = book.title;
-    cell.detailTextLabel.text = book.urlPDF;
+    cell.imageBook.image = [UIImage imageNamed:book.urlImage];
+    cell.titleBook.text = book.title;
+    cell.authorBook.text = book.authors[0];
     // Devolverla
     return cell;
-
 }
 
 @end

@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#define CELL_FOR_LIBRARY @"bookCellID"
 
 @interface AGTLibraryTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *titleBook;
+@property (weak, nonatomic) IBOutlet UILabel *authorBook;
+@property (weak, nonatomic) IBOutlet UIImageView *imageBook;
++(CGFloat)cellHeight;
 
 @end
