@@ -12,6 +12,13 @@
 		32DC7CD51AC7126600A074E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32DC7CD41AC7126600A074E8 /* Images.xcassets */; };
 		32DC7CD81AC7126600A074E8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DC7CD61AC7126600A074E8 /* LaunchScreen.xib */; };
 		32DC7CE41AC7126600A074E8 /* PettyBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC7CE31AC7126600A074E8 /* PettyBookTests.m */; };
+		32DC7CF01AC7128900A074E8 /* AGTBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC7CEF1AC7128900A074E8 /* AGTBook.m */; };
+		32DC7CF31AC7133E00A074E8 /* AGTLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC7CF21AC7133E00A074E8 /* AGTLibrary.m */; };
+		32DC7CF71AC7350C00A074E8 /* AGTLibraryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC7CF61AC7350C00A074E8 /* AGTLibraryTableViewController.m */; };
+		32DC7CF91AC735F000A074E8 /* AGTLibraryTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DC7CF81AC735F000A074E8 /* AGTLibraryTableViewController.xib */; };
+		32DC7CFB1AC7383300A074E8 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32DC7CFA1AC7383300A074E8 /* image.jpg */; };
+		32DC7D001AC73AF800A074E8 /* AGTLibraryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC7CFE1AC73AF800A074E8 /* AGTLibraryTableViewCell.m */; };
+		32DC7D011AC73AF800A074E8 /* AGTLibraryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DC7CFF1AC73AF800A074E8 /* AGTLibraryTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +42,17 @@
 		32DC7CDD1AC7126600A074E8 /* PettyBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PettyBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32DC7CE21AC7126600A074E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32DC7CE31AC7126600A074E8 /* PettyBookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PettyBookTests.m; sourceTree = "<group>"; };
+		32DC7CEE1AC7128900A074E8 /* AGTBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTBook.h; sourceTree = "<group>"; };
+		32DC7CEF1AC7128900A074E8 /* AGTBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTBook.m; sourceTree = "<group>"; };
+		32DC7CF11AC7133E00A074E8 /* AGTLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTLibrary.h; sourceTree = "<group>"; };
+		32DC7CF21AC7133E00A074E8 /* AGTLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTLibrary.m; sourceTree = "<group>"; };
+		32DC7CF51AC7350C00A074E8 /* AGTLibraryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTLibraryTableViewController.h; sourceTree = "<group>"; };
+		32DC7CF61AC7350C00A074E8 /* AGTLibraryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTLibraryTableViewController.m; sourceTree = "<group>"; };
+		32DC7CF81AC735F000A074E8 /* AGTLibraryTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTLibraryTableViewController.xib; sourceTree = "<group>"; };
+		32DC7CFA1AC7383300A074E8 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
+		32DC7CFD1AC73AF800A074E8 /* AGTLibraryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTLibraryTableViewCell.h; sourceTree = "<group>"; };
+		32DC7CFE1AC73AF800A074E8 /* AGTLibraryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTLibraryTableViewCell.m; sourceTree = "<group>"; };
+		32DC7CFF1AC73AF800A074E8 /* AGTLibraryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTLibraryTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,9 +94,13 @@
 		32DC7CCC1AC7126600A074E8 /* PettyBook */ = {
 			isa = PBXGroup;
 			children = (
+				32DC7CFC1AC73AB800A074E8 /* Celdas */,
+				32DC7CF41AC7348000A074E8 /* Controllers */,
+				32DC7CED1AC7126F00A074E8 /* Models */,
 				32DC7CD11AC7126600A074E8 /* AppDelegate.h */,
 				32DC7CD21AC7126600A074E8 /* AppDelegate.m */,
 				32DC7CD41AC7126600A074E8 /* Images.xcassets */,
+				32DC7CFA1AC7383300A074E8 /* image.jpg */,
 				32DC7CD61AC7126600A074E8 /* LaunchScreen.xib */,
 				32DC7CCD1AC7126600A074E8 /* Supporting Files */,
 			);
@@ -109,6 +131,37 @@
 				32DC7CE21AC7126600A074E8 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		32DC7CED1AC7126F00A074E8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				32DC7CEE1AC7128900A074E8 /* AGTBook.h */,
+				32DC7CEF1AC7128900A074E8 /* AGTBook.m */,
+				32DC7CF11AC7133E00A074E8 /* AGTLibrary.h */,
+				32DC7CF21AC7133E00A074E8 /* AGTLibrary.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		32DC7CF41AC7348000A074E8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				32DC7CF51AC7350C00A074E8 /* AGTLibraryTableViewController.h */,
+				32DC7CF61AC7350C00A074E8 /* AGTLibraryTableViewController.m */,
+				32DC7CF81AC735F000A074E8 /* AGTLibraryTableViewController.xib */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		32DC7CFC1AC73AB800A074E8 /* Celdas */ = {
+			isa = PBXGroup;
+			children = (
+				32DC7CFD1AC73AF800A074E8 /* AGTLibraryTableViewCell.h */,
+				32DC7CFE1AC73AF800A074E8 /* AGTLibraryTableViewCell.m */,
+				32DC7CFF1AC73AF800A074E8 /* AGTLibraryTableViewCell.xib */,
+			);
+			name = Celdas;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,7 +245,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				32DC7CD81AC7126600A074E8 /* LaunchScreen.xib in Resources */,
+				32DC7CFB1AC7383300A074E8 /* image.jpg in Resources */,
 				32DC7CD51AC7126600A074E8 /* Images.xcassets in Resources */,
+				32DC7D011AC73AF800A074E8 /* AGTLibraryTableViewCell.xib in Resources */,
+				32DC7CF91AC735F000A074E8 /* AGTLibraryTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,7 +266,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32DC7CF31AC7133E00A074E8 /* AGTLibrary.m in Sources */,
+				32DC7CF71AC7350C00A074E8 /* AGTLibraryTableViewController.m in Sources */,
 				32DC7CD31AC7126600A074E8 /* AppDelegate.m in Sources */,
+				32DC7CF01AC7128900A074E8 /* AGTBook.m in Sources */,
+				32DC7D001AC73AF800A074E8 /* AGTLibraryTableViewCell.m in Sources */,
 				32DC7CD01AC7126600A074E8 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +456,7 @@
 				32DC7CE91AC7126600A074E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		32DC7CEA1AC7126600A074E8 /* Build configuration list for PBXNativeTarget "PettyBookTests" */ = {
 			isa = XCConfigurationList;
@@ -404,6 +465,7 @@
 				32DC7CEC1AC7126600A074E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

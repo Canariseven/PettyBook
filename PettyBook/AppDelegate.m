@@ -7,7 +7,9 @@
 //
 
 #import "AppDelegate.h"
-
+#import "AGTBook.h"
+#import "AGTLibrary.h"
+#import "AGTLibraryTableViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -20,6 +22,33 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    AGTBook *book1 = [[AGTBook alloc]initWithTitle:@"IOS - 8.3"
+                                           authors:@[@"un autor",@"dos autores",@"tres autores"]
+                                              tags:@[@"IOS",@"programación",@"Super poderes"]
+                                          urlImage:@"image.jpg"
+                                            urlPDF:@"libro.pdf"];
+    AGTBook *book2 = [[AGTBook alloc]initWithTitle:@"Aprende Andorid"
+                                           authors:@[@"un autor",@"dos autores",@"tres autores"]
+                                              tags:@[@"Android",@"programación",@"Super"]
+                                          urlImage:@"image.jpg"
+                                            urlPDF:@"libro.pdf"];
+    AGTBook *book3 = [[AGTBook alloc]initWithTitle:@"Sketch"
+                                           authors:@[@"un autor",@"dos autores",@"tres autores"]
+                                              tags:@[@"Diseño",@"Apps"]
+                                          urlImage:@"image.jpg"
+                                            urlPDF:@"libro.pdf"];
+    AGTBook *book4 = [[AGTBook alloc]initWithTitle:@"Todo sobre Angular"
+                                           authors:@[@"un autor",@"dos autores",@"tres autores"]
+                                              tags:@[@"Angular",@"JavaScript"]
+                                          urlImage:@"image.jpg"
+                                            urlPDF:@"libro.pdf"];
+    
+    NSArray *books = @[book1,book2,book3,book4];
+    AGTLibrary *library = [[AGTLibrary alloc]initWithBooks:books];
+    [library booksCountForTag:@"Juan"];
+    AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWihtModel:library];
+    self.window.rootViewController = tLibrary;
     return YES;
 }
 
