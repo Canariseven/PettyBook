@@ -17,8 +17,8 @@
     // Initialization code
         self.backgroundColor = [UIColor clearColor];
     
-    self.backViewOfTag.layer.cornerRadius = 26/2;
-    self.backViewOfTag.backgroundColor = [UIColor whiteColor];
+
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

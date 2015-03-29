@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UIView *backBookView;
 @property (weak, nonatomic) IBOutlet UIView *macroView;
 @property (nonatomic, strong) AGTTagsDataSourceTableView *DT;
+@property (nonatomic, strong) UILabel *numberOfTags;
+@property (nonatomic, strong) UIView *circle;
+
 @property BOOL openTableViewTag;
 @end
 
@@ -42,8 +45,10 @@
     [super viewWillAppear:animated];
 
     self.tableView.dataSource = self.DT;
-    self.imageBook.image = [UIImage imageNamed:self.model.urlImage ];
+
     [self setupViews];
+    [self sincronizeDataOfView];
+    [self animateButtonViewBook];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,17 +62,17 @@
     CGRect rect = CGRectMake(self.tagsButton.frame.size.width/2 + 7,
                              self.tagsButton.frame.origin.y + 3,
                              20, 20);
-    
-    UIView * circle = [[UIView alloc]initWithFrame:rect];
-    circle.backgroundColor = [UIColor grayColor];
-    circle.layer.cornerRadius = 10;
-    circle.layer.borderColor = [UIColor whiteColor].CGColor;
-    circle.layer.borderWidth = 2;
-    
-    UILabel * numberOfTags = [[UILabel alloc]initWithFrame:CGRectMake(5, 0, 20, 20)];
-    numberOfTags.text = [NSString stringWithFormat:@"%d",self.model.tags.count];
-    [circle addSubview:numberOfTags];
-    [self.tagsButton addSubview:circle];
+    self.circle = [[UIView alloc]initWithFrame:rect];
+    self.circle.backgroundColor = [UIColor redColor];
+    self.circle.layer.cornerRadius = 10;
+    self.circle.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.circle.layer.borderWidth = 2;
+    self.numberOfTags = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [self.numberOfTags setFont:[UIFont fontWithName:@"Arial" size:12]];
+    self.numberOfTags.textAlignment = NSTextAlignmentCenter;
+    self.numberOfTags.textColor = [UIColor whiteColor];
+    [self.circle addSubview:self.numberOfTags];
+    [self.tagsButton addSubview:self.circle];
     
 }
 
@@ -79,12 +84,22 @@
     
     [self addShadowToView:self.backBookForRadius radius:5 opacity:1];
     [self addShadowToView:self.macroView radius:20 opacity:0.5];
-    
     self.tableView.frame = CGRectMake(self.imageBook.frame.size.width/2 + self.imageBook.frame.origin.x - [AGTTagTableViewCell cellWidth]/2 -20 ,
                                       self.imageBook.frame.origin.y,
                                       [AGTTagTableViewCell cellWidth] + 40,
                                       self.imageBook.frame.size.height - 30);
+    
     [self animateTableView:-(self.tableView.frame.size.height)];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
+}
+-(void)sincronizeDataOfView{
+    [self.tableView reloadData];
+    self.imageBook.image = [UIImage imageNamed:self.model.urlImage ];
+    self.numberOfTags.text = [NSString stringWithFormat:@"%d",self.model.tags.count];
+    [self animateImage];
+    [self animateCircleTag];
 }
 
 -(void)addShadowToView:(UIView *)view
@@ -122,19 +137,7 @@
     }
     
 }
--(void) animateTableView:(CGFloat)value {
-    
-//    self.tableView.transform = CGAffineTransformMakeTranslation(1, 1);
-    [UIView setAnimationRepeatCount:1];
-    [UIView animateWithDuration:0.5
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         self.tableView.transform = CGAffineTransformMakeTranslation(1, value);
-                     }
-                     completion:nil];
-    
-}
+
 
 - (IBAction)readBookButton:(id)sender {
 }
@@ -142,6 +145,68 @@
 - (IBAction)favouriteButton:(id)sender {
 }
 
+#pragma mark - AGTDataSourceAndDelegateTableViewDelegate
+-(void)dataSourceAndDelegateTableView:(AGTDataSourceAndDelegateTableView *)dt didSelectBook:(AGTBook *)book{
+    self.model = book;
+    [self sincronizeDataOfView];
+}
+
 #pragma mark - Utils
 
+
+#pragma mark - Animations
+-(void) animateTableView:(CGFloat)value {
+    
+    //    self.tableView.transform = CGAffineTransformMakeTranslation(1, 1);
+    [UIView setAnimationRepeatCount:1];
+    [UIView animateWithDuration:0.5
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.tableView.transform = CGAffineTransformMakeTranslation(1, value);
+                     }
+                     completion:nil];
+    
+}
+-(void) animateImage {
+    
+    self.imageBook.alpha = 0;
+    self.imageBook.transform = CGAffineTransformMakeScale(1.3, 1.3);
+    [UIView setAnimationRepeatCount:1];
+    [UIView animateWithDuration:0.5
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.imageBook.alpha = 1;
+                         self.imageBook.transform = CGAffineTransformMakeScale(1, 1);
+                     }
+                     completion:nil];
+}
+-(void) animateCircleTag {
+    
+    self.circle.alpha = 0;
+    self.circle.transform = CGAffineTransformMakeScale(1.3, 1.3);
+    [UIView setAnimationRepeatCount:1];
+    [UIView animateWithDuration:0.5
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.circle.alpha = 1;
+                         self.circle.transform = CGAffineTransformMakeScale(1, 1);
+                     }
+                     completion:nil];
+}
+-(void) animateButtonViewBook {
+    
+
+    self.readBookButton.transform = CGAffineTransformMakeTranslation(1, 1);
+    [UIView setAnimationRepeatCount:1];
+    [UIView animateWithDuration:1
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat
+                     animations:^{
+                         self.readBookButton.transform = CGAffineTransformMakeTranslation(1, 10);
+                     }
+                     completion:nil];
+}
 @end

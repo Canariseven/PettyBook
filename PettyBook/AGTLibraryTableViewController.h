@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 @class AGTBook;
 @class AGTLibrary;
+@class AGTDataSourceAndDelegateTableView;
 @interface AGTLibraryTableViewController : UIViewController
 @property (nonatomic,strong) AGTLibrary *model;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic, strong) AGTDataSourceAndDelegateTableView * controllerOfTable;
 -(id)initWihtModel:(AGTLibrary *)model;
 @end

@@ -8,7 +8,8 @@
 
 @import UIKit;
 @class  AGTBook;
-@interface AGTBookViewController : UIViewController<UISplitViewControllerDelegate>
+#import "AGTDataSourceAndDelegateTableView.h"
+@interface AGTBookViewController : UIViewController<UISplitViewControllerDelegate,AGTDataSourceAndDelegateTableViewDelegate>
 @property (nonatomic, strong) AGTBook *model;
 -(id)initWithModel:(AGTBook *)model;
 

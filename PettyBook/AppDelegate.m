@@ -11,6 +11,7 @@
 #import "AGTLibrary.h"
 #import "AGTLibraryTableViewController.h"
 #import "AGTBookViewController.h"
+#import "AGTDataSourceAndDelegateTableView.h"
 @interface AppDelegate ()
 
 @end
@@ -42,7 +43,7 @@
     AGTBook *book4 = [[AGTBook alloc]initWithTitle:@"Todo sobre Angular"
                                            authors:@[@"un autor",@"dos autores",@"tres autores"]
                                               tags:@[@"Angular",@"JavaScript"]
-                                          urlImage:@"image.jpg"
+                                          urlImage:@"viewIcon"
                                             urlPDF:@"libro.pdf"];
     
     NSArray *books = @[book1,book2,book3,book4];
@@ -58,7 +59,7 @@
     UISplitViewController *split = [[UISplitViewController alloc]init];
     split.viewControllers = @[navLibrary,navBook];
     split.delegate = book;
-    
+    tLibrary.controllerOfTable.delegate = book;
     
     self.window.rootViewController = split;
     return YES;

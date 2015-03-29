@@ -13,7 +13,7 @@
 #import "AGTDataSourceAndDelegateTableView.h"
 @interface AGTLibraryTableViewController()
 // Creo la propiedad para el controlador de la tableView
-@property (nonatomic, strong) AGTDataSourceAndDelegateTableView * controllerOfTable;
+
 @property (weak, nonatomic) IBOutlet UIImageView *backGroundImageView;
 
 @end
@@ -22,17 +22,20 @@
 -(id)initWihtModel:(AGTLibrary *)model{
     if(self = [super initWithNibName:nil bundle:nil]){
         _model = model;
-        _controllerOfTable = [[AGTDataSourceAndDelegateTableView alloc] initWithModel:model];
+        _controllerOfTable = [[AGTDataSourceAndDelegateTableView alloc] initWithModel:model controller:self];
+        self.title = @"PettyBook";
     }
     return self;
 }
 -(void)viewDidLoad{
     [super viewDidLoad];
+    self.navigationController.toolbar.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self.controllerOfTable;
     self.tableView.dataSource = self.controllerOfTable;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.tableView.frame = CGRectMake(0, self.navigationController.toolbar.frame.size.height + 20, self.tableView.frame.size.width, self.tableView.frame.size.height);
     self.tableView.backgroundColor = [UIColor clearColor];
 }
 

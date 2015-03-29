@@ -11,12 +11,13 @@
 #import "AGTLibrary.h"
 #import "AGTLibraryTableViewCell.h"
 #import "AGTBook.h"
-
+#import "AGTBookViewController.h"
 
 @implementation AGTDataSourceAndDelegateTableView
--(id)initWithModel:(AGTLibrary *)model{
+-(id)initWithModel:(AGTLibrary *)model controller:(UIViewController *)controller{
     if (self=[super init]) {
         _model = model;
+        _controller = controller;
     }
     return self;
 }
@@ -48,5 +49,17 @@
     cell.authorBook.text = book.authors[0];
     // Devolverla
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    AGTBook * book = [self.model bookForTag:self.model.tags[indexPath.section] atIndex:indexPath.row];
+    if ([self.delegate respondsToSelector:@selector(dataSourceAndDelegateTableView:didSelectBook:)]) {
+        [self.delegate dataSourceAndDelegateTableView:self didSelectBook:book];
+    }
+    
+}
+-(void) dataSourceAndDelegateTableView:(AGTDataSourceAndDelegateTableView *)dt didSelectBook:(AGTBook *)book{
+    AGTBookViewController * bookVC = [[AGTBookViewController alloc] initWithModel:book];
+    [self.controller.navigationController pushViewController:bookVC animated:YES];
 }
 @end
