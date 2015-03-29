@@ -10,6 +10,7 @@
 #import "AGTBook.h"
 #import "AGTLibrary.h"
 #import "AGTLibraryTableViewController.h"
+#import "AGTBookViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -48,7 +49,18 @@
     AGTLibrary *library = [[AGTLibrary alloc]initWithBooks:books];
     [library booksCountForTag:@"Juan"];
     AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWihtModel:library];
-    self.window.rootViewController = tLibrary;
+    UINavigationController *navLibrary = [[UINavigationController alloc] initWithRootViewController:tLibrary];
+    
+    
+    AGTBookViewController *book = [[AGTBookViewController alloc] initWithModel:book1];
+    UINavigationController *navBook = [[UINavigationController alloc] initWithRootViewController:book];
+    
+    UISplitViewController *split = [[UISplitViewController alloc]init];
+    split.viewControllers = @[navLibrary,navBook];
+    split.delegate = book;
+    
+    
+    self.window.rootViewController = split;
     return YES;
 }
 

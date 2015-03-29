@@ -16,8 +16,10 @@
 @implementation AGTLibraryTableViewCell
 
 - (void)awakeFromNib {
-    self.backView.layer.cornerRadius = 10;
+    self.backView.center = self.center;
+    self.backView.layer.cornerRadius = 5;
     self.backgroundColor = [UIColor clearColor];
+    [self addVerticalLine];
     // Initialization code
 }
 
@@ -27,7 +29,12 @@
     // Configure the view for the selected state
 }
 +(CGFloat)cellHeight{
-    return 318;
+    return 160;
 }
-
+-(void) addVerticalLine{
+    UIView * verticalLine = [[UIView alloc]initWithFrame:CGRectMake(100-1, 0, 2, 140)];
+    verticalLine.backgroundColor = [UIColor blackColor];
+    verticalLine.alpha = 0.8;
+    [self.backView addSubview:verticalLine];
+}
 @end

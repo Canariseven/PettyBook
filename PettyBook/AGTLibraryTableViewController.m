@@ -10,50 +10,31 @@
 #import "AGTBook.h"
 #import "AGTLibrary.h"
 #import "AGTLibraryTableViewCell.h"
+#import "AGTDataSourceAndDelegateTableView.h"
+@interface AGTLibraryTableViewController()
+// Creo la propiedad para el controlador de la tableView
+@property (nonatomic, strong) AGTDataSourceAndDelegateTableView * controllerOfTable;
+@property (weak, nonatomic) IBOutlet UIImageView *backGroundImageView;
+
+@end
+
 @implementation AGTLibraryTableViewController
 -(id)initWihtModel:(AGTLibrary *)model{
     if(self = [super initWithNibName:nil bundle:nil]){
         _model = model;
+        _controllerOfTable = [[AGTDataSourceAndDelegateTableView alloc] initWithModel:model];
     }
     return self;
 }
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    self.tableView.delegate = self.controllerOfTable;
+    self.tableView.dataSource = self.controllerOfTable;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.tableView.backgroundColor = [UIColor clearColor];
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [AGTLibraryTableViewCell cellHeight];
-}
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return self.model.tags[section];
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.model booksCountForTag:self.model.tags[section]];
-}
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.model.tags.count;
-}
-    
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    AGTBook * book = [self.model bookForTag:self.model.tags[indexPath.section] atIndex:indexPath.row];
-    AGTLibraryTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CELL_FOR_LIBRARY];
-    if (cell == nil) {
-        // La tenemos que crear nosotros desde cero
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AGTLibraryTableViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
-    // Configurarla
-    // Sincronizar model (personaje) -> vista(celda)
-    cell.imageBook.image = [UIImage imageNamed:book.urlImage];
-    cell.titleBook.text = book.title;
-    cell.authorBook.text = book.authors[0];
-    // Devolverla
-    return cell;
-}
+
 
 @end

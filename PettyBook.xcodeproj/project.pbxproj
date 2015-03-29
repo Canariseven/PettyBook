@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3248787C1AC8820100048B99 /* AGTBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248787A1AC8820100048B99 /* AGTBookViewController.m */; };
+		3248787D1AC8820100048B99 /* AGTBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3248787B1AC8820100048B99 /* AGTBookViewController.xib */; };
+		3248788D1AC8989C00048B99 /* AGTTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248788B1AC8989C00048B99 /* AGTTagTableViewCell.m */; };
+		3248788E1AC8989C00048B99 /* AGTTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3248788C1AC8989C00048B99 /* AGTTagTableViewCell.xib */; };
+		3248789D1AC8A40800048B99 /* AGTTagsDataSourceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248789C1AC8A40800048B99 /* AGTTagsDataSourceTableView.m */; };
+		32D16B931AC8736F00F265E5 /* AGTLibraryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D16B921AC8736F00F265E5 /* AGTLibraryTableViewCell.xib */; };
+		32D16B971AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D16B961AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m */; };
 		32DC7CD01AC7126600A074E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC7CCF1AC7126600A074E8 /* main.m */; };
 		32DC7CD31AC7126600A074E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC7CD21AC7126600A074E8 /* AppDelegate.m */; };
 		32DC7CD51AC7126600A074E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32DC7CD41AC7126600A074E8 /* Images.xcassets */; };
@@ -18,7 +25,6 @@
 		32DC7CF91AC735F000A074E8 /* AGTLibraryTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DC7CF81AC735F000A074E8 /* AGTLibraryTableViewController.xib */; };
 		32DC7CFB1AC7383300A074E8 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32DC7CFA1AC7383300A074E8 /* image.jpg */; };
 		32DC7D001AC73AF800A074E8 /* AGTLibraryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC7CFE1AC73AF800A074E8 /* AGTLibraryTableViewCell.m */; };
-		32DC7D011AC73AF800A074E8 /* AGTLibraryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DC7CFF1AC73AF800A074E8 /* AGTLibraryTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +38,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		324878791AC8820100048B99 /* AGTBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTBookViewController.h; sourceTree = "<group>"; };
+		3248787A1AC8820100048B99 /* AGTBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTBookViewController.m; sourceTree = "<group>"; };
+		3248787B1AC8820100048B99 /* AGTBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTBookViewController.xib; sourceTree = "<group>"; };
+		3248788A1AC8989C00048B99 /* AGTTagTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTTagTableViewCell.h; sourceTree = "<group>"; };
+		3248788B1AC8989C00048B99 /* AGTTagTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTTagTableViewCell.m; sourceTree = "<group>"; };
+		3248788C1AC8989C00048B99 /* AGTTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTTagTableViewCell.xib; sourceTree = "<group>"; };
+		3248789B1AC8A40800048B99 /* AGTTagsDataSourceTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTTagsDataSourceTableView.h; sourceTree = "<group>"; };
+		3248789C1AC8A40800048B99 /* AGTTagsDataSourceTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTTagsDataSourceTableView.m; sourceTree = "<group>"; };
+		32D16B921AC8736F00F265E5 /* AGTLibraryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTLibraryTableViewCell.xib; sourceTree = "<group>"; };
+		32D16B951AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTDataSourceAndDelegateTableView.h; sourceTree = "<group>"; };
+		32D16B961AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTDataSourceAndDelegateTableView.m; sourceTree = "<group>"; };
 		32DC7CCA1AC7126600A074E8 /* PettyBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PettyBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32DC7CCE1AC7126600A074E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32DC7CCF1AC7126600A074E8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -52,7 +69,6 @@
 		32DC7CFA1AC7383300A074E8 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
 		32DC7CFD1AC73AF800A074E8 /* AGTLibraryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTLibraryTableViewCell.h; sourceTree = "<group>"; };
 		32DC7CFE1AC73AF800A074E8 /* AGTLibraryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTLibraryTableViewCell.m; sourceTree = "<group>"; };
-		32DC7CFF1AC73AF800A074E8 /* AGTLibraryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTLibraryTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +89,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3248789A1AC8A37B00048B99 /* TagsCell */ = {
+			isa = PBXGroup;
+			children = (
+				3248788A1AC8989C00048B99 /* AGTTagTableViewCell.h */,
+				3248788B1AC8989C00048B99 /* AGTTagTableViewCell.m */,
+				3248788C1AC8989C00048B99 /* AGTTagTableViewCell.xib */,
+			);
+			name = TagsCell;
+			sourceTree = "<group>";
+		};
+		3248789E1AC8A53300048B99 /* DataSources and Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				32D16B951AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.h */,
+				32D16B961AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m */,
+				3248789B1AC8A40800048B99 /* AGTTagsDataSourceTableView.h */,
+				3248789C1AC8A40800048B99 /* AGTTagsDataSourceTableView.m */,
+			);
+			name = "DataSources and Delegates";
+			sourceTree = "<group>";
+		};
+		32D16B941AC87AC100F265E5 /* MiniBooksCELL */ = {
+			isa = PBXGroup;
+			children = (
+				32DC7CFD1AC73AF800A074E8 /* AGTLibraryTableViewCell.h */,
+				32DC7CFE1AC73AF800A074E8 /* AGTLibraryTableViewCell.m */,
+				32D16B921AC8736F00F265E5 /* AGTLibraryTableViewCell.xib */,
+			);
+			name = MiniBooksCELL;
+			sourceTree = "<group>";
+		};
 		32DC7CC11AC7126600A074E8 = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +197,10 @@
 				32DC7CF51AC7350C00A074E8 /* AGTLibraryTableViewController.h */,
 				32DC7CF61AC7350C00A074E8 /* AGTLibraryTableViewController.m */,
 				32DC7CF81AC735F000A074E8 /* AGTLibraryTableViewController.xib */,
+				324878791AC8820100048B99 /* AGTBookViewController.h */,
+				3248787A1AC8820100048B99 /* AGTBookViewController.m */,
+				3248787B1AC8820100048B99 /* AGTBookViewController.xib */,
+				3248789E1AC8A53300048B99 /* DataSources and Delegates */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -157,9 +208,8 @@
 		32DC7CFC1AC73AB800A074E8 /* Celdas */ = {
 			isa = PBXGroup;
 			children = (
-				32DC7CFD1AC73AF800A074E8 /* AGTLibraryTableViewCell.h */,
-				32DC7CFE1AC73AF800A074E8 /* AGTLibraryTableViewCell.m */,
-				32DC7CFF1AC73AF800A074E8 /* AGTLibraryTableViewCell.xib */,
+				32D16B941AC87AC100F265E5 /* MiniBooksCELL */,
+				3248789A1AC8A37B00048B99 /* TagsCell */,
 			);
 			name = Celdas;
 			sourceTree = "<group>";
@@ -246,8 +296,10 @@
 			files = (
 				32DC7CD81AC7126600A074E8 /* LaunchScreen.xib in Resources */,
 				32DC7CFB1AC7383300A074E8 /* image.jpg in Resources */,
+				3248787D1AC8820100048B99 /* AGTBookViewController.xib in Resources */,
+				3248788E1AC8989C00048B99 /* AGTTagTableViewCell.xib in Resources */,
 				32DC7CD51AC7126600A074E8 /* Images.xcassets in Resources */,
-				32DC7D011AC73AF800A074E8 /* AGTLibraryTableViewCell.xib in Resources */,
+				32D16B931AC8736F00F265E5 /* AGTLibraryTableViewCell.xib in Resources */,
 				32DC7CF91AC735F000A074E8 /* AGTLibraryTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,7 +318,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3248788D1AC8989C00048B99 /* AGTTagTableViewCell.m in Sources */,
+				3248787C1AC8820100048B99 /* AGTBookViewController.m in Sources */,
 				32DC7CF31AC7133E00A074E8 /* AGTLibrary.m in Sources */,
+				32D16B971AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m in Sources */,
+				3248789D1AC8A40800048B99 /* AGTTagsDataSourceTableView.m in Sources */,
 				32DC7CF71AC7350C00A074E8 /* AGTLibraryTableViewController.m in Sources */,
 				32DC7CD31AC7126600A074E8 /* AppDelegate.m in Sources */,
 				32DC7CF01AC7128900A074E8 /* AGTBook.m in Sources */,
