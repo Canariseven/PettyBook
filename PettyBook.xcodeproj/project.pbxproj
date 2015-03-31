@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		323FB4081ACB2ADB006CB368 /* AGTLoadingDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323FB4071ACB2ADB006CB368 /* AGTLoadingDataViewController.m */; };
+		323FB40A1ACB3786006CB368 /* AGTLoadingDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 323FB4091ACB3786006CB368 /* AGTLoadingDataViewController.xib */; };
 		3248787C1AC8820100048B99 /* AGTBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248787A1AC8820100048B99 /* AGTBookViewController.m */; };
 		3248787D1AC8820100048B99 /* AGTBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3248787B1AC8820100048B99 /* AGTBookViewController.xib */; };
 		3248788D1AC8989C00048B99 /* AGTTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248788B1AC8989C00048B99 /* AGTTagTableViewCell.m */; };
@@ -38,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		323FB4061ACB2ADB006CB368 /* AGTLoadingDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTLoadingDataViewController.h; sourceTree = "<group>"; };
+		323FB4071ACB2ADB006CB368 /* AGTLoadingDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTLoadingDataViewController.m; sourceTree = "<group>"; };
+		323FB4091ACB3786006CB368 /* AGTLoadingDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTLoadingDataViewController.xib; sourceTree = "<group>"; };
 		324878791AC8820100048B99 /* AGTBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTBookViewController.h; sourceTree = "<group>"; };
 		3248787A1AC8820100048B99 /* AGTBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTBookViewController.m; sourceTree = "<group>"; };
 		3248787B1AC8820100048B99 /* AGTBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTBookViewController.xib; sourceTree = "<group>"; };
@@ -187,6 +192,9 @@
 				32DC7CEF1AC7128900A074E8 /* AGTBook.m */,
 				32DC7CF11AC7133E00A074E8 /* AGTLibrary.h */,
 				32DC7CF21AC7133E00A074E8 /* AGTLibrary.m */,
+				323FB4061ACB2ADB006CB368 /* AGTLoadingDataViewController.h */,
+				323FB4071ACB2ADB006CB368 /* AGTLoadingDataViewController.m */,
+				323FB4091ACB3786006CB368 /* AGTLoadingDataViewController.xib */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -294,6 +302,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				323FB40A1ACB3786006CB368 /* AGTLoadingDataViewController.xib in Resources */,
 				32DC7CD81AC7126600A074E8 /* LaunchScreen.xib in Resources */,
 				32DC7CFB1AC7383300A074E8 /* image.jpg in Resources */,
 				3248787D1AC8820100048B99 /* AGTBookViewController.xib in Resources */,
@@ -320,6 +329,7 @@
 			files = (
 				3248788D1AC8989C00048B99 /* AGTTagTableViewCell.m in Sources */,
 				3248787C1AC8820100048B99 /* AGTBookViewController.m in Sources */,
+				323FB4081ACB2ADB006CB368 /* AGTLoadingDataViewController.m in Sources */,
 				32DC7CF31AC7133E00A074E8 /* AGTLibrary.m in Sources */,
 				32D16B971AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m in Sources */,
 				3248789D1AC8A40800048B99 /* AGTTagsDataSourceTableView.m in Sources */,

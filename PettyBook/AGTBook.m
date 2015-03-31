@@ -23,4 +23,15 @@
     }
     return self;
 }
+-(id) initWithDictionary:(NSDictionary *)dict{
+   return [self initWithTitle:[dict objectForKey:@"title"]
+                      authors:[self extractFromJSONString:[dict objectForKey:@"authors"]]
+                         tags:[self extractFromJSONString:[dict objectForKey:@"tags"]]
+                     urlImage:[dict objectForKey:@"image_url"]
+                       urlPDF:@"pdf_url"];
+}
+-(NSArray *)extractFromJSONString:(NSString *)elements{
+    NSArray * arr = [elements componentsSeparatedByString:@", "];
+    return arr;
+}
 @end

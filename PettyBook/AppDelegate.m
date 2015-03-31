@@ -12,6 +12,7 @@
 #import "AGTLibraryTableViewController.h"
 #import "AGTBookViewController.h"
 #import "AGTDataSourceAndDelegateTableView.h"
+#import "AGTLoadingDataViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -25,43 +26,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    AGTBook *book1 = [[AGTBook alloc]initWithTitle:@"IOS - 8.3"
-                                           authors:@[@"un autor",@"dos autores",@"tres autores"]
-                                              tags:@[@"IOS",@"programación",@"Super poderes"]
-                                          urlImage:@"image.jpg"
-                                            urlPDF:@"libro.pdf"];
-    AGTBook *book2 = [[AGTBook alloc]initWithTitle:@"Aprende Andorid"
-                                           authors:@[@"un autor",@"dos autores",@"tres autores"]
-                                              tags:@[@"Android",@"programación",@"Super"]
-                                          urlImage:@"image.jpg"
-                                            urlPDF:@"libro.pdf"];
-    AGTBook *book3 = [[AGTBook alloc]initWithTitle:@"Sketch"
-                                           authors:@[@"un autor",@"dos autores",@"tres autores"]
-                                              tags:@[@"Diseño",@"Apps"]
-                                          urlImage:@"image.jpg"
-                                            urlPDF:@"libro.pdf"];
-    AGTBook *book4 = [[AGTBook alloc]initWithTitle:@"Todo sobre Angular"
-                                           authors:@[@"un autor",@"dos autores",@"tres autores"]
-                                              tags:@[@"Angular",@"JavaScript"]
-                                          urlImage:@"viewIcon"
-                                            urlPDF:@"libro.pdf"];
-    
-    NSArray *books = @[book1,book2,book3,book4];
-    AGTLibrary *library = [[AGTLibrary alloc]initWithBooks:books];
-    [library booksCountForTag:@"Juan"];
-    AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWihtModel:library];
-    UINavigationController *navLibrary = [[UINavigationController alloc] initWithRootViewController:tLibrary];
-    
-    
-    AGTBookViewController *book = [[AGTBookViewController alloc] initWithModel:book1];
-    UINavigationController *navBook = [[UINavigationController alloc] initWithRootViewController:book];
-    
-    UISplitViewController *split = [[UISplitViewController alloc]init];
-    split.viewControllers = @[navLibrary,navBook];
-    split.delegate = book;
-    tLibrary.controllerOfTable.delegate = book;
-    
-    self.window.rootViewController = split;
+    AGTLoadingDataViewController *loading = [[AGTLoadingDataViewController alloc]initWithWindow:self.window];
+    self.window.rootViewController = loading;
     return YES;
 }
 

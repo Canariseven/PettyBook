@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSArray * tags;
 @property (nonatomic, copy) NSString * urlImage;
 @property (nonatomic, copy) NSString * urlPDF;
+@property (nonatomic) BOOL isFavourite;
 
 -(id) initWithTitle:(NSString *)title
             authors:(NSArray *)authors
@@ -21,4 +22,5 @@
            urlImage:(NSString *)urlImage
              urlPDF:(NSString *)urlPDF;
 
+-(id) initWithDictionary:(NSDictionary *)dict;
 @end
