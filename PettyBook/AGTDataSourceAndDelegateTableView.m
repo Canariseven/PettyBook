@@ -85,9 +85,6 @@
 -(void)reloadCellWithNotification:(NSNotification *)notifcation {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self name:notifcation.name object:notifcation.object];
-    
-    // No es lo mas eficiente, pero no encuentro el modo de pasar el indexPath.
-//    [self.controller.tableView reloadData];
     [self reloadRowCellWithNameNotif:notifcation.name];
     
 }

@@ -33,7 +33,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="285" height="475"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image.jpg" id="sa2-zf-jCz">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconBook" id="sa2-zf-jCz">
                                     <rect key="frame" x="-2" y="0.0" width="287" height="413"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </imageView>
@@ -103,9 +103,9 @@
     </objects>
     <resources>
         <image name="greyWood" width="743" height="690"/>
+        <image name="iconBook" width="112" height="153"/>
         <image name="iconFavourite" width="40" height="40"/>
         <image name="iconTags" width="32" height="43"/>
-        <image name="image.jpg" width="405" height="600"/>
         <image name="refBook" width="284" height="414"/>
         <image name="viewIcon" width="71" height="85"/>
     </resources>

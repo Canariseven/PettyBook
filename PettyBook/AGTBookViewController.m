@@ -43,9 +43,9 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    
     self.tableView.dataSource = self.DT;
-
+    
     [self setupViews];
     [self sincronizeDataOfView];
     [self animateButtonViewBook];
@@ -92,11 +92,17 @@
     [self animateTableView:-(self.tableView.frame.size.height)];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
+    
 }
+
 -(void)sincronizeDataOfView{
     [self.tableView reloadData];
-    self.imageBook.image = [UIImage imageNamed:self.model.urlImage ];
+    if (self.model.image !=nil){
+        self.imageBook.image = self.model.image;
+    }else{
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        [nc addObserver:self selector:@selector(reloadCellWithNotification:) name:self.model.title object:nil];
+    }
     self.numberOfTags.text = [NSString stringWithFormat:@"%d",self.model.tags.count];
     [self animateImage];
     [self animateCircleTag];
@@ -147,12 +153,22 @@
 
 #pragma mark - AGTDataSourceAndDelegateTableViewDelegate
 -(void)dataSourceAndDelegateTableView:(AGTDataSourceAndDelegateTableView *)dt didSelectBook:(AGTBook *)book{
+    // Al cambiar de libro borro el obserador de la notificacion anterior
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc removeObserver:self name:self.model.title object:self.model];
     self.model = book;
     [self sincronizeDataOfView];
 }
 
-#pragma mark - Utils
+#pragma mark - Notification
 
+-(void)reloadCellWithNotification:(NSNotification *)notifcation {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        [nc removeObserver:self name:notifcation.name object:notifcation.object];
+        self.imageBook.image = self.model.image;
+    });
+}
 
 #pragma mark - Animations
 -(void) animateTableView:(CGFloat)value {
@@ -198,7 +214,7 @@
 }
 -(void) animateButtonViewBook {
     
-
+    
     self.readBookButton.transform = CGAffineTransformMakeTranslation(1, 1);
     [UIView setAnimationRepeatCount:1];
     [UIView animateWithDuration:1
