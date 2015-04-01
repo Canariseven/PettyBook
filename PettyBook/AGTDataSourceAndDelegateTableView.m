@@ -56,7 +56,7 @@
         [cell.activityIndicator startAnimating];
         cell.activityIndicator.hidden = NO;
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        [nc addObserver:self selector:@selector(reloadCellWithNotification:) name:book.title object:nil];
+        [nc addObserver:self selector:@selector(receivedNotification:) name:book.title object:nil];
         
     }else{
         cell.imageBook.image = book.image;
@@ -82,7 +82,7 @@
     [self.controller.navigationController pushViewController:bookVC animated:YES];
 }
 
--(void)reloadCellWithNotification:(NSNotification *)notifcation {
+-(void)receivedNotification:(NSNotification *)notifcation {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self name:notifcation.name object:notifcation.object];
     [self reloadRowCellWithNameNotif:notifcation.name];
