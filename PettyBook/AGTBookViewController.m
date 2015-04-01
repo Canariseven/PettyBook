@@ -157,6 +157,7 @@
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self name:self.model.title object:self.model];
     self.model = book;
+    self.DT.tags = self.model.tags;
     [self sincronizeDataOfView];
 }
 
