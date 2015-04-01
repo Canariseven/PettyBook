@@ -16,7 +16,6 @@
 #import "AGTLibraryTableViewController.h"
 @interface AGTDataSourceAndDelegateTableView()
 @property (nonatomic, strong) NSIndexPath *indexPath;
-@property (nonatomic, strong) NSMutableArray *arrNotifis;
 @end
 @implementation AGTDataSourceAndDelegateTableView
 -(id)initWithModel:(AGTLibrary *)model controller:(AGTLibraryTableViewController *)controller{
@@ -51,14 +50,14 @@
     }
     // Configurarla
     // Sincronizar model (personaje) -> vista(celda)
- 
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (book.image == nil){
         [cell.activityIndicator startAnimating];
         cell.activityIndicator.hidden = NO;
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        [nc addObserver:self selector:@selector(reloadCellWithNotification:) name:book.urlImage object:nil];
-
+        [nc addObserver:self selector:@selector(reloadCellWithNotification:) name:book.title object:nil];
+        
     }else{
         cell.imageBook.image = book.image;
         [cell.activityIndicator stopAnimating];
@@ -88,11 +87,27 @@
     [nc removeObserver:self name:notifcation.name object:notifcation.object];
     
     // No es lo mas eficiente, pero no encuentro el modo de pasar el indexPath.
-    [self.controller.tableView reloadData];
+//    [self.controller.tableView reloadData];
+    [self reloadRowCellWithNameNotif:notifcation.name];
+    
 }
 
--(void)fillArrNotifisWith:(NSIndexPath *)indexPath andNameNotif:(NSString *)name{
-    
+-(void)reloadRowCellWithNameNotif:(NSString *)name{
+    NSArray *array = self.controller.tableView.visibleCells;
+    NSArray *arrIndex = self.controller.tableView.indexPathsForVisibleRows;
+    NSUInteger index = 0;
+    for (AGTLibraryTableViewCell *cell in array) {
+        if ([cell.titleBook.text isEqualToString:name]) {
+            // Introducir delay porque carga muy rápido y rompe (dos animaciones misma celda)
+            double delayInSeconds = 1.0;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds *NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^{
+                [self.controller.tableView reloadRowsAtIndexPaths:@[arrIndex[index]] withRowAnimation:UITableViewRowAnimationNone];
+            });
+            
+        }
+        index ++;
+    }
 }
 
 

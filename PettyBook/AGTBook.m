@@ -79,7 +79,7 @@
     }else{
         UIImage *image = [UIImage imageWithData:data];
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        NSNotification * n = [NSNotification notificationWithName:self.urlImage object:self];
+        NSNotification * n = [NSNotification notificationWithName:self.title object:self];
         [nc postNotification:n];
         self.image = image;
         NSLog(@"La imagen se ha guardado correctamente en : %@",url);
