@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleBook;
 @property (weak, nonatomic) IBOutlet UILabel *authorBook;
 @property (weak, nonatomic) IBOutlet UIImageView *imageBook;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 +(CGFloat)cellHeight;
 
 @end

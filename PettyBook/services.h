@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface services : NSObject
--(void) nameServicesWeb:(NSURL *)url statusOperationWith:(void(^)(NSData *data ,NSURLResponse * response, NSError *error))success failure:(void (^)(NSURLResponse *response, NSError *error))failure;
++(id)sharedServices;
+-(void) dowloadDataWithURL:(NSURL *)url statusOperationWith:(void(^)(NSData *data ,NSURLResponse * response, NSError *error))success failure:(void (^)(NSURLResponse *response, NSError *error))failure;
 @end

@@ -13,7 +13,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" id="A6x-Zj-32b">
-                        <rect key="frame" x="0.0" y="11" width="200" height="140"/>
+                        <rect key="frame" x="60" y="11" width="200" height="140"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="nOJ-EN-MoU">
@@ -49,6 +49,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" id="ceI-NI-VHe">
+                                <rect key="frame" x="39" y="60" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.8980392157" green="0.3287058987" blue="0.29165585020000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
@@ -57,6 +62,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="activityIndicator" destination="ceI-NI-VHe" id="kkL-7V-nxg"/>
                 <outlet property="authorBook" destination="440-qL-zrd" id="cEH-sg-yqM"/>
                 <outlet property="backView" destination="A6x-Zj-32b" id="yf0-3P-Ip4"/>
                 <outlet property="imageBook" destination="nOJ-EN-MoU" id="hGH-bw-SOp"/>

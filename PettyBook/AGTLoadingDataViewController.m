@@ -36,7 +36,7 @@
 -(void)dowloadLibrary{
     services *serv = [[services alloc]init];
     NSURL * url =  [NSURL URLWithString:URL_LIBRARY_JSON];
-    [serv nameServicesWeb:url statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
+    [serv dowloadDataWithURL:url statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSError *err;
         NSArray *JSONObjects = [NSJSONSerialization JSONObjectWithData:data
                                                                options:kNilOptions
