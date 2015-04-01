@@ -6,7 +6,8 @@
 //  Copyright (c) 2015 Carmelo Ruymán Quintana Santana. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+@import UIKit;
 
 @interface AGTBook : NSObject
 @property (nonatomic, copy) NSString * title;
@@ -15,7 +16,7 @@
 @property (nonatomic, copy) NSString * urlImage;
 @property (nonatomic, copy) NSString * urlPDF;
 @property (nonatomic) BOOL isFavourite;
-
+@property (nonatomic, strong) UIImage *image;
 -(id) initWithTitle:(NSString *)title
             authors:(NSArray *)authors
             tags:(NSArray *)tags
@@ -23,4 +24,5 @@
              urlPDF:(NSString *)urlPDF;
 
 -(id) initWithDictionary:(NSDictionary *)dict;
+
 @end

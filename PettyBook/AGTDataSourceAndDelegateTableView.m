@@ -13,8 +13,13 @@
 #import "AGTBook.h"
 #import "AGTBookViewController.h"
 #import "services.h"
+#import "AGTLibraryTableViewController.h"
+@interface AGTDataSourceAndDelegateTableView()
+@property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, strong) NSMutableArray *arrNotifis;
+@end
 @implementation AGTDataSourceAndDelegateTableView
--(id)initWithModel:(AGTLibrary *)model controller:(UIViewController *)controller{
+-(id)initWithModel:(AGTLibrary *)model controller:(AGTLibraryTableViewController *)controller{
     if (self=[super init]) {
         _model = model;
         _controller = controller;
@@ -48,11 +53,18 @@
     // Sincronizar model (personaje) -> vista(celda)
  
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSURL *urlImage = [NSURL URLWithString:book.urlImage];
-    cell.imageBook.image = [self searchImageOnCacheWidthURLImage:urlImage
-                                                       indexPath:indexPath
-                                                            Cell:cell
-                                                    andTableView:tableView];
+    if (book.image == nil){
+        [cell.activityIndicator startAnimating];
+        cell.activityIndicator.hidden = NO;
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        [nc addObserver:self selector:@selector(reloadCellWithNotification:) name:book.urlImage object:nil];
+
+    }else{
+        cell.imageBook.image = book.image;
+        [cell.activityIndicator stopAnimating];
+        cell.activityIndicator.hidden = YES;
+    }
+    
     cell.titleBook.text = book.title;
     cell.authorBook.text = book.authors[0];
     // Devolverla
@@ -71,80 +83,17 @@
     [self.controller.navigationController pushViewController:bookVC animated:YES];
 }
 
-
-
--(void)downLoadPhotoWithURL:(NSURL *)url indexPath:(NSIndexPath *)indexPath Cell:(AGTLibraryTableViewCell *)cell andTableView:(UITableView *)tableView{
-    services * download = [services sharedServices];
-    cell.activityIndicator.hidden = NO;
-    [cell.activityIndicator startAnimating];
+-(void)reloadCellWithNotification:(NSNotification *)notifcation {
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc removeObserver:self name:notifcation.name object:notifcation.object];
     
-    [download dowloadDataWithURL:url statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
-        [self saveOnCacheWithURLImage:url andData:data];
-        [self reloadRowWithIndexPath:indexPath cell:cell tableView:tableView andData:data urlImage:url];
-    } failure:^(NSURLResponse *response, NSError *error) {
-        NSLog(@"Error al cargar la imagen");
-        [self reloadRowWithIndexPath:indexPath cell:cell tableView:tableView andData:nil urlImage:url];
-
-    }];
+    // No es lo mas eficiente, pero no encuentro el modo de pasar el indexPath.
+    [self.controller.tableView reloadData];
 }
 
--(void)reloadRowWithIndexPath:(NSIndexPath *)indexPath cell:(AGTLibraryTableViewCell *)cell tableView:(UITableView *)tableView andData:(NSData *)data urlImage:(NSURL *)urlImage{
-    cell.activityIndicator.hidden = YES;
-    [cell.activityIndicator stopAnimating];
-        if (data == nil){
-            // Devolver "No-image"
-            UIImage *image = [UIImage imageNamed:@"iconBook"];
-            cell.imageBook.image = image;
-            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        }else{
-            // Guardamos la imagen
-            [self saveOnCacheWithURLImage:urlImage andData:data];
-            // Devolver la image
-            UIImage *image = [UIImage imageWithData:data];
-            cell.imageBook.image = image;
-            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-
-        }
+-(void)fillArrNotifisWith:(NSIndexPath *)indexPath andNameNotif:(NSString *)name{
+    
 }
 
--(UIImage *)searchImageOnCacheWidthURLImage:(NSURL *)urlImage indexPath:(NSIndexPath *)indexPath Cell:(AGTLibraryTableViewCell *)cell andTableView:(UITableView *)tableView{
-    NSURL *url = [self urlOfCacheImageWidthURLImage:urlImage];
-    NSData * data = [NSData dataWithContentsOfURL:url];
-    if (data == nil){
-        // Descargar la imagen
-        [self downLoadPhotoWithURL:urlImage indexPath:indexPath Cell:cell andTableView:tableView];
-        UIImage *image = [UIImage imageNamed:@"iconBook"];
-        return image;
-    }else{
-        // Usar la imagen
-        UIImage *image = [UIImage imageWithData:data];
-        cell.activityIndicator.hidden = YES;
-        [cell.activityIndicator stopAnimating];
-        return image;
-    }
-}
-
--(NSURL *)urlOfCacheImageWidthURLImage:(NSURL *)urlImage{
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSArray *urls = [fm URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
-    NSURL *url = [urls lastObject];
-    NSString * nameImage = [urlImage lastPathComponent];
-    url = [url URLByAppendingPathComponent:nameImage];
-    return url;
-}
-
--(void)saveOnCacheWithURLImage:(NSURL *)urlImage andData:(NSData *)data{
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSArray *urls = [fm URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
-    NSURL *url = [urls lastObject];
-    NSString * nameImage = [urlImage lastPathComponent];
-    url = [url URLByAppendingPathComponent:nameImage];
-    BOOL rc = [data writeToURL:url atomically:NO];
-    if (rc == NO) {
-        NSLog(@"Fallo al cargar las imagenes");
-    }else{
-        NSLog(@"La imagen se ha guardado correctamente en : %@",url);
-    }
-}
 
 @end

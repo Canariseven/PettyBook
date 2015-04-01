@@ -10,6 +10,7 @@
 @class  AGTLibrary;
 @class AGTBook;
 @class AGTDataSourceAndDelegateTableView;
+@class AGTLibraryTableViewController;
 @protocol AGTDataSourceAndDelegateTableViewDelegate <NSObject>
 
 @optional
@@ -21,6 +22,6 @@
 @interface AGTDataSourceAndDelegateTableView : NSObject <UITableViewDataSource,UITableViewDelegate, AGTDataSourceAndDelegateTableViewDelegate>
 @property (nonatomic, strong) AGTLibrary *model;
 @property (nonatomic, weak) id<AGTDataSourceAndDelegateTableViewDelegate> delegate;
-@property (nonatomic, strong) UIViewController *controller;
--(id)initWithModel:(AGTLibrary *)model controller:(UIViewController *)controller;
+@property (nonatomic, strong) AGTLibraryTableViewController *controller;
+-(id)initWithModel:(AGTLibrary *)model controller:(AGTLibraryTableViewController *)controller;
 @end
