@@ -14,6 +14,7 @@
 		3248788D1AC8989C00048B99 /* AGTTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248788B1AC8989C00048B99 /* AGTTagTableViewCell.m */; };
 		3248788E1AC8989C00048B99 /* AGTTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3248788C1AC8989C00048B99 /* AGTTagTableViewCell.xib */; };
 		3248789D1AC8A40800048B99 /* AGTTagsDataSourceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248789C1AC8A40800048B99 /* AGTTagsDataSourceTableView.m */; };
+		32B689E61ACC749300FE4014 /* services.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B689E51ACC749300FE4014 /* services.m */; };
 		32D16B931AC8736F00F265E5 /* AGTLibraryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D16B921AC8736F00F265E5 /* AGTLibraryTableViewCell.xib */; };
 		32D16B971AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D16B961AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m */; };
 		32DC7CD01AC7126600A074E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC7CCF1AC7126600A074E8 /* main.m */; };
@@ -51,6 +52,8 @@
 		3248788C1AC8989C00048B99 /* AGTTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTTagTableViewCell.xib; sourceTree = "<group>"; };
 		3248789B1AC8A40800048B99 /* AGTTagsDataSourceTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTTagsDataSourceTableView.h; sourceTree = "<group>"; };
 		3248789C1AC8A40800048B99 /* AGTTagsDataSourceTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTTagsDataSourceTableView.m; sourceTree = "<group>"; };
+		32B689E41ACC749300FE4014 /* services.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = services.h; sourceTree = "<group>"; };
+		32B689E51ACC749300FE4014 /* services.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = services.m; sourceTree = "<group>"; };
 		32D16B921AC8736F00F265E5 /* AGTLibraryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTLibraryTableViewCell.xib; sourceTree = "<group>"; };
 		32D16B951AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTDataSourceAndDelegateTableView.h; sourceTree = "<group>"; };
 		32D16B961AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTDataSourceAndDelegateTableView.m; sourceTree = "<group>"; };
@@ -192,9 +195,6 @@
 				32DC7CEF1AC7128900A074E8 /* AGTBook.m */,
 				32DC7CF11AC7133E00A074E8 /* AGTLibrary.h */,
 				32DC7CF21AC7133E00A074E8 /* AGTLibrary.m */,
-				323FB4061ACB2ADB006CB368 /* AGTLoadingDataViewController.h */,
-				323FB4071ACB2ADB006CB368 /* AGTLoadingDataViewController.m */,
-				323FB4091ACB3786006CB368 /* AGTLoadingDataViewController.xib */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -202,6 +202,9 @@
 		32DC7CF41AC7348000A074E8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				323FB4061ACB2ADB006CB368 /* AGTLoadingDataViewController.h */,
+				323FB4071ACB2ADB006CB368 /* AGTLoadingDataViewController.m */,
+				323FB4091ACB3786006CB368 /* AGTLoadingDataViewController.xib */,
 				32DC7CF51AC7350C00A074E8 /* AGTLibraryTableViewController.h */,
 				32DC7CF61AC7350C00A074E8 /* AGTLibraryTableViewController.m */,
 				32DC7CF81AC735F000A074E8 /* AGTLibraryTableViewController.xib */,
@@ -209,6 +212,8 @@
 				3248787A1AC8820100048B99 /* AGTBookViewController.m */,
 				3248787B1AC8820100048B99 /* AGTBookViewController.xib */,
 				3248789E1AC8A53300048B99 /* DataSources and Delegates */,
+				32B689E41ACC749300FE4014 /* services.h */,
+				32B689E51ACC749300FE4014 /* services.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3248788D1AC8989C00048B99 /* AGTTagTableViewCell.m in Sources */,
+				32B689E61ACC749300FE4014 /* services.m in Sources */,
 				3248787C1AC8820100048B99 /* AGTBookViewController.m in Sources */,
 				323FB4081ACB2ADB006CB368 /* AGTLoadingDataViewController.m in Sources */,
 				32DC7CF31AC7133E00A074E8 /* AGTLibrary.m in Sources */,
