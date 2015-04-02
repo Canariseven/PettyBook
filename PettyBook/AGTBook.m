@@ -56,6 +56,7 @@
         return [UIImage imageWithData:data];
     }
 }
+// Al cambiar el estado de favoritos añado o quito el Tag favoritos.
 -(void)setIsFavourite:(BOOL)isFavourite{
     if (isFavourite) {
             // Añadimos el tag
@@ -66,26 +67,25 @@
         }
     _isFavourite = isFavourite;
     [self saveOrDeleteStatusOnUserDefault];
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    NSNotification * n = [NSNotification notificationWithName:ISFAVOURITE_CHANGED object:self];
-    [nc postNotification:n];
+    [self createNotificactionFavouriteChanged];
 }
 
 #pragma mark - Cache Image
+
 -(NSURL *)urlOfCacheImageWidthURLImage:(NSURL *)urlImage{
+    
     NSFileManager *fm = [NSFileManager defaultManager];
     NSArray *urls = [fm URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
     NSURL *url = [urls lastObject];
     NSString * nameImage = [urlImage lastPathComponent];
     url = [url URLByAppendingPathComponent:nameImage];
     return url;
+    
 }
+
 -(void)saveOnCacheWithURLImage:(NSURL *)urlImage andData:(NSData *)data{
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSArray *urls = [fm URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
-    NSURL *url = [urls lastObject];
-    NSString * nameImage = [urlImage lastPathComponent];
-    url = [url URLByAppendingPathComponent:nameImage];
+    
+    NSURL *url = [self urlOfCacheImageWidthURLImage:urlImage];
     BOOL rc = [data writeToURL:url atomically:NO];
     if (rc == NO) {
         NSLog(@"Fallo al cargar las imagenes");
@@ -118,6 +118,7 @@
     NSMutableArray * arr = [NSMutableArray arrayWithArray:[ ud objectForKey:SAVE_BOOK_HOW_FAVOURITE]];
     return arr;
 }
+
 -(void)saveOrDeleteStatusOnUserDefault{
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     NSMutableArray * arr = [NSMutableArray arrayWithArray:[ ud objectForKey:SAVE_BOOK_HOW_FAVOURITE]];
@@ -153,6 +154,11 @@
 -(NSArray *)extractFromJSONString:(NSString *)elements{
     NSArray * arr = [elements componentsSeparatedByString:@", "];
     return arr;
+}
+-(void)createNotificactionFavouriteChanged{
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    NSNotification * n = [NSNotification notificationWithName:ISFAVOURITE_CHANGED object:self];
+    [nc postNotification:n];
 }
 
 @end
