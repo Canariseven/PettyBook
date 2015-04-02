@@ -16,7 +16,6 @@
     if (self = [super init]){
         _books = books;
         _tags = @[].mutableCopy;
-        _tagsBook = @[].mutableCopy;
         [self setTags];
     }
     return self;
@@ -28,11 +27,12 @@
             NSUInteger pos =[self indexForTag:tag];
             if (pos == -1) {
                 [self.tags addObject:tag];
-                pos = self.tags.count;
             }
-            [self insertBook:book forIndex:pos];
         }
     }
+    NSSortDescriptor *descri = [[NSSortDescriptor alloc]initWithKey:@"description" ascending:YES];
+    NSArray * sorted = [self.tags sortedArrayUsingDescriptors:@[descri]];
+    self.tags = sorted.mutableCopy;
 }
 
 -(NSUInteger)indexForTag:(NSString *)tag{
@@ -44,47 +44,29 @@
     return -1;
 }
 
+
 -(NSUInteger)booksCountForTag:(NSString *)tag{
     return [self booksOfTag:tag].count;
 }
 
 -(NSArray *)booksOfTag:(NSString *)tag{
-    NSUInteger posTag = [self indexForTag:tag];
-    if (posTag != -1) {
-        NSArray *arr = [self.tagsBook objectAtIndex:posTag];
-        return arr;
-    }else{
-        return nil;
+    NSMutableArray *array = @[].mutableCopy;
+    for (AGTBook *book in self.books) {
+        for (NSString *t in book.tags) {
+            if ([t isEqualToString:tag]) {
+                [array addObject:book];
+            }
+        }
     }
+    return array;
 }
 
--(void)insertBook:(AGTBook *)book forIndex:(NSUInteger)index{
-    NSMutableArray *arr;
-    
-    if ((self.tagsBook.count <= index)){
-        arr = @[book].mutableCopy;
-        [self.tagsBook addObject:arr];
-    }else{
-        arr = [self.tagsBook objectAtIndex:index];
-        [arr addObject:book];
-    }
-}
 
 -(AGTBook *) bookForTag:(NSString *)tag atIndex:(NSUInteger) index{
     AGTBook *book;
     NSArray * arr = [self booksOfTag:tag];
     book = arr[index];
     return book;
-}
-
--(void)descriptionOfLibrary{
-    for (int i = 0; i<self.tags.count; i++) {
-        NSLog(@"Tag %@ =>",self.tags[i]);
-        for (AGTBook *book in self.tagsBook[i]) {
-            NSLog(@"Libros: %@ titulo: %@",book , book.title);
-        }
-        NSLog(@"\n");
-    }
 }
 
 

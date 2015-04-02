@@ -9,6 +9,11 @@
 @import Foundation;
 @import UIKit;
 
+extern const struct AGTBookAttributes {
+    __unsafe_unretained NSString *title;
+    __unsafe_unretained NSString *tags;
+} AGTBookAttributes;
+
 @interface AGTBook : NSObject
 @property (nonatomic, copy) NSString * title;
 @property (nonatomic, strong) NSArray * authors;

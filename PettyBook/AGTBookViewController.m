@@ -139,16 +139,22 @@
         // Cerrar
         [self animateTableView:-(self.tableView.frame.size.height)];
         self.openTableViewTag = NO;
-        
     }
-    
 }
 
 
 - (IBAction)readBookButton:(id)sender {
+    
 }
 
 - (IBAction)favouriteButton:(id)sender {
+    if (self.model.isFavourite == YES){
+        self.model.isFavourite = NO;
+        self.favouriteBook.backgroundColor = [UIColor clearColor];
+    }else{
+        self.model.isFavourite = YES;
+        self.favouriteBook.backgroundColor = [UIColor blueColor];
+    }
 }
 
 #pragma mark - AGTDataSourceAndDelegateTableViewDelegate

@@ -9,6 +9,12 @@
 #import "AGTBook.h"
 #import "services.h"
 
+const struct AGTBookAttributes AGTBookAttributes = {
+    .title = @"title",
+    .tags = @"tags",
+};
+
+
 @implementation AGTBook
 @synthesize image = _image;
 -(id) initWithTitle:(NSString *)title
