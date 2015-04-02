@@ -15,7 +15,7 @@
 // Creo la propiedad para el controlador de la tableView
 
 @property (weak, nonatomic) IBOutlet UIImageView *backGroundImageView;
-
+@property (strong, nonatomic) AGTBook *book;
 @end
 
 @implementation AGTLibraryTableViewController
@@ -37,6 +37,22 @@
     [super viewWillAppear:animated];
     self.tableView.frame = CGRectMake(0, self.navigationController.toolbar.frame.size.height + 20, self.tableView.frame.size.width, self.tableView.frame.size.height);
     self.tableView.backgroundColor = [UIColor clearColor];
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(reloadSectionsWithNotif:) name:RELOAD_SECTION_FAVOURITES object:self.model];
+    
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc removeObserver:self];
+    
+}
+
+-(void)reloadSectionsWithNotif:(NSNotification *)notification{
+    self.controllerOfTable.model = notification.object;
+    NSIndexSet *set = [[NSIndexSet alloc]initWithIndex:0];
+    
+    [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 

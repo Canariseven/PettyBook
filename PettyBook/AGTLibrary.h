@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#define RELOAD_SECTION_FAVOURITES @"Reload_section_favourites"
+#define SECTION_FAVOURITES @"Favoritos";
 @class AGTBook;
 @interface AGTLibrary : NSObject
 // Buscarémos todos los tags, y los introduciremos en este array de forma inteligente.
 @property (nonatomic, strong) NSMutableArray *tags;
 @property (nonatomic, strong) NSArray *books;
-
+@property (nonatomic, strong) AGTBook *book;
 @property (nonatomic) NSUInteger booksCount;
 @property (nonatomic) NSUInteger tagsCount;
 

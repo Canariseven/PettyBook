@@ -10,7 +10,7 @@
 #import "AGTBook.h"
 #import "AGTTagsDataSourceTableView.h"
 #import "AGTTagTableViewCell.h"
-
+#import "AGTLibrary.h"
 @interface AGTBookViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageBook;
 @property (weak, nonatomic) IBOutlet UIButton *tagsButton;
@@ -37,26 +37,25 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.openTableViewTag = NO;
+
     // Do any additional setup after loading the view from its nib.
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
     self.tableView.dataSource = self.DT;
-    
-    [self setupViews];
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(reloadCellWithNotification:) name:self.model.title object:nil];
+    [nc addObserver:self selector:@selector(reloadButton:) name:RELOAD_SECTION_FAVOURITES object:nil];
+    [self settingsOfViews];
     [self sincronizeDataOfView];
     [self animateButtonViewBook];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc removeObserver:self];
 }
-
-
 
 -(void) addNumberOfTagsCircleView{
     CGRect rect = CGRectMake(self.tagsButton.frame.size.width/2 + 7,
@@ -76,12 +75,11 @@
     
 }
 
--(void)setupViews{
+-(void)settingsOfViews{
+    self.openTableViewTag = NO;
     [self addNumberOfTagsCircleView];
-    
     self.backBookView.layer.cornerRadius = 10;
     self.macroView.layer.cornerRadius = 10;
-    
     [self addShadowToView:self.backBookForRadius radius:5 opacity:1];
     [self addShadowToView:self.macroView radius:20 opacity:0.5];
     self.tableView.frame = CGRectMake(self.imageBook.frame.size.width/2 + self.imageBook.frame.origin.x - [AGTTagTableViewCell cellWidth]/2 -20 ,
@@ -97,17 +95,24 @@
 
 -(void)sincronizeDataOfView{
     [self.tableView reloadData];
+    [self checkButtonColor];
     if (self.model.image !=nil){
         self.imageBook.image = self.model.image;
     }else{
-        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        [nc addObserver:self selector:@selector(reloadCellWithNotification:) name:self.model.title object:nil];
+
     }
     self.numberOfTags.text = [NSString stringWithFormat:@"%d",self.model.tags.count];
     [self animateImage];
     [self animateCircleTag];
 }
 
+-(void)checkButtonColor{
+    if (self.model.isFavourite == NO){
+        self.favouriteBook.backgroundColor = [UIColor clearColor];
+    }else{
+        self.favouriteBook.backgroundColor = [UIColor blueColor];
+    }
+}
 -(void)addShadowToView:(UIView *)view
                 radius:(CGFloat)radius
                opacity:(CGFloat)opacity{
@@ -116,6 +121,33 @@
     view.layer.shadowOpacity = opacity;
 }
 
+#pragma mark - IBACTIONS
+- (IBAction)tagsButton:(id)sender {
+    if (self.openTableViewTag == NO) {
+        // ABRIR
+        [self animateTableView:1];
+        self.openTableViewTag = YES;
+    }else{
+        // Cerrar
+        [self animateTableView:-(self.tableView.frame.size.height)];
+        self.openTableViewTag = NO;
+    }
+}
+
+- (IBAction)readBookButton:(id)sender {
+    
+}
+
+- (IBAction)favouriteButton:(id)sender {
+    
+    if (self.model.isFavourite == YES){
+        self.model.isFavourite = NO;
+    }else{
+        self.model.isFavourite = YES;
+    }
+}
+
+#pragma mark - DELEGATE
 #pragma mark - UISplitViewControllerDelegate
 -(void) splitViewController:(UISplitViewController *)svc
     willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode{
@@ -130,33 +162,6 @@
     }
 }
 
-- (IBAction)tagsButton:(id)sender {
-    if (self.openTableViewTag == NO) {
-        // ABRIR
-        [self animateTableView:1];
-        self.openTableViewTag = YES;
-    }else{
-        // Cerrar
-        [self animateTableView:-(self.tableView.frame.size.height)];
-        self.openTableViewTag = NO;
-    }
-}
-
-
-- (IBAction)readBookButton:(id)sender {
-    
-}
-
-- (IBAction)favouriteButton:(id)sender {
-    if (self.model.isFavourite == YES){
-        self.model.isFavourite = NO;
-        self.favouriteBook.backgroundColor = [UIColor clearColor];
-    }else{
-        self.model.isFavourite = YES;
-        self.favouriteBook.backgroundColor = [UIColor blueColor];
-    }
-}
-
 #pragma mark - AGTDataSourceAndDelegateTableViewDelegate
 -(void)dataSourceAndDelegateTableView:(AGTDataSourceAndDelegateTableView *)dt didSelectBook:(AGTBook *)book{
     // Al cambiar de libro borro el obserador de la notificacion anterior
@@ -167,15 +172,22 @@
     [self sincronizeDataOfView];
 }
 
-#pragma mark - Notification
-
+#pragma mark - NOTIFICACIONES
+#pragma mark - Notification Title of BOOK
 -(void)reloadCellWithNotification:(NSNotification *)notifcation {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
         [nc removeObserver:self name:notifcation.name object:notifcation.object];
-        self.imageBook.image = self.model.image;
+        [self sincronizeDataOfView];
+  
     });
 }
+
+#pragma mark - Notification RELOAD_SECTION_FAVOURITES
+-(void)reloadButton:(NSNotification *)notification{
+    [self checkButtonColor];
+}
+
 
 #pragma mark - Animations
 -(void) animateTableView:(CGFloat)value {

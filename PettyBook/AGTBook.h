@@ -8,23 +8,21 @@
 
 @import Foundation;
 @import UIKit;
-
-extern const struct AGTBookAttributes {
-    __unsafe_unretained NSString *title;
-    __unsafe_unretained NSString *tags;
-} AGTBookAttributes;
-
+#define ISFAVOURITE_CHANGED @"isFavourite changed"
+#define SAVE_BOOK_HOW_FAVOURITE @"saveFavouriteOnUserDefault"
 @interface AGTBook : NSObject
 @property (nonatomic, copy) NSString * title;
 @property (nonatomic, strong) NSArray * authors;
-@property (nonatomic, strong) NSArray * tags;
+@property (nonatomic, strong) NSMutableArray * tags;
 @property (nonatomic, copy) NSString * urlImage;
 @property (nonatomic, copy) NSString * urlPDF;
-@property (nonatomic) BOOL isFavourite;
+@property (nonatomic) BOOL  isFavourite;
 @property (nonatomic, strong) UIImage *image;
+
+
 -(id) initWithTitle:(NSString *)title
             authors:(NSArray *)authors
-            tags:(NSArray *)tags
+            tags:(NSMutableArray *)tags
            urlImage:(NSString *)urlImage
              urlPDF:(NSString *)urlPDF;
 

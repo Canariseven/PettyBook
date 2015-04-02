@@ -72,7 +72,14 @@
     UINavigationController *navLibrary = [[UINavigationController alloc] initWithRootViewController:tLibrary];
     
     // Cambiar el libro inicial por el que se cerró.
-    AGTBookViewController *book = [[AGTBookViewController alloc] initWithModel:library.books[0]];
+    NSString *str = SECTION_FAVOURITES;
+    AGTBook * b= [library bookForTag:str atIndex:0];
+    if (b == nil) {
+        b = [library bookForTag:library.tags[1] atIndex:0];
+    }
+    
+    
+    AGTBookViewController *book = [[AGTBookViewController alloc] initWithModel:b];
     UINavigationController *navBook = [[UINavigationController alloc] initWithRootViewController:book];
     
     UISplitViewController *split = [[UISplitViewController alloc]init];

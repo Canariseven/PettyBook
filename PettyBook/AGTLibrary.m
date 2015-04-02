@@ -8,6 +8,7 @@
 
 #import "AGTLibrary.h"
 #import "AGTBook.h"
+
 @implementation AGTLibrary
 
 @synthesize tags = _tags;
@@ -17,6 +18,10 @@
         _books = books;
         _tags = @[].mutableCopy;
         [self setTags];
+        // ESTO DEBERIA SER POR KVO
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        [nc addObserver:self selector:@selector(isFavouriteChanged:) name:ISFAVOURITE_CHANGED object:self.book];
+        
     }
     return self;
 }
@@ -33,6 +38,32 @@
     NSSortDescriptor *descri = [[NSSortDescriptor alloc]initWithKey:@"description" ascending:YES];
     NSArray * sorted = [self.tags sortedArrayUsingDescriptors:@[descri]];
     self.tags = sorted.mutableCopy;
+    
+    [self addSectionFavourite];
+    
+}
+
+-(void)addSectionFavourite{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSMutableArray * arr = [NSMutableArray arrayWithArray:[ ud objectForKey:SAVE_BOOK_HOW_FAVOURITE]];
+    if (arr.count == 0) {
+        NSString *str = SECTION_FAVOURITES;
+        [self.tags insertObject:str atIndex:0];
+    }
+}
+
+-(void)dealloc{
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc removeObserver:self];
+}
+-(void)isFavouriteChanged:(NSNotification *)notification{
+    // Pillamos el libro a cambiar
+    self.book = [notification object];
+    
+    // Actualizamos a tabla
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    NSNotification *n = [NSNotification notificationWithName:RELOAD_SECTION_FAVOURITES object:self];
+    [nc postNotification:n];
 }
 
 -(NSUInteger)indexForTag:(NSString *)tag{
@@ -61,10 +92,12 @@
     return array;
 }
 
-
 -(AGTBook *) bookForTag:(NSString *)tag atIndex:(NSUInteger) index{
     AGTBook *book;
     NSArray * arr = [self booksOfTag:tag];
+    if (arr.count == 0) {
+        return nil;
+    }
     book = arr[index];
     return book;
 }

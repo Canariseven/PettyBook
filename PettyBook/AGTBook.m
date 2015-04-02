@@ -9,17 +9,15 @@
 #import "AGTBook.h"
 #import "services.h"
 
-const struct AGTBookAttributes AGTBookAttributes = {
-    .title = @"title",
-    .tags = @"tags",
-};
 
 
 @implementation AGTBook
 @synthesize image = _image;
+
+
 -(id) initWithTitle:(NSString *)title
             authors:(NSArray *)authors
-               tags:(NSArray *)tags
+               tags:(NSMutableArray *)tags
            urlImage:(NSString *)urlImage
              urlPDF:(NSString *)urlPDF{
     if (self=[super init]) {
@@ -28,6 +26,8 @@ const struct AGTBookAttributes AGTBookAttributes = {
         _tags = tags;
         _urlImage = urlImage;
         _urlPDF = urlPDF;
+        _isFavourite = NO;
+        [self searchBookInUserDefaultAndAddTag];
     }
 
     return self;
@@ -36,14 +36,13 @@ const struct AGTBookAttributes AGTBookAttributes = {
 -(id) initWithDictionary:(NSDictionary *)dict{
    return [self initWithTitle:[dict objectForKey:@"title"]
                       authors:[self extractFromJSONString:[dict objectForKey:@"authors"]]
-                         tags:[self extractFromJSONString:[dict objectForKey:@"tags"]]
+                         tags:[self extractFromJSONString:[dict objectForKey:@"tags"]].mutableCopy
                      urlImage:[dict objectForKey:@"image_url"]
                        urlPDF:@"pdf_url"];
 }
--(NSArray *)extractFromJSONString:(NSString *)elements{
-    NSArray * arr = [elements componentsSeparatedByString:@", "];
-    return arr;
-}
+
+
+#pragma mark - Properties
 -(UIImage *)image{
     NSURL * urlImage = [NSURL URLWithString:self.urlImage];
     NSURL *url = [self urlOfCacheImageWidthURLImage:urlImage];
@@ -54,16 +53,25 @@ const struct AGTBookAttributes AGTBookAttributes = {
         return nil;
     }else{
         // Usar la imagen
-
-        
         return [UIImage imageWithData:data];
     }
 }
-
--(void)setImage:(NSString *)stringURLImage{
-
+-(void)setIsFavourite:(BOOL)isFavourite{
+    if (isFavourite) {
+            // Añadimos el tag
+            [self.tags addObject:@"Favoritos"];
+        }else{
+            // Quitamos el tag
+            [self.tags removeLastObject];
+        }
+    _isFavourite = isFavourite;
+    [self saveOrDeleteStatusOnUserDefault];
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    NSNotification * n = [NSNotification notificationWithName:ISFAVOURITE_CHANGED object:self];
+    [nc postNotification:n];
 }
 
+#pragma mark - Cache Image
 -(NSURL *)urlOfCacheImageWidthURLImage:(NSURL *)urlImage{
     NSFileManager *fm = [NSFileManager defaultManager];
     NSArray *urls = [fm URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
@@ -72,7 +80,6 @@ const struct AGTBookAttributes AGTBookAttributes = {
     url = [url URLByAppendingPathComponent:nameImage];
     return url;
 }
-
 -(void)saveOnCacheWithURLImage:(NSURL *)urlImage andData:(NSData *)data{
     NSFileManager *fm = [NSFileManager defaultManager];
     NSArray *urls = [fm URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
@@ -92,17 +99,60 @@ const struct AGTBookAttributes AGTBookAttributes = {
     }
 }
 
+#pragma mark - Download images
 -(void)downLoadPhotoWithURL:(NSURL *)url{
     services * download = [services sharedServices];
-
+    
     [download dowloadDataWithURL:url statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
-        [self saveOnCacheWithURLImage:url andData:data];
-
-    } failure:^(NSURLResponse *response, NSError *error) {
-        NSLog(@"Error al cargar la imagen");
-
         
+        [self saveOnCacheWithURLImage:url andData:data];
+        
+    } failure:^(NSURLResponse *response, NSError *error) {
+        
+        NSLog(@"Error al cargar la imagen");
     }];
+}
+
+-(NSMutableArray *)loadFavouritesOfUserDefault{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSMutableArray * arr = [NSMutableArray arrayWithArray:[ ud objectForKey:SAVE_BOOK_HOW_FAVOURITE]];
+    return arr;
+}
+-(void)saveOrDeleteStatusOnUserDefault{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSMutableArray * arr = [NSMutableArray arrayWithArray:[ ud objectForKey:SAVE_BOOK_HOW_FAVOURITE]];
+    int i = [self searchTitleOnUserDefaul:arr];
+    if ( i != -1) {
+        [arr removeObjectAtIndex:i];
+    }else{
+       [arr addObject:self.title];
+    }
+    [ud setObject:arr forKey:SAVE_BOOK_HOW_FAVOURITE];
+    
+    // Sincronizo en segundo plano
+    // [ud synchronize];
+}
+
+-(void)searchBookInUserDefaultAndAddTag{
+    NSMutableArray *arr = [self loadFavouritesOfUserDefault];
+    if ([self searchTitleOnUserDefaul:arr] != -1) {
+        [self.tags addObject:@"Favoritos"];
+        _isFavourite = YES;
+    }
+}
+-(int)searchTitleOnUserDefaul:(NSMutableArray *)array{
+    for (int i=0 ; i< array.count ; i++){
+        if ([array[i] isEqualToString:self.title]) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+#pragma mark - Utils
+-(NSArray *)extractFromJSONString:(NSString *)elements{
+    NSArray * arr = [elements componentsSeparatedByString:@", "];
+    return arr;
 }
 
 @end
