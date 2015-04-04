@@ -6,9 +6,10 @@
 //  Copyright (c) 2015 Carmelo Ruymán Quintana Santana. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+
+@import UIKit;
 @class AGTBook;
 @interface AGTPDFReaderViewController : UIViewController <UIWebViewDelegate>
 @property (nonatomic, weak) IBOutlet UIWebView * pdfView;
--(id) initWithModel:(AGTBook *)model;
+-(id) initWithName:(NSString *)name;
 @end

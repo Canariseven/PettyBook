@@ -6,7 +6,8 @@
 //  Copyright (c) 2015 Carmelo Ruymán Quintana Santana. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+
+@import UIKit;
 #define CELL_FOR_TAGS @"tagsCellID"
 @interface AGTTagTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *tagLabel;

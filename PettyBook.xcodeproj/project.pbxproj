@@ -14,8 +14,48 @@
 		3248788D1AC8989C00048B99 /* AGTTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248788B1AC8989C00048B99 /* AGTTagTableViewCell.m */; };
 		3248788E1AC8989C00048B99 /* AGTTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3248788C1AC8989C00048B99 /* AGTTagTableViewCell.xib */; };
 		3248789D1AC8A40800048B99 /* AGTTagsDataSourceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248789C1AC8A40800048B99 /* AGTTagsDataSourceTableView.m */; };
-		32A1EDAC1ACFE990009AE83F /* Reader.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EDAB1ACFE990009AE83F /* Reader.pdf */; };
 		32A1EDAF1ACFEC09009AE83F /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDAE1ACFEC09009AE83F /* Utils.m */; };
+		32A1EDD31AD03834009AE83F /* ReaderConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDC01AD03834009AE83F /* ReaderConstants.m */; };
+		32A1EDD41AD03834009AE83F /* ReaderDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDC21AD03834009AE83F /* ReaderDocument.m */; };
+		32A1EDD51AD03834009AE83F /* ReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDC41AD03834009AE83F /* ReaderViewController.m */; };
+		32A1EDD61AD03834009AE83F /* ReaderMainToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDC61AD03834009AE83F /* ReaderMainToolbar.m */; };
+		32A1EDD71AD03834009AE83F /* ReaderMainPagebar.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDC81AD03834009AE83F /* ReaderMainPagebar.m */; };
+		32A1EDD81AD03834009AE83F /* ReaderContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDCA1AD03834009AE83F /* ReaderContentView.m */; };
+		32A1EDD91AD03834009AE83F /* ReaderContentPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDCC1AD03834009AE83F /* ReaderContentPage.m */; };
+		32A1EDDA1AD03834009AE83F /* ReaderContentTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDCE1AD03834009AE83F /* ReaderContentTile.m */; };
+		32A1EDDB1AD03834009AE83F /* ThumbsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDD01AD03834009AE83F /* ThumbsViewController.m */; };
+		32A1EDDC1AD03834009AE83F /* ThumbsMainToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDD21AD03834009AE83F /* ThumbsMainToolbar.m */; };
+		32A1EDF11AD03844009AE83F /* CGPDFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDDE1AD03844009AE83F /* CGPDFDocument.m */; };
+		32A1EDF21AD03844009AE83F /* ReaderDocumentOutline.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDE01AD03844009AE83F /* ReaderDocumentOutline.m */; };
+		32A1EDF31AD03844009AE83F /* ReaderThumbRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDE21AD03844009AE83F /* ReaderThumbRequest.m */; };
+		32A1EDF41AD03844009AE83F /* ReaderThumbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDE41AD03844009AE83F /* ReaderThumbCache.m */; };
+		32A1EDF51AD03844009AE83F /* ReaderThumbQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDE61AD03844009AE83F /* ReaderThumbQueue.m */; };
+		32A1EDF61AD03844009AE83F /* ReaderThumbFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDE81AD03844009AE83F /* ReaderThumbFetch.m */; };
+		32A1EDF71AD03844009AE83F /* ReaderThumbRender.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDEA1AD03844009AE83F /* ReaderThumbRender.m */; };
+		32A1EDF81AD03844009AE83F /* ReaderThumbsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDEC1AD03844009AE83F /* ReaderThumbsView.m */; };
+		32A1EDF91AD03844009AE83F /* ReaderThumbView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDEE1AD03844009AE83F /* ReaderThumbView.m */; };
+		32A1EDFA1AD03844009AE83F /* UIXToolbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDF01AD03844009AE83F /* UIXToolbarView.m */; };
+		32A1EDFD1AD0386D009AE83F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EDFC1AD0386D009AE83F /* Localizable.strings */; };
+		32A1EE0F1AD0388B009AE83F /* Reader-Button-H.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EDFF1AD0388B009AE83F /* Reader-Button-H.png */; };
+		32A1EE101AD0388B009AE83F /* Reader-Button-H@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EE001AD0388B009AE83F /* Reader-Button-H@2x.png */; };
+		32A1EE111AD0388B009AE83F /* Reader-Button-N.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EE011AD0388B009AE83F /* Reader-Button-N.png */; };
+		32A1EE121AD0388B009AE83F /* Reader-Button-N@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EE021AD0388B009AE83F /* Reader-Button-N@2x.png */; };
+		32A1EE131AD0388B009AE83F /* Reader-Email.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EE031AD0388B009AE83F /* Reader-Email.png */; };
+		32A1EE141AD0388B009AE83F /* Reader-Email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EE041AD0388B009AE83F /* Reader-Email@2x.png */; };
+		32A1EE151AD0388B009AE83F /* Reader-Export.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EE051AD0388B009AE83F /* Reader-Export.png */; };
+		32A1EE161AD0388B009AE83F /* Reader-Export@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EE061AD0388B009AE83F /* Reader-Export@2x.png */; };
+		32A1EE171AD0388B009AE83F /* Reader-Mark-N.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EE071AD0388B009AE83F /* Reader-Mark-N.png */; };
+		32A1EE181AD0388B009AE83F /* Reader-Mark-N@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EE081AD0388B009AE83F /* Reader-Mark-N@2x.png */; };
+		32A1EE191AD0388B009AE83F /* Reader-Mark-Y.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EE091AD0388B009AE83F /* Reader-Mark-Y.png */; };
+		32A1EE1A1AD0388B009AE83F /* Reader-Mark-Y@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EE0A1AD0388B009AE83F /* Reader-Mark-Y@2x.png */; };
+		32A1EE1B1AD0388B009AE83F /* Reader-Print.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EE0B1AD0388B009AE83F /* Reader-Print.png */; };
+		32A1EE1C1AD0388B009AE83F /* Reader-Print@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EE0C1AD0388B009AE83F /* Reader-Print@2x.png */; };
+		32A1EE1D1AD0388B009AE83F /* Reader-Thumbs.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EE0D1AD0388B009AE83F /* Reader-Thumbs.png */; };
+		32A1EE1E1AD0388B009AE83F /* Reader-Thumbs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EE0E1AD0388B009AE83F /* Reader-Thumbs@2x.png */; };
+		32A1EE201AD038D3009AE83F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A1EE1F1AD038D3009AE83F /* CoreGraphics.framework */; };
+		32A1EE221AD038E2009AE83F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A1EE211AD038E2009AE83F /* QuartzCore.framework */; };
+		32A1EE241AD038EA009AE83F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A1EE231AD038EA009AE83F /* MessageUI.framework */; };
+		32A1EE261AD038F0009AE83F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A1EE251AD038F0009AE83F /* ImageIO.framework */; };
 		32B05BFA1ACFD4D800435508 /* AGTPDFReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B05BF81ACFD4D800435508 /* AGTPDFReaderViewController.m */; };
 		32B05BFB1ACFD4D800435508 /* AGTPDFReaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */; };
 		32B689E61ACC749300FE4014 /* services.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B689E51ACC749300FE4014 /* services.m */; };
@@ -32,6 +72,7 @@
 		32DC7CF91AC735F000A074E8 /* AGTLibraryTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DC7CF81AC735F000A074E8 /* AGTLibraryTableViewController.xib */; };
 		32DC7CFB1AC7383300A074E8 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32DC7CFA1AC7383300A074E8 /* image.jpg */; };
 		32DC7D001AC73AF800A074E8 /* AGTLibraryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC7CFE1AC73AF800A074E8 /* AGTLibraryTableViewCell.m */; };
+		32FFD5311AD040C700FFCD5A /* Reader.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 32FFD5301AD040C700FFCD5A /* Reader.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,9 +97,69 @@
 		3248788C1AC8989C00048B99 /* AGTTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTTagTableViewCell.xib; sourceTree = "<group>"; };
 		3248789B1AC8A40800048B99 /* AGTTagsDataSourceTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTTagsDataSourceTableView.h; sourceTree = "<group>"; };
 		3248789C1AC8A40800048B99 /* AGTTagsDataSourceTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTTagsDataSourceTableView.m; sourceTree = "<group>"; };
-		32A1EDAB1ACFE990009AE83F /* Reader.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Reader.pdf; sourceTree = "<group>"; };
 		32A1EDAD1ACFEC09009AE83F /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		32A1EDAE1ACFEC09009AE83F /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		32A1EDBF1AD03834009AE83F /* ReaderConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderConstants.h; sourceTree = "<group>"; };
+		32A1EDC01AD03834009AE83F /* ReaderConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderConstants.m; sourceTree = "<group>"; };
+		32A1EDC11AD03834009AE83F /* ReaderDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderDocument.h; sourceTree = "<group>"; };
+		32A1EDC21AD03834009AE83F /* ReaderDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderDocument.m; sourceTree = "<group>"; };
+		32A1EDC31AD03834009AE83F /* ReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderViewController.h; sourceTree = "<group>"; };
+		32A1EDC41AD03834009AE83F /* ReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderViewController.m; sourceTree = "<group>"; };
+		32A1EDC51AD03834009AE83F /* ReaderMainToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderMainToolbar.h; sourceTree = "<group>"; };
+		32A1EDC61AD03834009AE83F /* ReaderMainToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderMainToolbar.m; sourceTree = "<group>"; };
+		32A1EDC71AD03834009AE83F /* ReaderMainPagebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderMainPagebar.h; sourceTree = "<group>"; };
+		32A1EDC81AD03834009AE83F /* ReaderMainPagebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderMainPagebar.m; sourceTree = "<group>"; };
+		32A1EDC91AD03834009AE83F /* ReaderContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderContentView.h; sourceTree = "<group>"; };
+		32A1EDCA1AD03834009AE83F /* ReaderContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderContentView.m; sourceTree = "<group>"; };
+		32A1EDCB1AD03834009AE83F /* ReaderContentPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderContentPage.h; sourceTree = "<group>"; };
+		32A1EDCC1AD03834009AE83F /* ReaderContentPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderContentPage.m; sourceTree = "<group>"; };
+		32A1EDCD1AD03834009AE83F /* ReaderContentTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderContentTile.h; sourceTree = "<group>"; };
+		32A1EDCE1AD03834009AE83F /* ReaderContentTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderContentTile.m; sourceTree = "<group>"; };
+		32A1EDCF1AD03834009AE83F /* ThumbsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbsViewController.h; sourceTree = "<group>"; };
+		32A1EDD01AD03834009AE83F /* ThumbsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbsViewController.m; sourceTree = "<group>"; };
+		32A1EDD11AD03834009AE83F /* ThumbsMainToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbsMainToolbar.h; sourceTree = "<group>"; };
+		32A1EDD21AD03834009AE83F /* ThumbsMainToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbsMainToolbar.m; sourceTree = "<group>"; };
+		32A1EDDD1AD03844009AE83F /* CGPDFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPDFDocument.h; sourceTree = "<group>"; };
+		32A1EDDE1AD03844009AE83F /* CGPDFDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGPDFDocument.m; sourceTree = "<group>"; };
+		32A1EDDF1AD03844009AE83F /* ReaderDocumentOutline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderDocumentOutline.h; sourceTree = "<group>"; };
+		32A1EDE01AD03844009AE83F /* ReaderDocumentOutline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderDocumentOutline.m; sourceTree = "<group>"; };
+		32A1EDE11AD03844009AE83F /* ReaderThumbRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderThumbRequest.h; sourceTree = "<group>"; };
+		32A1EDE21AD03844009AE83F /* ReaderThumbRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderThumbRequest.m; sourceTree = "<group>"; };
+		32A1EDE31AD03844009AE83F /* ReaderThumbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderThumbCache.h; sourceTree = "<group>"; };
+		32A1EDE41AD03844009AE83F /* ReaderThumbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderThumbCache.m; sourceTree = "<group>"; };
+		32A1EDE51AD03844009AE83F /* ReaderThumbQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderThumbQueue.h; sourceTree = "<group>"; };
+		32A1EDE61AD03844009AE83F /* ReaderThumbQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderThumbQueue.m; sourceTree = "<group>"; };
+		32A1EDE71AD03844009AE83F /* ReaderThumbFetch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderThumbFetch.h; sourceTree = "<group>"; };
+		32A1EDE81AD03844009AE83F /* ReaderThumbFetch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderThumbFetch.m; sourceTree = "<group>"; };
+		32A1EDE91AD03844009AE83F /* ReaderThumbRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderThumbRender.h; sourceTree = "<group>"; };
+		32A1EDEA1AD03844009AE83F /* ReaderThumbRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderThumbRender.m; sourceTree = "<group>"; };
+		32A1EDEB1AD03844009AE83F /* ReaderThumbsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderThumbsView.h; sourceTree = "<group>"; };
+		32A1EDEC1AD03844009AE83F /* ReaderThumbsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderThumbsView.m; sourceTree = "<group>"; };
+		32A1EDED1AD03844009AE83F /* ReaderThumbView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderThumbView.h; sourceTree = "<group>"; };
+		32A1EDEE1AD03844009AE83F /* ReaderThumbView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderThumbView.m; sourceTree = "<group>"; };
+		32A1EDEF1AD03844009AE83F /* UIXToolbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIXToolbarView.h; sourceTree = "<group>"; };
+		32A1EDF01AD03844009AE83F /* UIXToolbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIXToolbarView.m; sourceTree = "<group>"; };
+		32A1EDFC1AD0386D009AE83F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		32A1EDFF1AD0388B009AE83F /* Reader-Button-H.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Button-H.png"; sourceTree = "<group>"; };
+		32A1EE001AD0388B009AE83F /* Reader-Button-H@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Button-H@2x.png"; sourceTree = "<group>"; };
+		32A1EE011AD0388B009AE83F /* Reader-Button-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Button-N.png"; sourceTree = "<group>"; };
+		32A1EE021AD0388B009AE83F /* Reader-Button-N@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Button-N@2x.png"; sourceTree = "<group>"; };
+		32A1EE031AD0388B009AE83F /* Reader-Email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Email.png"; sourceTree = "<group>"; };
+		32A1EE041AD0388B009AE83F /* Reader-Email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Email@2x.png"; sourceTree = "<group>"; };
+		32A1EE051AD0388B009AE83F /* Reader-Export.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Export.png"; sourceTree = "<group>"; };
+		32A1EE061AD0388B009AE83F /* Reader-Export@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Export@2x.png"; sourceTree = "<group>"; };
+		32A1EE071AD0388B009AE83F /* Reader-Mark-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Mark-N.png"; sourceTree = "<group>"; };
+		32A1EE081AD0388B009AE83F /* Reader-Mark-N@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Mark-N@2x.png"; sourceTree = "<group>"; };
+		32A1EE091AD0388B009AE83F /* Reader-Mark-Y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Mark-Y.png"; sourceTree = "<group>"; };
+		32A1EE0A1AD0388B009AE83F /* Reader-Mark-Y@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Mark-Y@2x.png"; sourceTree = "<group>"; };
+		32A1EE0B1AD0388B009AE83F /* Reader-Print.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Print.png"; sourceTree = "<group>"; };
+		32A1EE0C1AD0388B009AE83F /* Reader-Print@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Print@2x.png"; sourceTree = "<group>"; };
+		32A1EE0D1AD0388B009AE83F /* Reader-Thumbs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Thumbs.png"; sourceTree = "<group>"; };
+		32A1EE0E1AD0388B009AE83F /* Reader-Thumbs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Thumbs@2x.png"; sourceTree = "<group>"; };
+		32A1EE1F1AD038D3009AE83F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		32A1EE211AD038E2009AE83F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		32A1EE231AD038EA009AE83F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		32A1EE251AD038F0009AE83F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		32B05BF71ACFD4D800435508 /* AGTPDFReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTPDFReaderViewController.h; sourceTree = "<group>"; };
 		32B05BF81ACFD4D800435508 /* AGTPDFReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTPDFReaderViewController.m; sourceTree = "<group>"; };
 		32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTPDFReaderViewController.xib; sourceTree = "<group>"; };
@@ -87,6 +188,7 @@
 		32DC7CFA1AC7383300A074E8 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
 		32DC7CFD1AC73AF800A074E8 /* AGTLibraryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTLibraryTableViewCell.h; sourceTree = "<group>"; };
 		32DC7CFE1AC73AF800A074E8 /* AGTLibraryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTLibraryTableViewCell.m; sourceTree = "<group>"; };
+		32FFD5301AD040C700FFCD5A /* Reader.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Reader.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +196,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32A1EE261AD038F0009AE83F /* ImageIO.framework in Frameworks */,
+				32A1EE241AD038EA009AE83F /* MessageUI.framework in Frameworks */,
+				32A1EE221AD038E2009AE83F /* QuartzCore.framework in Frameworks */,
+				32A1EE201AD038D3009AE83F /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +245,121 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		32A1EDB11AD037CA009AE83F /* VFR-Reader */ = {
+			isa = PBXGroup;
+			children = (
+				32A1EDFE1AD03878009AE83F /* Graphics */,
+				32A1EDFB1AD03860009AE83F /* Resources */,
+				32A1EDBC1AD0380C009AE83F /* Reader */,
+			);
+			name = "VFR-Reader";
+			sourceTree = "<group>";
+		};
+		32A1EDBC1AD0380C009AE83F /* Reader */ = {
+			isa = PBXGroup;
+			children = (
+				32A1EDBE1AD03822009AE83F /* Support */,
+				32A1EDBD1AD0381D009AE83F /* Sources */,
+			);
+			name = Reader;
+			sourceTree = "<group>";
+		};
+		32A1EDBD1AD0381D009AE83F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32A1EDDD1AD03844009AE83F /* CGPDFDocument.h */,
+				32A1EDDE1AD03844009AE83F /* CGPDFDocument.m */,
+				32A1EDDF1AD03844009AE83F /* ReaderDocumentOutline.h */,
+				32A1EDE01AD03844009AE83F /* ReaderDocumentOutline.m */,
+				32A1EDE11AD03844009AE83F /* ReaderThumbRequest.h */,
+				32A1EDE21AD03844009AE83F /* ReaderThumbRequest.m */,
+				32A1EDE31AD03844009AE83F /* ReaderThumbCache.h */,
+				32A1EDE41AD03844009AE83F /* ReaderThumbCache.m */,
+				32A1EDE51AD03844009AE83F /* ReaderThumbQueue.h */,
+				32A1EDE61AD03844009AE83F /* ReaderThumbQueue.m */,
+				32A1EDE71AD03844009AE83F /* ReaderThumbFetch.h */,
+				32A1EDE81AD03844009AE83F /* ReaderThumbFetch.m */,
+				32A1EDE91AD03844009AE83F /* ReaderThumbRender.h */,
+				32A1EDEA1AD03844009AE83F /* ReaderThumbRender.m */,
+				32A1EDEB1AD03844009AE83F /* ReaderThumbsView.h */,
+				32A1EDEC1AD03844009AE83F /* ReaderThumbsView.m */,
+				32A1EDED1AD03844009AE83F /* ReaderThumbView.h */,
+				32A1EDEE1AD03844009AE83F /* ReaderThumbView.m */,
+				32A1EDEF1AD03844009AE83F /* UIXToolbarView.h */,
+				32A1EDF01AD03844009AE83F /* UIXToolbarView.m */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		32A1EDBE1AD03822009AE83F /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				32A1EDBF1AD03834009AE83F /* ReaderConstants.h */,
+				32A1EDC01AD03834009AE83F /* ReaderConstants.m */,
+				32A1EDC11AD03834009AE83F /* ReaderDocument.h */,
+				32A1EDC21AD03834009AE83F /* ReaderDocument.m */,
+				32A1EDC31AD03834009AE83F /* ReaderViewController.h */,
+				32A1EDC41AD03834009AE83F /* ReaderViewController.m */,
+				32A1EDC51AD03834009AE83F /* ReaderMainToolbar.h */,
+				32A1EDC61AD03834009AE83F /* ReaderMainToolbar.m */,
+				32A1EDC71AD03834009AE83F /* ReaderMainPagebar.h */,
+				32A1EDC81AD03834009AE83F /* ReaderMainPagebar.m */,
+				32A1EDC91AD03834009AE83F /* ReaderContentView.h */,
+				32A1EDCA1AD03834009AE83F /* ReaderContentView.m */,
+				32A1EDCB1AD03834009AE83F /* ReaderContentPage.h */,
+				32A1EDCC1AD03834009AE83F /* ReaderContentPage.m */,
+				32A1EDCD1AD03834009AE83F /* ReaderContentTile.h */,
+				32A1EDCE1AD03834009AE83F /* ReaderContentTile.m */,
+				32A1EDCF1AD03834009AE83F /* ThumbsViewController.h */,
+				32A1EDD01AD03834009AE83F /* ThumbsViewController.m */,
+				32A1EDD11AD03834009AE83F /* ThumbsMainToolbar.h */,
+				32A1EDD21AD03834009AE83F /* ThumbsMainToolbar.m */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		32A1EDFB1AD03860009AE83F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				32A1EDFC1AD0386D009AE83F /* Localizable.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		32A1EDFE1AD03878009AE83F /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				32A1EDFF1AD0388B009AE83F /* Reader-Button-H.png */,
+				32A1EE001AD0388B009AE83F /* Reader-Button-H@2x.png */,
+				32A1EE011AD0388B009AE83F /* Reader-Button-N.png */,
+				32A1EE021AD0388B009AE83F /* Reader-Button-N@2x.png */,
+				32A1EE031AD0388B009AE83F /* Reader-Email.png */,
+				32A1EE041AD0388B009AE83F /* Reader-Email@2x.png */,
+				32A1EE051AD0388B009AE83F /* Reader-Export.png */,
+				32A1EE061AD0388B009AE83F /* Reader-Export@2x.png */,
+				32A1EE071AD0388B009AE83F /* Reader-Mark-N.png */,
+				32A1EE081AD0388B009AE83F /* Reader-Mark-N@2x.png */,
+				32A1EE091AD0388B009AE83F /* Reader-Mark-Y.png */,
+				32A1EE0A1AD0388B009AE83F /* Reader-Mark-Y@2x.png */,
+				32A1EE0B1AD0388B009AE83F /* Reader-Print.png */,
+				32A1EE0C1AD0388B009AE83F /* Reader-Print@2x.png */,
+				32A1EE0D1AD0388B009AE83F /* Reader-Thumbs.png */,
+				32A1EE0E1AD0388B009AE83F /* Reader-Thumbs@2x.png */,
+			);
+			name = Graphics;
+			sourceTree = "<group>";
+		};
+		32A1EE271AD0390D009AE83F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32A1EE251AD038F0009AE83F /* ImageIO.framework */,
+				32A1EE231AD038EA009AE83F /* MessageUI.framework */,
+				32A1EE211AD038E2009AE83F /* QuartzCore.framework */,
+				32A1EE1F1AD038D3009AE83F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		32D16B941AC87AC100F265E5 /* MiniBooksCELL */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +373,7 @@
 		32DC7CC11AC7126600A074E8 = {
 			isa = PBXGroup;
 			children = (
+				32A1EE271AD0390D009AE83F /* Frameworks */,
 				32DC7CCC1AC7126600A074E8 /* PettyBook */,
 				32DC7CE01AC7126600A074E8 /* PettyBookTests */,
 				32DC7CCB1AC7126600A074E8 /* Products */,
@@ -170,12 +392,14 @@
 		32DC7CCC1AC7126600A074E8 /* PettyBook */ = {
 			isa = PBXGroup;
 			children = (
+				32A1EDB11AD037CA009AE83F /* VFR-Reader */,
+				32A1EDB01AD01BC8009AE83F /* Utils */,
 				32DC7CFC1AC73AB800A074E8 /* Celdas */,
 				32DC7CF41AC7348000A074E8 /* Controllers */,
 				32DC7CED1AC7126F00A074E8 /* Models */,
 				32DC7CD11AC7126600A074E8 /* AppDelegate.h */,
+				32FFD5301AD040C700FFCD5A /* Reader.pdf */,
 				32DC7CD21AC7126600A074E8 /* AppDelegate.m */,
-				32A1EDAB1ACFE990009AE83F /* Reader.pdf */,
 				32DC7CD41AC7126600A074E8 /* Images.xcassets */,
 				32DC7CFA1AC7383300A074E8 /* image.jpg */,
 				32DC7CD61AC7126600A074E8 /* LaunchScreen.xib */,
@@ -237,7 +461,6 @@
 				32B05BF81ACFD4D800435508 /* AGTPDFReaderViewController.m */,
 				32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */,
 				3248789E1AC8A53300048B99 /* DataSources and Delegates */,
-				32A1EDB01AD01BC8009AE83F /* Utils */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -331,15 +554,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32A1EE1E1AD0388B009AE83F /* Reader-Thumbs@2x.png in Resources */,
 				323FB40A1ACB3786006CB368 /* AGTLoadingDataViewController.xib in Resources */,
 				32DC7CD81AC7126600A074E8 /* LaunchScreen.xib in Resources */,
+				32A1EDFD1AD0386D009AE83F /* Localizable.strings in Resources */,
+				32A1EE0F1AD0388B009AE83F /* Reader-Button-H.png in Resources */,
+				32A1EE141AD0388B009AE83F /* Reader-Email@2x.png in Resources */,
+				32A1EE191AD0388B009AE83F /* Reader-Mark-Y.png in Resources */,
+				32A1EE161AD0388B009AE83F /* Reader-Export@2x.png in Resources */,
 				32DC7CFB1AC7383300A074E8 /* image.jpg in Resources */,
-				32A1EDAC1ACFE990009AE83F /* Reader.pdf in Resources */,
+				32A1EE101AD0388B009AE83F /* Reader-Button-H@2x.png in Resources */,
+				32A1EE181AD0388B009AE83F /* Reader-Mark-N@2x.png in Resources */,
+				32A1EE151AD0388B009AE83F /* Reader-Export.png in Resources */,
+				32A1EE111AD0388B009AE83F /* Reader-Button-N.png in Resources */,
 				3248787D1AC8820100048B99 /* AGTBookViewController.xib in Resources */,
+				32A1EE1A1AD0388B009AE83F /* Reader-Mark-Y@2x.png in Resources */,
+				32A1EE1C1AD0388B009AE83F /* Reader-Print@2x.png in Resources */,
 				3248788E1AC8989C00048B99 /* AGTTagTableViewCell.xib in Resources */,
+				32A1EE1B1AD0388B009AE83F /* Reader-Print.png in Resources */,
 				32DC7CD51AC7126600A074E8 /* Images.xcassets in Resources */,
+				32A1EE131AD0388B009AE83F /* Reader-Email.png in Resources */,
+				32A1EE121AD0388B009AE83F /* Reader-Button-N@2x.png in Resources */,
+				32A1EE1D1AD0388B009AE83F /* Reader-Thumbs.png in Resources */,
+				32FFD5311AD040C700FFCD5A /* Reader.pdf in Resources */,
 				32D16B931AC8736F00F265E5 /* AGTLibraryTableViewCell.xib in Resources */,
 				32B05BFB1ACFD4D800435508 /* AGTPDFReaderViewController.xib in Resources */,
+				32A1EE171AD0388B009AE83F /* Reader-Mark-N.png in Resources */,
 				32DC7CF91AC735F000A074E8 /* AGTLibraryTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,20 +598,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32A1EDD31AD03834009AE83F /* ReaderConstants.m in Sources */,
+				32A1EDDC1AD03834009AE83F /* ThumbsMainToolbar.m in Sources */,
+				32A1EDF91AD03844009AE83F /* ReaderThumbView.m in Sources */,
+				32A1EDD91AD03834009AE83F /* ReaderContentPage.m in Sources */,
+				32A1EDF21AD03844009AE83F /* ReaderDocumentOutline.m in Sources */,
+				32A1EDF51AD03844009AE83F /* ReaderThumbQueue.m in Sources */,
 				3248788D1AC8989C00048B99 /* AGTTagTableViewCell.m in Sources */,
+				32A1EDF81AD03844009AE83F /* ReaderThumbsView.m in Sources */,
+				32A1EDFA1AD03844009AE83F /* UIXToolbarView.m in Sources */,
 				32B689E61ACC749300FE4014 /* services.m in Sources */,
+				32A1EDF61AD03844009AE83F /* ReaderThumbFetch.m in Sources */,
 				3248787C1AC8820100048B99 /* AGTBookViewController.m in Sources */,
 				323FB4081ACB2ADB006CB368 /* AGTLoadingDataViewController.m in Sources */,
 				32DC7CF31AC7133E00A074E8 /* AGTLibrary.m in Sources */,
 				32A1EDAF1ACFEC09009AE83F /* Utils.m in Sources */,
 				32D16B971AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m in Sources */,
+				32A1EDDB1AD03834009AE83F /* ThumbsViewController.m in Sources */,
 				32B05BFA1ACFD4D800435508 /* AGTPDFReaderViewController.m in Sources */,
 				3248789D1AC8A40800048B99 /* AGTTagsDataSourceTableView.m in Sources */,
+				32A1EDD41AD03834009AE83F /* ReaderDocument.m in Sources */,
+				32A1EDD61AD03834009AE83F /* ReaderMainToolbar.m in Sources */,
+				32A1EDF11AD03844009AE83F /* CGPDFDocument.m in Sources */,
+				32A1EDF71AD03844009AE83F /* ReaderThumbRender.m in Sources */,
+				32A1EDD81AD03834009AE83F /* ReaderContentView.m in Sources */,
 				32DC7CF71AC7350C00A074E8 /* AGTLibraryTableViewController.m in Sources */,
+				32A1EDF31AD03844009AE83F /* ReaderThumbRequest.m in Sources */,
+				32A1EDF41AD03844009AE83F /* ReaderThumbCache.m in Sources */,
 				32DC7CD31AC7126600A074E8 /* AppDelegate.m in Sources */,
+				32A1EDD71AD03834009AE83F /* ReaderMainPagebar.m in Sources */,
 				32DC7CF01AC7128900A074E8 /* AGTBook.m in Sources */,
 				32DC7D001AC73AF800A074E8 /* AGTLibraryTableViewCell.m in Sources */,
 				32DC7CD01AC7126600A074E8 /* main.m in Sources */,
+				32A1EDDA1AD03834009AE83F /* ReaderContentTile.m in Sources */,
+				32A1EDD51AD03834009AE83F /* ReaderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,7 +6,8 @@
 //  Copyright (c) 2015 Carmelo Ruymán Quintana Santana. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+
+@import UIKit;
 @class AGTBook;
 @class AGTLibrary;
 @class AGTDataSourceAndDelegateTableView;

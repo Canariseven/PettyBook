@@ -15,6 +15,8 @@
 #import "AGTLoadingDataViewController.h"
 #import "AGTPDFReaderViewController.h"
 #import "Utils.h"
+
+
 @interface AppDelegate ()
 
 @end
@@ -29,6 +31,8 @@
     [self.window makeKeyAndVisible];
     
     AGTLoadingDataViewController *loading = [[AGTLoadingDataViewController alloc]initWithWindow:self.window];
+    
+
 //    NSArray *pdfs = [[NSBundle mainBundle] pathsForResourcesOfType:@"pdf" inDirectory:nil];
 //    
 //    NSString *filePath = [pdfs firstObject]; assert(filePath != nil); // Path to first PDF file

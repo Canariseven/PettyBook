@@ -6,10 +6,12 @@
 //  Copyright (c) 2015 Carmelo Ruymán Quintana Santana. All rights reserved.
 //
 
-@import Foundation;
-@import UIKit;
 #define ISFAVOURITE_CHANGED @"isFavourite changed"
 #define SAVE_BOOK_HOW_FAVOURITE @"saveFavouriteOnUserDefault"
+
+@import Foundation;
+@import UIKit;
+
 @interface AGTBook : NSObject
 @property (nonatomic, copy) NSString * title;
 @property (nonatomic, strong) NSArray * authors;

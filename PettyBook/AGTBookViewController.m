@@ -12,8 +12,11 @@
 #import "AGTTagTableViewCell.h"
 #import "AGTLibrary.h"
 #import "AGTPDFReaderViewController.h"
+#import "ReaderViewController.h"
+#import "Utils.h"
 
-@interface AGTBookViewController ()
+
+@interface AGTBookViewController ()<ReaderViewControllerDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageBook;
 @property (weak, nonatomic) IBOutlet UIButton *tagsButton;
 @property (weak, nonatomic) IBOutlet UIButton *readBookButton;
@@ -40,7 +43,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // Do any additional setup after loading the view from its nib.
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -90,8 +93,8 @@
                                       [AGTTagTableViewCell cellWidth] + 40,
                                       self.imageBook.frame.size.height - 30);
     
-
-//    self.tableView.transform = CGAffineTransformMakeTranslation(1, -(self.tableView.frame.size.height));
+    
+    //    self.tableView.transform = CGAffineTransformMakeTranslation(1, -(self.tableView.frame.size.height));
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
 }
@@ -102,7 +105,7 @@
     if (self.model.image !=nil){
         self.imageBook.image = self.model.image;
     }else{
-
+        
     }
     self.numberOfTags.text = [NSString stringWithFormat:@"%lu",(unsigned long)self.model.tags.count];
     [self animateImage];
@@ -138,9 +141,9 @@
 }
 
 - (IBAction)readBookButton:(id)sender {
+
+    [self alertShow];
     
-    AGTPDFReaderViewController * pdfView = [[AGTPDFReaderViewController alloc]initWithModel:self.model];
-    [self.navigationController pushViewController:pdfView animated:YES];
 }
 
 - (IBAction)favouriteButton:(id)sender {
@@ -184,7 +187,7 @@
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
         [nc removeObserver:self name:notifcation.name object:notifcation.object];
         [self sincronizeDataOfView];
-  
+        
     });
 }
 
@@ -249,5 +252,50 @@
                          
                      }
                      completion:nil];
+}
+-(void)alertShow{
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Lector PDF" message:@"Como deséa ver el PDF?" delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"UIWebView",@"vfr-Reader", nil];
+    
+    [alert show];
+    
+}
+
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {
+        // Presento el webView
+        AGTPDFReaderViewController * pdfView = [[AGTPDFReaderViewController alloc]initWithName:@"Reader"];
+        [self.navigationController pushViewController:pdfView animated:YES];
+        
+    }else if (buttonIndex == 2){{
+        NSString *filePath = [NSString stringWithFormat:@"%@",[Utils urlOfCacheWithNameFile:@"Reader.pdf"]];
+        
+        filePath = [filePath stringByReplacingOccurrencesOfString:@"file:///" withString:@""];
+        NSString *phrase = nil; // Document password (for unlocking most encrypted PDF files)
+        
+        ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:phrase];
+        
+        if (document != nil) // Must have a valid ReaderDocument object in order to proceed
+        {
+            
+            ReaderViewController * readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
+            
+            readerViewController.delegate = self; // Set the ReaderViewController delegate to self
+            
+            readerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+            
+            [self presentViewController:readerViewController animated:YES completion:NULL];
+            
+        }
+    }
+        
+    }
+}
+
+#pragma mark - Delegate ReaderViewController
+-(void)dismissReaderViewController:(ReaderViewController *)viewController{
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 @end

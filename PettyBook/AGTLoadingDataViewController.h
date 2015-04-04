@@ -6,7 +6,8 @@
 //  Copyright (c) 2015 Carmelo Ruymán Quintana Santana. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+
+@import Foundation;
 @import UIKit;
 #define URL_LIBRARY_JSON @"https://t.co/K9ziV0z3SJ"
 @interface AGTLoadingDataViewController : UIViewController
