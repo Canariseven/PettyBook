@@ -265,7 +265,7 @@
     
     if (buttonIndex == 1) {
         // Presento el webView
-        AGTPDFReaderViewController * pdfView = [[AGTPDFReaderViewController alloc]initWithName:@"Reader"];
+        AGTPDFReaderViewController * pdfView = [[AGTPDFReaderViewController alloc]initWithModel:self.model];
         [self.navigationController pushViewController:pdfView animated:YES];
         
     }else if (buttonIndex == 2){{

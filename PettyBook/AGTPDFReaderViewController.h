@@ -11,5 +11,5 @@
 @class AGTBook;
 @interface AGTPDFReaderViewController : UIViewController <UIWebViewDelegate>
 @property (nonatomic, weak) IBOutlet UIWebView * pdfView;
--(id) initWithName:(NSString *)name;
+-(id) initWithModel:(AGTBook *)model;
 @end

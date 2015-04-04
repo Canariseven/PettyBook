@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Carmelo Ruymán Quintana Santana. All rights reserved.
 //
 
-#define ISFAVOURITE_CHANGED @"isFavourite changed"
+#define ISFAVOURITE_CHANGED @"isFavourite_changed"
 #define SAVE_BOOK_HOW_FAVOURITE @"saveFavouriteOnUserDefault"
-
+#define PDF_CHANGED @"pdf_changed"
 @import Foundation;
 @import UIKit;
 
