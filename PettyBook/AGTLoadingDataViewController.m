@@ -117,7 +117,6 @@
     split.viewControllers = @[navLibrary,navBook];
     split.delegate = book;
     tLibrary.controllerOfTable.delegate = book;
-    tLibrary.controllerOfTable.delegate = tLibrary.controllerOfTable;
     self.window.rootViewController = split;
 }
 

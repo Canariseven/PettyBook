@@ -29,7 +29,7 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
+    [self appereances];
     AGTLoadingDataViewController *loading = [[AGTLoadingDataViewController alloc]initWithWindow:self.window];
     
 
@@ -62,6 +62,14 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+-(void)appereances{
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithHue:0.53 saturation:0.79 brightness:0.99 alpha:1]];
+
+    [[UINavigationBar appearance]setTranslucent:NO];
+
+
+
 }
 
 @end

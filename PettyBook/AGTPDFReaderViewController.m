@@ -63,7 +63,7 @@
 
 -(void)checkPDFonCacheWithName:(NSString *)name{
     
-    NSData *data = [Utils dataOfCacheDirectoryWithNameFile:name];
+    NSData *data = [Utils dataWithNameFile:name andDirectory:NSCachesDirectory];
     if (data == nil) {
         // llamamos al servicio
         NSURL * url = [NSURL URLWithString:self.model.urlPDF];
@@ -75,7 +75,7 @@
 }
 -(void)loadAndSaveData:(NSData *)data withName:(NSString *)name{
 
-    BOOL rc = [Utils saveOnCacheWithData:data andName:name];
+    BOOL rc = [Utils saveWithData:data name:name andDirectory:NSCachesDirectory];
     if (rc == YES) {
         [self loadPDFOnWebView:data];
     }else{

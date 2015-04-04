@@ -43,17 +43,20 @@
      }
     if (self = [super initWithNibName:nibName bundle:nil]) {
         _model = model;
+        self.title = model.title;
         _DT = [[AGTTagsDataSourceTableView alloc] initWhitArrayOfTags:self.model.tags];
     }
     return self;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    CGPoint center = CGPointMake(self.view.center.x, self.view.center.y);
+    self.backBookForRadius.center = center;
     // Do any additional setup after loading the view from its nib.
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
     
     self.tableView.dataSource = self.DT;
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -66,6 +69,7 @@
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
+    
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self];
 }
@@ -106,12 +110,12 @@
                                       self.imageBook.frame.size.height - 30);
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    CGPoint center = CGPointMake(self.view.center.x, self.view.center.y + 30 );
-    self.backBookForRadius.center = center;
+
     
 }
 
 -(void)sincronizeDataOfView{
+    [self titleAndAuthorOnNavigationBar];
     [self.tableView reloadData];
     [self checkButtonColor];
     if (self.model.image !=nil){
@@ -130,6 +134,33 @@
     }else{
         self.favouriteBook.backgroundColor = [UIColor colorWithHue:0.53 saturation:0.79 brightness:0.70 alpha:1];
     }
+}
+-(void)titleAndAuthorOnNavigationBar{
+    UILabel *labelTitle =[[UILabel alloc]initWithFrame:CGRectMake(0,0, 200, 15)];
+    labelTitle.text = self.model.title;
+    labelTitle.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:18.0];
+    labelTitle.textAlignment = NSTextAlignmentCenter;
+    labelTitle.minimumScaleFactor = 0.1;
+    labelTitle.baselineAdjustment = UIBaselineAdjustmentNone;
+    labelTitle.textColor = [UIColor colorWithHue:0.53 saturation:0.79 brightness:0.99 alpha:1];
+    
+    UILabel *labelAuthors =[[UILabel alloc]initWithFrame:CGRectMake(0, 18, 200, 15)];
+    labelAuthors.text = self.model.authors[0];
+    labelAuthors.font = [UIFont fontWithName:@"HelveticaNeue" size:14.0];
+    labelAuthors.textAlignment = NSTextAlignmentCenter;
+    labelAuthors.minimumScaleFactor = 0.5;
+    labelAuthors.textColor = [UIColor colorWithHue:0 saturation:0 brightness:0.18 alpha:1];
+    
+    UIView * titleAndAuthor = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
+    [titleAndAuthor addSubview:labelTitle];
+    [titleAndAuthor addSubview:labelAuthors];
+
+    labelTitle.frame = CGRectMake(labelTitle.frame.origin.x, 0, 200, 15);
+    [labelTitle sizeToFit];
+    labelAuthors.frame = CGRectMake(labelAuthors.frame.origin.x, 18, 200, 15);
+    [labelAuthors sizeToFit];
+    self.navigationItem.titleView = titleAndAuthor;
+    [self animateTitleText:titleAndAuthor];
 }
 -(void)addShadowToView:(UIView *)view
                 radius:(CGFloat)radius
@@ -252,8 +283,7 @@
                      completion:nil];
 }
 -(void) animateViewBook {
-    
-    
+
     self.viewIcon.transform = CGAffineTransformMakeTranslation(1, 1);
     [UIView setAnimationRepeatCount:1];
     [UIView animateWithDuration:1
@@ -265,6 +295,23 @@
                      }
                      completion:nil];
 }
+
+-(void) animateTitleText:(UIView *)view {
+    
+    view.transform = CGAffineTransformMakeTranslation(100, 0);
+    view.alpha = 0;
+    [UIView setAnimationRepeatCount:1];
+    [UIView animateWithDuration:0.7
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         view.transform = CGAffineTransformMakeTranslation(0, 0);
+                         view.alpha = 1;
+                         
+                     }
+                     completion:nil];
+}
+
 -(void)alertShow{
     UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Lector PDF" message:@"Como desea ver el PDF?" delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"UIWebView",@"vfr-Reader", nil];
     

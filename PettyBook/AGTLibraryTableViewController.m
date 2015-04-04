@@ -34,10 +34,12 @@
     self.navigationController.toolbar.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self.controllerOfTable;
     self.tableView.dataSource = self.controllerOfTable;
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logoPettyBook"]];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.tableView.frame = CGRectMake(0, self.navigationController.toolbar.frame.size.height + 20, self.tableView.frame.size.width, self.tableView.frame.size.height);
+
+//    self.tableView.frame = CGRectMake(0, self.navigationController.toolbar.frame.size.height + 20, self.tableView.frame.size.width, self.tableView.frame.size.height);
     self.tableView.backgroundColor = [UIColor clearColor];
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self selector:@selector(reloadSectionsWithNotif:) name:RELOAD_SECTION_FAVOURITES object:self.model];
