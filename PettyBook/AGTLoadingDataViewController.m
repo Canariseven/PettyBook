@@ -66,11 +66,12 @@
 
 -(void)libraryWithData:(NSData *)data{
     NSError *err;
-    NSArray *JSONObjects = [NSJSONSerialization JSONObjectWithData:data
-                                                           options:kNilOptions
-                                                             error:&err];
+    id JSONObjects = [NSJSONSerialization JSONObjectWithData:data
+                                                          options:kNilOptions
+                                                            error:&err];
+    
     if (JSONObjects != nil) {
-
+        if ([JSONObjects isKindOfClass:[NSArray class]]) {
         NSMutableArray * arr = [[NSMutableArray alloc]init];
         for (NSDictionary *dict in JSONObjects){
             AGTBook *book = [[AGTBook alloc] initWithDictionary:dict];
@@ -93,6 +94,7 @@
             }
             
         });
+        }
         
     }else{
         NSLog(@"Fallo JSON");
