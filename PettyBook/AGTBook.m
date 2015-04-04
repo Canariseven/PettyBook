@@ -17,12 +17,14 @@
 
 -(id) initWithTitle:(NSString *)title
             authors:(NSArray *)authors
+          authorStr:(NSString *)authorStr
                tags:(NSMutableArray *)tags
            urlImage:(NSString *)urlImage
              urlPDF:(NSString *)urlPDF{
     if (self=[super init]) {
         _title = title;
         _authors = authors;
+        _authorStr = authorStr;
         _tags = tags;
         _urlImage = urlImage;
         _urlPDF = urlPDF;
@@ -36,6 +38,7 @@
 -(id) initWithDictionary:(NSDictionary *)dict{
    return [self initWithTitle:[dict objectForKey:@"title"]
                       authors:[self extractFromJSONString:[dict objectForKey:@"authors"]]
+                    authorStr:[dict objectForKey:@"authors"]
                          tags:[self extractFromJSONString:[dict objectForKey:@"tags"]].mutableCopy
                      urlImage:[dict objectForKey:@"image_url"]
                        urlPDF:@"pdf_url"];

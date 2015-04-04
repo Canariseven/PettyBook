@@ -145,7 +145,7 @@
     labelTitle.textColor = [UIColor colorWithHue:0.53 saturation:0.79 brightness:0.99 alpha:1];
     
     UILabel *labelAuthors =[[UILabel alloc]initWithFrame:CGRectMake(0, 18, 200, 15)];
-    labelAuthors.text = self.model.authors[0];
+    labelAuthors.text = self.model.authorStr;
     labelAuthors.font = [UIFont fontWithName:@"HelveticaNeue" size:14.0];
     labelAuthors.textAlignment = NSTextAlignmentCenter;
     labelAuthors.minimumScaleFactor = 0.5;

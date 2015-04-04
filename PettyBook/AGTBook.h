@@ -20,10 +20,11 @@
 @property (nonatomic, copy) NSString * urlPDF;
 @property (nonatomic) BOOL  isFavourite;
 @property (nonatomic, strong) UIImage *image;
-
+@property (nonatomic, copy) NSString *authorStr;
 
 -(id) initWithTitle:(NSString *)title
             authors:(NSArray *)authors
+          authorStr:(NSString *)authorStr
             tags:(NSMutableArray *)tags
            urlImage:(NSString *)urlImage
              urlPDF:(NSString *)urlPDF;
