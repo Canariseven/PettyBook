@@ -14,6 +14,8 @@
 		3248788D1AC8989C00048B99 /* AGTTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248788B1AC8989C00048B99 /* AGTTagTableViewCell.m */; };
 		3248788E1AC8989C00048B99 /* AGTTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3248788C1AC8989C00048B99 /* AGTTagTableViewCell.xib */; };
 		3248789D1AC8A40800048B99 /* AGTTagsDataSourceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248789C1AC8A40800048B99 /* AGTTagsDataSourceTableView.m */; };
+		32B05BFA1ACFD4D800435508 /* AGTPDFReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B05BF81ACFD4D800435508 /* AGTPDFReaderViewController.m */; };
+		32B05BFB1ACFD4D800435508 /* AGTPDFReaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */; };
 		32B689E61ACC749300FE4014 /* services.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B689E51ACC749300FE4014 /* services.m */; };
 		32D16B931AC8736F00F265E5 /* AGTLibraryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D16B921AC8736F00F265E5 /* AGTLibraryTableViewCell.xib */; };
 		32D16B971AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D16B961AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m */; };
@@ -52,6 +54,9 @@
 		3248788C1AC8989C00048B99 /* AGTTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTTagTableViewCell.xib; sourceTree = "<group>"; };
 		3248789B1AC8A40800048B99 /* AGTTagsDataSourceTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTTagsDataSourceTableView.h; sourceTree = "<group>"; };
 		3248789C1AC8A40800048B99 /* AGTTagsDataSourceTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTTagsDataSourceTableView.m; sourceTree = "<group>"; };
+		32B05BF71ACFD4D800435508 /* AGTPDFReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTPDFReaderViewController.h; sourceTree = "<group>"; };
+		32B05BF81ACFD4D800435508 /* AGTPDFReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTPDFReaderViewController.m; sourceTree = "<group>"; };
+		32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTPDFReaderViewController.xib; sourceTree = "<group>"; };
 		32B689E41ACC749300FE4014 /* services.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = services.h; sourceTree = "<group>"; };
 		32B689E51ACC749300FE4014 /* services.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = services.m; sourceTree = "<group>"; };
 		32D16B921AC8736F00F265E5 /* AGTLibraryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTLibraryTableViewCell.xib; sourceTree = "<group>"; };
@@ -211,6 +216,9 @@
 				324878791AC8820100048B99 /* AGTBookViewController.h */,
 				3248787A1AC8820100048B99 /* AGTBookViewController.m */,
 				3248787B1AC8820100048B99 /* AGTBookViewController.xib */,
+				32B05BF71ACFD4D800435508 /* AGTPDFReaderViewController.h */,
+				32B05BF81ACFD4D800435508 /* AGTPDFReaderViewController.m */,
+				32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */,
 				3248789E1AC8A53300048B99 /* DataSources and Delegates */,
 				32B689E41ACC749300FE4014 /* services.h */,
 				32B689E51ACC749300FE4014 /* services.m */,
@@ -314,6 +322,7 @@
 				3248788E1AC8989C00048B99 /* AGTTagTableViewCell.xib in Resources */,
 				32DC7CD51AC7126600A074E8 /* Images.xcassets in Resources */,
 				32D16B931AC8736F00F265E5 /* AGTLibraryTableViewCell.xib in Resources */,
+				32B05BFB1ACFD4D800435508 /* AGTPDFReaderViewController.xib in Resources */,
 				32DC7CF91AC735F000A074E8 /* AGTLibraryTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +347,7 @@
 				323FB4081ACB2ADB006CB368 /* AGTLoadingDataViewController.m in Sources */,
 				32DC7CF31AC7133E00A074E8 /* AGTLibrary.m in Sources */,
 				32D16B971AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m in Sources */,
+				32B05BFA1ACFD4D800435508 /* AGTPDFReaderViewController.m in Sources */,
 				3248789D1AC8A40800048B99 /* AGTTagsDataSourceTableView.m in Sources */,
 				32DC7CF71AC7350C00A074E8 /* AGTLibraryTableViewController.m in Sources */,
 				32DC7CD31AC7126600A074E8 /* AppDelegate.m in Sources */,

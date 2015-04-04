@@ -11,6 +11,8 @@
 #import "AGTTagsDataSourceTableView.h"
 #import "AGTTagTableViewCell.h"
 #import "AGTLibrary.h"
+#import "AGTPDFReaderViewController.h"
+
 @interface AGTBookViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageBook;
 @property (weak, nonatomic) IBOutlet UIButton *tagsButton;
