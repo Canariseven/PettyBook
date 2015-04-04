@@ -33,15 +33,7 @@
     AGTLoadingDataViewController *loading = [[AGTLoadingDataViewController alloc]initWithWindow:self.window];
     
 
-//    NSArray *pdfs = [[NSBundle mainBundle] pathsForResourcesOfType:@"pdf" inDirectory:nil];
-//    
-//    NSString *filePath = [pdfs firstObject]; assert(filePath != nil); // Path to first PDF file
-//    
-//    NSData * pdfData = [NSData dataWithContentsOfFile:filePath];
-//    AGTBook *book = [[AGTBook alloc]init];
-//
-//    book.urlPDF = @"Reader.pdf";
-//    AGTPDFReaderViewController * pdfView = [[AGTPDFReaderViewController alloc]initWithModel:book];
+
 
     
     self.window.rootViewController = loading;

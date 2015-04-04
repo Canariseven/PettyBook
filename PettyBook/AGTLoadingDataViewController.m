@@ -31,6 +31,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
     NSData * data = [self checkDataOnCache];
@@ -82,7 +83,15 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.activityIndicator stopAnimating];
             self.activityIndicator.hidden = YES;
-            [self presentViewControllersWithLibrary:self.lib];
+            
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+                // Tipo tableta
+                [self configureForPad:self.lib];
+            }else{
+                // Tipo teléfono
+                [self configureForPhone:self.lib];
+            }
+            
         });
         
     }else{
@@ -91,8 +100,7 @@
     
 }
 
-
--(void)presentViewControllersWithLibrary:(AGTLibrary *)library{
+-(void)configureForPad:(AGTLibrary *)library{
     AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWihtModel:library];
     UINavigationController *navLibrary = [[UINavigationController alloc] initWithRootViewController:tLibrary];
     
@@ -109,6 +117,15 @@
     split.viewControllers = @[navLibrary,navBook];
     split.delegate = book;
     tLibrary.controllerOfTable.delegate = book;
+    tLibrary.controllerOfTable.delegate = tLibrary.controllerOfTable;
     self.window.rootViewController = split;
 }
+
+-(void)configureForPhone:(AGTLibrary *)library{
+    AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWihtModel:library];
+    UINavigationController *navLibrary = [[UINavigationController alloc] initWithRootViewController:tLibrary];
+    tLibrary.controllerOfTable.delegate = tLibrary.controllerOfTable;
+    self.window.rootViewController = navLibrary;
+}
+
 @end

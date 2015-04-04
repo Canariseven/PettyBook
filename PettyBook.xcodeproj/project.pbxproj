@@ -73,6 +73,7 @@
 		32DC7CFB1AC7383300A074E8 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32DC7CFA1AC7383300A074E8 /* image.jpg */; };
 		32DC7D001AC73AF800A074E8 /* AGTLibraryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC7CFE1AC73AF800A074E8 /* AGTLibraryTableViewCell.m */; };
 		32FFD5311AD040C700FFCD5A /* Reader.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 32FFD5301AD040C700FFCD5A /* Reader.pdf */; };
+		32FFD5361AD069EA00FFCD5A /* AGTBookIphoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32FFD5351AD069EA00FFCD5A /* AGTBookIphoneViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,6 +190,7 @@
 		32DC7CFD1AC73AF800A074E8 /* AGTLibraryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTLibraryTableViewCell.h; sourceTree = "<group>"; };
 		32DC7CFE1AC73AF800A074E8 /* AGTLibraryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTLibraryTableViewCell.m; sourceTree = "<group>"; };
 		32FFD5301AD040C700FFCD5A /* Reader.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Reader.pdf; sourceTree = "<group>"; };
+		32FFD5351AD069EA00FFCD5A /* AGTBookIphoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTBookIphoneViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -457,6 +459,7 @@
 				324878791AC8820100048B99 /* AGTBookViewController.h */,
 				3248787A1AC8820100048B99 /* AGTBookViewController.m */,
 				3248787B1AC8820100048B99 /* AGTBookViewController.xib */,
+				32FFD5351AD069EA00FFCD5A /* AGTBookIphoneViewController.xib */,
 				32B05BF71ACFD4D800435508 /* AGTPDFReaderViewController.h */,
 				32B05BF81ACFD4D800435508 /* AGTPDFReaderViewController.m */,
 				32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */,
@@ -579,6 +582,7 @@
 				32FFD5311AD040C700FFCD5A /* Reader.pdf in Resources */,
 				32D16B931AC8736F00F265E5 /* AGTLibraryTableViewCell.xib in Resources */,
 				32B05BFB1ACFD4D800435508 /* AGTPDFReaderViewController.xib in Resources */,
+				32FFD5361AD069EA00FFCD5A /* AGTBookIphoneViewController.xib in Resources */,
 				32A1EE171AD0388B009AE83F /* Reader-Mark-N.png in Resources */,
 				32DC7CF91AC735F000A074E8 /* AGTLibraryTableViewController.xib in Resources */,
 			);

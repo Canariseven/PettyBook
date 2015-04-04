@@ -35,7 +35,13 @@
 
 @implementation AGTBookViewController
 -(id)initWithModel:(AGTBook*)model{
-    if (self = [super init]) {
+    NSString *nibName;
+     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+         nibName = @"AGTBookViewController";
+     }else{
+         nibName = @"AGTBookIphoneViewController";
+     }
+    if (self = [super initWithNibName:nibName bundle:nil]) {
         _model = model;
         _DT = [[AGTTagsDataSourceTableView alloc] initWhitArrayOfTags:self.model.tags];
     }
@@ -56,13 +62,18 @@
     [self settingsOfViews];
     [self sincronizeDataOfView];
     [self animateViewBook];
+    [self addGestureBookImage];
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self];
 }
-
+-(void)addGestureBookImage{
+    UIGestureRecognizer *tap = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(readBookButton:)];
+    [self.imageBook addGestureRecognizer:tap];
+    self.imageBook.userInteractionEnabled = YES;
+}
 -(void) addNumberOfTagsCircleView{
     CGRect rect = CGRectMake(self.tagsButton.frame.size.width/2 + 7,
                              self.tagsButton.frame.origin.y + 3,
