@@ -28,6 +28,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [AGTLibraryTableViewCell cellHeight];
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 40;
+}
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return self.model.tags[section];
 }
@@ -37,7 +40,18 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.model.tags.count;
 }
-
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc]init];
+    view.backgroundColor = [UIColor whiteColor];
+    UILabel *labelTitle =[[UILabel alloc]initWithFrame:CGRectMake(0,15, tableView.frame.size.width, 15)];
+    labelTitle.text = [self.model.tags[section] uppercaseString];
+    labelTitle.font = [UIFont fontWithName:@"AvenirNext" size:18.0];
+    labelTitle.textAlignment = NSTextAlignmentCenter;
+    labelTitle.baselineAdjustment = UIBaselineAdjustmentNone;
+    labelTitle.textColor = [UIColor colorWithHue:0 saturation:0 brightness:0.18 alpha:1];
+    [view addSubview:labelTitle];
+    return view;
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     AGTBook * book = [self.model bookForTag:self.model.tags[indexPath.section] atIndex:indexPath.row];
     AGTLibraryTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CELL_FOR_LIBRARY];
