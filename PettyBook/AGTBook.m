@@ -90,13 +90,12 @@
 
 #pragma mark - Download images
 -(void)downLoadPhotoWithURL:(NSURL *)url{
-    services * download = [services sharedServices];
+//    services * download = [services sharedServices];
     
-    [download dowloadDataWithURL:url statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
+    [services downloadDataWithURL:url statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSString *name = [url lastPathComponent];
         [self saveImageOnCacheWithData:data andName:name];
     } failure:^(NSURLResponse *response, NSError *error) {
-        
         NSLog(@"Error al cargar la imagen");
     }];
 }

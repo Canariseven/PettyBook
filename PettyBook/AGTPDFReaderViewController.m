@@ -12,6 +12,8 @@
 #import "Utils.h"
 @interface AGTPDFReaderViewController ()
 @property (nonatomic, strong) AGTBook * model;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 @end
 
 @implementation AGTPDFReaderViewController
@@ -31,7 +33,13 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self sincronizeView];
-    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(changePDFWithNotification:) name:PDF_CHANGED object:self.model];
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc removeObserver:self];
 }
 
 -(void)sincronizeView{
@@ -40,14 +48,21 @@
 }
 
 -(void)downloadPDFWithURL:(NSURL *)url andName:(NSString *)name{
-[services dowloadDataWithURL:url
+    [self.activityIndicator startAnimating];
+    self.activityIndicator.hidden = NO;
+[services downloadDataWithURL:url
          statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
+             [self.activityIndicator stopAnimating];
+             self.activityIndicator.hidden = YES;
              [self loadAndSaveData:data withName:name];
          } failure:^(NSURLResponse *response, NSError *error) {
-             
+             [self.activityIndicator stopAnimating];
+             self.activityIndicator.hidden = YES;
          }];
 }
+
 -(void)checkPDFonCacheWithName:(NSString *)name{
+    
     NSData *data = [Utils dataOfCacheDirectoryWithNameFile:name];
     if (data == nil) {
         // llamamos al servicio
@@ -59,11 +74,13 @@
     }
 }
 -(void)loadAndSaveData:(NSData *)data withName:(NSString *)name{
+
     BOOL rc = [Utils saveOnCacheWithData:data andName:name];
     if (rc == YES) {
         [self loadPDFOnWebView:data];
     }else{
-        //volvemos a descargar el archivo o presentamos error
+        //volvemos a descargar el archivo o mostramos el error
+
     }
 }
 -(void)loadPDFOnWebView:(NSData *)pdfData{
@@ -79,7 +96,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+-(void)changePDFWithNotification:(NSNotification *)notification{
+    self.model = notification.object;
+    [self sincronizeView];
+}
 
 
 

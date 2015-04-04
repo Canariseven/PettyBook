@@ -14,6 +14,7 @@
 #import "services.h"
 #import "Utils.h"
 @interface AGTLoadingDataViewController()
+
 @property (nonatomic, strong) AGTLibrary *lib;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
@@ -47,15 +48,16 @@
 }
 
 -(void)dowloadLibrary{
-    services *serv = [[services alloc]init];
+//    services * download = [services sharedServices];
     NSURL * url =  [NSURL URLWithString:URL_LIBRARY_JSON];
-    [serv dowloadDataWithURL:url statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
+    [services downloadDataWithURL:url statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
         BOOL result = [Utils saveOnCacheWithData:data andName:@"books_readable.json"];
         if (result == NO) {
             NSLog(@"No can save File on cache");
         }
         [self libraryWithData:data];
     } failure:^(NSURLResponse *response, NSError *error) {
+      
         NSLog(@"Error solicitud: %@", response.description);
         NSLog(@"Error: %@", error.localizedDescription);
      }];

@@ -9,17 +9,17 @@
 #import "services.h"
 
 @implementation services
-+(id)sharedServices{
-    static services *sharedMyServices = nil;
-    @synchronized(self){
-        if (sharedMyServices == nil) {
-            sharedMyServices = [[self alloc]init];
-        }
-    }
-    return sharedMyServices;
-}
+//+(id)sharedServices{
+//    static services *sharedMyServices = nil;
+//    @synchronized(self){
+//        if (sharedMyServices == nil) {
+//            sharedMyServices = [[self alloc]init];
+//        }
+//    }
+//    return sharedMyServices;
+//}
 
-+(void) dowloadDataWithURL:(NSURL *)url statusOperationWith:(void(^)(NSData *data ,NSURLResponse * response, NSError *error))success failure:(void (^)(NSURLResponse *response, NSError *error))failure{
++(void) downloadDataWithURL:(NSURL *)url statusOperationWith:(void(^)(NSData *data ,NSURLResponse * response, NSError *error))success failure:(void (^)(NSURLResponse *response, NSError *error))failure{
     NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     sessionConfiguration.HTTPAdditionalHeaders = @{@"Accept"    : @"application/json"};
     // Inicialización de la sesión
@@ -40,11 +40,21 @@
                 failure(response,error);
             }
         }else{
+            [self showAlertWithError:error];
             failure(response,error);
         }
         
     }];
     [dataTask resume];
-    
 }
+
++(void)showAlertWithError:(NSError *)error{
+    if (error.code == -1002) {
+//        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"No Internet"
+//                                                        message:@"Por favor revise su conexión de internet" delegate:self cancelButtonTitle:@"OK!"
+//                                              otherButtonTitles: nil];
+//        [alert show];
+    }
+}
+
 @end

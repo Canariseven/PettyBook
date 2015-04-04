@@ -8,8 +8,10 @@
 
 
 @import Foundation;
+@import UIKit;
 
 @interface services : NSObject
-+(id)sharedServices;
-+(void) dowloadDataWithURL:(NSURL *)url statusOperationWith:(void(^)(NSData *data ,NSURLResponse * response, NSError *error))success failure:(void (^)(NSURLResponse *response, NSError *error))failure;
+
++(void) downloadDataWithURL:(NSURL *)url statusOperationWith:(void(^)(NSData *data ,NSURLResponse * response, NSError *error))success failure:(void (^)(NSURLResponse *response, NSError *error))failure;
+
 @end
