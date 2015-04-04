@@ -45,7 +45,7 @@
 #pragma mark - Properties
 -(UIImage *)image{
     NSString *name = [self.urlImage lastPathComponent];
-    NSData * data = [Utils dataOfCacheDirectoryWithNameFile:name];
+    NSData * data = [Utils dataWithNameFile:name andDirectory:NSCachesDirectory];
     if (data == nil){
         // Descargar la imagen
 //        [self downLoadPhotoWithURL:urlImage];
@@ -73,7 +73,7 @@
 
 
 -(void)saveImageOnCacheWithData:(NSData *) data andName:(NSString *)name{
-    BOOL rc = [Utils saveOnCacheWithData:data andName:name];
+    BOOL rc = [Utils saveWithData:data name:name andDirectory:NSCachesDirectory];
     
     if (rc == NO) {
         NSLog(@"Fallo al cargar las imagenes");

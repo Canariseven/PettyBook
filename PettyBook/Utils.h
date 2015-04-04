@@ -9,7 +9,7 @@
 
 @import Foundation;
 @interface Utils : NSObject
-+(NSURL *)urlOfCacheWithNameFile:(NSString *)name;
-+(BOOL)saveOnCacheWithData:(NSData *)data andName:(NSString *)name;
-+(NSData *)dataOfCacheDirectoryWithNameFile:(NSString *)name;
++(NSURL *)urlWithNameFile:(NSString *)name andDirectory:(NSSearchPathDirectory)directory;
++(BOOL)saveWithData:(NSData *)data name:(NSString *)name andDirectory:(NSSearchPathDirectory)directory;
++(NSData *)dataWithNameFile:(NSString *)name andDirectory:(NSSearchPathDirectory)directory;
 @end

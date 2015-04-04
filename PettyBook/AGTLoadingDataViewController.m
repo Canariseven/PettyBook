@@ -44,7 +44,7 @@
 }
 
 -(NSData *)checkDataOnCache{
-    NSData * data = [Utils dataOfCacheDirectoryWithNameFile:@"books_readable.json"];
+    NSData * data = [Utils dataWithNameFile:@"books_readable.json" andDirectory:NSDocumentDirectory];
     return data;
 }
 
@@ -52,7 +52,7 @@
 //    services * download = [services sharedServices];
     NSURL * url =  [NSURL URLWithString:URL_LIBRARY_JSON];
     [services downloadDataWithURL:url statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
-        BOOL result = [Utils saveOnCacheWithData:data andName:@"books_readable.json"];
+        BOOL result = [Utils saveWithData:data name:@"books_readable.json" andDirectory:NSDocumentDirectory];
         if (result == NO) {
             NSLog(@"No can save File on cache");
         }

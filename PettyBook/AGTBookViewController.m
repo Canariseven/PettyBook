@@ -281,7 +281,7 @@
         [self.navigationController pushViewController:pdfView animated:YES];
         
     }else if (buttonIndex == 2){{
-        NSString *filePath = [NSString stringWithFormat:@"%@",[Utils urlOfCacheWithNameFile:@"Reader.pdf"]];
+        NSString *filePath = [NSString stringWithFormat:@"%@",[Utils urlWithNameFile:@"Reader.pdf" andDirectory:NSCachesDirectory]];
         
         filePath = [filePath stringByReplacingOccurrencesOfString:@"file:///" withString:@""];
         NSString *phrase = nil; // Document password (for unlocking most encrypted PDF files)
