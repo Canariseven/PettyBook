@@ -10,6 +10,6 @@
 
 @interface Utils : NSObject
 +(NSURL *)urlOfCacheWithNameFile:(NSString *)name;
-+(id)saveOnCacheWithURL:(NSURL *)url data:(NSData *)data andName:(NSString *)name;
++(BOOL)saveOnCacheWithData:(NSData *)data andName:(NSString *)name;
 +(NSData *)dataOfCacheDirectoryWithNameFile:(NSString *)name;
 @end

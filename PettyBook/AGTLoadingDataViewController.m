@@ -50,7 +50,10 @@
     services *serv = [[services alloc]init];
     NSURL * url =  [NSURL URLWithString:URL_LIBRARY_JSON];
     [serv dowloadDataWithURL:url statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
-        [Utils saveOnCacheWithURL:url data:data andName:@"books_readable.json"];
+        BOOL result = [Utils saveOnCacheWithData:data andName:@"books_readable.json"];
+        if (result == NO) {
+            NSLog(@"No can save File on cache");
+        }
         [self libraryWithData:data];
     } failure:^(NSURLResponse *response, NSError *error) {
         NSLog(@"Error solicitud: %@", response.description);

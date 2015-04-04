@@ -8,7 +8,7 @@
 
 #import "AGTBook.h"
 #import "services.h"
-
+#import "Utils.h"
 
 
 @implementation AGTBook
@@ -44,9 +44,8 @@
 
 #pragma mark - Properties
 -(UIImage *)image{
-    NSURL * urlImage = [NSURL URLWithString:self.urlImage];
-    NSURL *url = [self urlOfCacheImageWidthURLImage:urlImage];
-    NSData * data = [NSData dataWithContentsOfURL:url];
+    NSString *name = [self.urlImage lastPathComponent];
+    NSData * data = [Utils dataOfCacheDirectoryWithNameFile:name];
     if (data == nil){
         // Descargar la imagen
 //        [self downLoadPhotoWithURL:urlImage];
@@ -72,21 +71,10 @@
 
 #pragma mark - Cache Image
 
--(NSURL *)urlOfCacheImageWidthURLImage:(NSURL *)urlImage{
-    
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSArray *urls = [fm URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
-    NSURL *url = [urls lastObject];
-    NSString * nameImage = [urlImage lastPathComponent];
-    url = [url URLByAppendingPathComponent:nameImage];
-    return url;
-    
-}
 
--(void)saveOnCacheWithURLImage:(NSURL *)urlImage andData:(NSData *)data{
+-(void)saveImageOnCacheWithData:(NSData *) data andName:(NSString *)name{
+    BOOL rc = [Utils saveOnCacheWithData:data andName:name];
     
-    NSURL *url = [self urlOfCacheImageWidthURLImage:urlImage];
-    BOOL rc = [data writeToURL:url atomically:NO];
     if (rc == NO) {
         NSLog(@"Fallo al cargar las imagenes");
     }else{
@@ -95,18 +83,18 @@
         NSNotification * n = [NSNotification notificationWithName:self.title object:self];
         [nc postNotification:n];
         self.image = image;
-        NSLog(@"La imagen se ha guardado correctamente en : %@",url);
+        NSLog(@"La imagen se ha guardado correctamente en : %@",name);
     }
 }
+
 
 #pragma mark - Download images
 -(void)downLoadPhotoWithURL:(NSURL *)url{
     services * download = [services sharedServices];
     
     [download dowloadDataWithURL:url statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
-        [self saveOnCacheWithURLImage:url andData:data];
-        
+        NSString *name = [url lastPathComponent];
+        [self saveImageOnCacheWithData:data andName:name];
     } failure:^(NSURLResponse *response, NSError *error) {
         
         NSLog(@"Error al cargar la imagen");

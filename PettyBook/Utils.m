@@ -19,15 +19,15 @@
     
 }
 
-+(id)saveOnCacheWithURL:(NSURL *)url data:(NSData *)data andName:(NSString *)name{
++(BOOL)saveOnCacheWithData:(NSData *)data andName:(NSString *)name{
     
     NSURL *urlCache = [self urlOfCacheWithNameFile:name];
     BOOL rc = [data writeToURL:urlCache atomically:NO];
     if (rc == NO) {
         NSLog(@"Fallo al cargar las imagenes");
-        return nil;
+        return NO;
     }else{
-        return data;
+        return YES;
     }
 }
 
