@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *backBookView;
 @property (weak, nonatomic) IBOutlet UIView *macroView;
+@property (weak, nonatomic) IBOutlet UIImageView * viewIcon;
 @property (nonatomic, strong) AGTTagsDataSourceTableView *DT;
 @property (nonatomic, strong) UILabel *numberOfTags;
 @property (nonatomic, strong) UIView *circle;
@@ -51,7 +52,7 @@
     [nc addObserver:self selector:@selector(reloadButton:) name:RELOAD_SECTION_FAVOURITES object:nil];
     [self settingsOfViews];
     [self sincronizeDataOfView];
-    [self animateButtonViewBook];
+    [self animateViewBook];
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
@@ -85,12 +86,12 @@
     [self addShadowToView:self.backBookForRadius radius:5 opacity:1];
     [self addShadowToView:self.macroView radius:20 opacity:0.5];
     self.tableView.frame = CGRectMake(self.imageBook.frame.size.width/2 + self.imageBook.frame.origin.x - [AGTTagTableViewCell cellWidth]/2 -20 ,
-                                      self.imageBook.frame.origin.y,
+                                      -self.tableView.frame.size.height,
                                       [AGTTagTableViewCell cellWidth] + 40,
                                       self.imageBook.frame.size.height - 30);
     
-    [self animateTableView:-(self.tableView.frame.size.height)];
-    
+
+//    self.tableView.transform = CGAffineTransformMakeTranslation(1, -(self.tableView.frame.size.height));
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
 }
@@ -103,7 +104,7 @@
     }else{
 
     }
-    self.numberOfTags.text = [NSString stringWithFormat:@"%d",self.model.tags.count];
+    self.numberOfTags.text = [NSString stringWithFormat:@"%lu",(unsigned long)self.model.tags.count];
     [self animateImage];
     [self animateCircleTag];
 }
@@ -127,17 +128,19 @@
 - (IBAction)tagsButton:(id)sender {
     if (self.openTableViewTag == NO) {
         // ABRIR
-        [self animateTableView:1];
+        [self animateTableView:(self.tableView.frame.size.height)];
         self.openTableViewTag = YES;
     }else{
         // Cerrar
-        [self animateTableView:-(self.tableView.frame.size.height)];
+        [self animateTableView:1];
         self.openTableViewTag = NO;
     }
 }
 
 - (IBAction)readBookButton:(id)sender {
     
+    AGTPDFReaderViewController * pdfView = [[AGTPDFReaderViewController alloc]initWithModel:self.model];
+    [self.navigationController pushViewController:pdfView animated:YES];
 }
 
 - (IBAction)favouriteButton:(id)sender {
@@ -233,16 +236,17 @@
                      }
                      completion:nil];
 }
--(void) animateButtonViewBook {
+-(void) animateViewBook {
     
     
-    self.readBookButton.transform = CGAffineTransformMakeTranslation(1, 1);
+    self.viewIcon.transform = CGAffineTransformMakeTranslation(1, 1);
     [UIView setAnimationRepeatCount:1];
     [UIView animateWithDuration:1
                           delay:0
                         options: UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat
                      animations:^{
-                         self.readBookButton.transform = CGAffineTransformMakeTranslation(1, 10);
+                         self.viewIcon.transform = CGAffineTransformMakeTranslation(1, 10);
+                         
                      }
                      completion:nil];
 }

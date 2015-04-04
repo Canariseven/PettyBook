@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class AGTBook;
 @interface AGTPDFReaderViewController : UIViewController <UIWebViewDelegate>
 @property (nonatomic, weak) IBOutlet UIWebView * pdfView;
--(id) initWithPDF:(NSData *)pdfData;
+-(id) initWithModel:(AGTBook *)model;
 @end

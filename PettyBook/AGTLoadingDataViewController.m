@@ -12,11 +12,13 @@
 #import "AGTLibraryTableViewController.h"
 #import "AGTBookViewController.h"
 #import "services.h"
+#import "Utils.h"
 @interface AGTLoadingDataViewController()
 @property (nonatomic, strong) AGTLibrary *lib;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 @property (nonatomic, strong) UIWindow *window;
+
 @end
 @implementation AGTLoadingDataViewController
 -(id) initWithWindow:(UIWindow *)window{
@@ -30,40 +32,58 @@
     [super viewDidLoad];
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
-    [self dowloadLibrary];
+    NSData * data = [self checkDataOnCache];
+    if (data != nil) {
+        [self libraryWithData:data];
+    }else{
+        [self dowloadLibrary];
+    }
+    
+}
+
+-(NSData *)checkDataOnCache{
+    NSData * data = [Utils dataOfCacheDirectoryWithNameFile:@"books_readable.json"];
+    return data;
 }
 
 -(void)dowloadLibrary{
     services *serv = [[services alloc]init];
     NSURL * url =  [NSURL URLWithString:URL_LIBRARY_JSON];
     [serv dowloadDataWithURL:url statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSError *err;
-        NSArray *JSONObjects = [NSJSONSerialization JSONObjectWithData:data
-                                                               options:kNilOptions
-                                                                 error:&err];
-        if (JSONObjects != nil) {
-            NSMutableArray * arr = [[NSMutableArray alloc]init];
-            for (NSDictionary *dict in JSONObjects){
-                AGTBook *book = [[AGTBook alloc] initWithDictionary:dict];
-                [arr addObject:book];
-            }
-            self.books = arr;
-            AGTLibrary * library = [[AGTLibrary alloc] initWithBooks:self.books];
-            self.lib = library;
-            // Hilo principal, para salir de inmediato
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.activityIndicator stopAnimating];
-                self.activityIndicator.hidden = YES;
-                [self presentViewControllersWithLibrary:self.lib];
-            });
-            
-        }else{
-            NSLog(@"Fallo JSON");
-        }
+        [Utils saveOnCacheWithURL:url data:data andName:@"books_readable.json"];
+        [self libraryWithData:data];
     } failure:^(NSURLResponse *response, NSError *error) {
         NSLog(@"Error solicitud: %@", response.description);
         NSLog(@"Error: %@", error.localizedDescription);
      }];
+}
+
+-(void)libraryWithData:(NSData *)data{
+    NSError *err;
+    NSArray *JSONObjects = [NSJSONSerialization JSONObjectWithData:data
+                                                           options:kNilOptions
+                                                             error:&err];
+    if (JSONObjects != nil) {
+
+        NSMutableArray * arr = [[NSMutableArray alloc]init];
+        for (NSDictionary *dict in JSONObjects){
+            AGTBook *book = [[AGTBook alloc] initWithDictionary:dict];
+            [arr addObject:book];
+        }
+        self.books = arr;
+        AGTLibrary * library = [[AGTLibrary alloc] initWithBooks:self.books];
+        self.lib = library;
+        // Hilo principal, para salir de inmediato
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.activityIndicator stopAnimating];
+            self.activityIndicator.hidden = YES;
+            [self presentViewControllersWithLibrary:self.lib];
+        });
+        
+    }else{
+        NSLog(@"Fallo JSON");
+    }
+    
 }
 
 
@@ -77,8 +97,6 @@
     if (b == nil) {
         b = [library bookForTag:library.tags[1] atIndex:0];
     }
-    
-    
     AGTBookViewController *book = [[AGTBookViewController alloc] initWithModel:b];
     UINavigationController *navBook = [[UINavigationController alloc] initWithRootViewController:book];
     

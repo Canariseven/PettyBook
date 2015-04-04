@@ -19,6 +19,7 @@
 @end
 
 @implementation AGTLibraryTableViewController
+
 -(id)initWihtModel:(AGTLibrary *)model{
     if(self = [super initWithNibName:nil bundle:nil]){
         _model = model;
@@ -27,6 +28,7 @@
     }
     return self;
 }
+
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.navigationController.toolbar.backgroundColor = [UIColor whiteColor];

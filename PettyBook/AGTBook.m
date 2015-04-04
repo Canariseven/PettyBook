@@ -49,7 +49,7 @@
     NSData * data = [NSData dataWithContentsOfURL:url];
     if (data == nil){
         // Descargar la imagen
-        [self downLoadPhotoWithURL:urlImage];
+//        [self downLoadPhotoWithURL:urlImage];
         return nil;
     }else{
         // Usar la imagen

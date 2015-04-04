@@ -14,6 +14,8 @@
 		3248788D1AC8989C00048B99 /* AGTTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248788B1AC8989C00048B99 /* AGTTagTableViewCell.m */; };
 		3248788E1AC8989C00048B99 /* AGTTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3248788C1AC8989C00048B99 /* AGTTagTableViewCell.xib */; };
 		3248789D1AC8A40800048B99 /* AGTTagsDataSourceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248789C1AC8A40800048B99 /* AGTTagsDataSourceTableView.m */; };
+		32A1EDAC1ACFE990009AE83F /* Reader.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 32A1EDAB1ACFE990009AE83F /* Reader.pdf */; };
+		32A1EDAF1ACFEC09009AE83F /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDAE1ACFEC09009AE83F /* Utils.m */; };
 		32B05BFA1ACFD4D800435508 /* AGTPDFReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B05BF81ACFD4D800435508 /* AGTPDFReaderViewController.m */; };
 		32B05BFB1ACFD4D800435508 /* AGTPDFReaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */; };
 		32B689E61ACC749300FE4014 /* services.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B689E51ACC749300FE4014 /* services.m */; };
@@ -54,6 +56,9 @@
 		3248788C1AC8989C00048B99 /* AGTTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTTagTableViewCell.xib; sourceTree = "<group>"; };
 		3248789B1AC8A40800048B99 /* AGTTagsDataSourceTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTTagsDataSourceTableView.h; sourceTree = "<group>"; };
 		3248789C1AC8A40800048B99 /* AGTTagsDataSourceTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTTagsDataSourceTableView.m; sourceTree = "<group>"; };
+		32A1EDAB1ACFE990009AE83F /* Reader.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Reader.pdf; sourceTree = "<group>"; };
+		32A1EDAD1ACFEC09009AE83F /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		32A1EDAE1ACFEC09009AE83F /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		32B05BF71ACFD4D800435508 /* AGTPDFReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTPDFReaderViewController.h; sourceTree = "<group>"; };
 		32B05BF81ACFD4D800435508 /* AGTPDFReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTPDFReaderViewController.m; sourceTree = "<group>"; };
 		32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTPDFReaderViewController.xib; sourceTree = "<group>"; };
@@ -123,6 +128,17 @@
 			name = "DataSources and Delegates";
 			sourceTree = "<group>";
 		};
+		32A1EDB01AD01BC8009AE83F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				32B689E41ACC749300FE4014 /* services.h */,
+				32B689E51ACC749300FE4014 /* services.m */,
+				32A1EDAD1ACFEC09009AE83F /* Utils.h */,
+				32A1EDAE1ACFEC09009AE83F /* Utils.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		32D16B941AC87AC100F265E5 /* MiniBooksCELL */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +175,7 @@
 				32DC7CED1AC7126F00A074E8 /* Models */,
 				32DC7CD11AC7126600A074E8 /* AppDelegate.h */,
 				32DC7CD21AC7126600A074E8 /* AppDelegate.m */,
+				32A1EDAB1ACFE990009AE83F /* Reader.pdf */,
 				32DC7CD41AC7126600A074E8 /* Images.xcassets */,
 				32DC7CFA1AC7383300A074E8 /* image.jpg */,
 				32DC7CD61AC7126600A074E8 /* LaunchScreen.xib */,
@@ -220,8 +237,7 @@
 				32B05BF81ACFD4D800435508 /* AGTPDFReaderViewController.m */,
 				32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */,
 				3248789E1AC8A53300048B99 /* DataSources and Delegates */,
-				32B689E41ACC749300FE4014 /* services.h */,
-				32B689E51ACC749300FE4014 /* services.m */,
+				32A1EDB01AD01BC8009AE83F /* Utils */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -318,6 +334,7 @@
 				323FB40A1ACB3786006CB368 /* AGTLoadingDataViewController.xib in Resources */,
 				32DC7CD81AC7126600A074E8 /* LaunchScreen.xib in Resources */,
 				32DC7CFB1AC7383300A074E8 /* image.jpg in Resources */,
+				32A1EDAC1ACFE990009AE83F /* Reader.pdf in Resources */,
 				3248787D1AC8820100048B99 /* AGTBookViewController.xib in Resources */,
 				3248788E1AC8989C00048B99 /* AGTTagTableViewCell.xib in Resources */,
 				32DC7CD51AC7126600A074E8 /* Images.xcassets in Resources */,
@@ -346,6 +363,7 @@
 				3248787C1AC8820100048B99 /* AGTBookViewController.m in Sources */,
 				323FB4081ACB2ADB006CB368 /* AGTLoadingDataViewController.m in Sources */,
 				32DC7CF31AC7133E00A074E8 /* AGTLibrary.m in Sources */,
+				32A1EDAF1ACFEC09009AE83F /* Utils.m in Sources */,
 				32D16B971AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m in Sources */,
 				32B05BFA1ACFD4D800435508 /* AGTPDFReaderViewController.m in Sources */,
 				3248789D1AC8A40800048B99 /* AGTTagsDataSourceTableView.m in Sources */,
@@ -472,6 +490,7 @@
 				INFOPLIST_FILE = PettyBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -482,6 +501,7 @@
 				INFOPLIST_FILE = PettyBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

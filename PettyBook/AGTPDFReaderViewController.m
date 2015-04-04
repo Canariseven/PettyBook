@@ -7,15 +7,18 @@
 //
 
 #import "AGTPDFReaderViewController.h"
-
+#import "AGTBook.h"
+#import "services.h"
+#import "Utils.h"
 @interface AGTPDFReaderViewController ()
-@property (nonatomic, strong) NSData * pdfData;
+@property (nonatomic, strong) AGTBook * model;
 @end
 
 @implementation AGTPDFReaderViewController
--(id) initWithPDF:(NSData *)pdfData{
+
+-(id) initWithModel:(AGTBook *)model{
     if (self = [super initWithNibName:nil bundle:nil]){
-        _pdfData = pdfData;
+        _model = model;
     }
     return self;
     
@@ -27,11 +30,14 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"201" ofType:@"pdf"];
-//    NSURL *targetURL = [NSURL fileURLWithPath:path];
-//    NSData *pdfData = [[NSData alloc] initWithContentsOfURL:targetURL];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Reader" ofType:@"pdf"];
+    NSURL *targetURL = [NSURL fileURLWithPath:path];
+    NSData *pdfData = [[NSData alloc] initWithContentsOfURL:targetURL];
     
-    [self.pdfView loadData:self.pdfData MIMEType:@"application/pdf" textEncodingName:@"utf-8" baseURL:nil];
+//    NSURL * url = [Utils urlOfCacheWidthURL:[NSURL URLWithString:self.model.urlPDF]];
+    
+//    NSData * pdfData = [NSData dataWithContentsOfURL:url];
+    [self.pdfView loadData:pdfData MIMEType:@"application/pdf" textEncodingName:@"utf-8" baseURL:nil];
 
 }
 
@@ -41,11 +47,7 @@
 }
 
 
-// Create pdf path & url
 
-
-
-// Load pdf in WebView
 
 
 
