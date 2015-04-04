@@ -28,7 +28,7 @@
                 </imageView>
                 <view contentMode="scaleToFill" id="2Cx-n8-g3z">
                     <rect key="frame" x="18" y="-114" width="285" height="731"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" id="oPh-lX-nTM">
                             <rect key="frame" x="0.0" y="128" width="285" height="475"/>

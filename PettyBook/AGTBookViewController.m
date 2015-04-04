@@ -70,7 +70,8 @@
     [nc removeObserver:self];
 }
 -(void)addGestureBookImage{
-    UIGestureRecognizer *tap = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(readBookButton:)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self
+                                                                         action:@selector(readBookButton:)];
     [self.imageBook addGestureRecognizer:tap];
     self.imageBook.userInteractionEnabled = YES;
 }
@@ -103,10 +104,10 @@
                                       -self.tableView.frame.size.height,
                                       [AGTTagTableViewCell cellWidth] + 40,
                                       self.imageBook.frame.size.height - 30);
-    
-    
-    //    self.tableView.transform = CGAffineTransformMakeTranslation(1, -(self.tableView.frame.size.height));
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    CGPoint center = CGPointMake(self.view.center.x, self.view.center.y + 30 );
+    self.backBookForRadius.center = center;
     
 }
 
@@ -127,7 +128,7 @@
     if (self.model.isFavourite == NO){
         self.favouriteBook.backgroundColor = [UIColor clearColor];
     }else{
-        self.favouriteBook.backgroundColor = [UIColor blueColor];
+        self.favouriteBook.backgroundColor = [UIColor colorWithHue:0.53 saturation:0.79 brightness:0.70 alpha:1];
     }
 }
 -(void)addShadowToView:(UIView *)view
@@ -265,7 +266,7 @@
                      completion:nil];
 }
 -(void)alertShow{
-    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Lector PDF" message:@"Como deséa ver el PDF?" delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"UIWebView",@"vfr-Reader", nil];
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Lector PDF" message:@"Como desea ver el PDF?" delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"UIWebView",@"vfr-Reader", nil];
     
     [alert show];
     
