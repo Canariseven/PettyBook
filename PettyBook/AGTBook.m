@@ -41,7 +41,7 @@
                     authorStr:[dict objectForKey:@"authors"]
                          tags:[self extractFromJSONString:[dict objectForKey:@"tags"]].mutableCopy
                      urlImage:[dict objectForKey:@"image_url"]
-                       urlPDF:@"pdf_url"];
+                       urlPDF:[dict objectForKey:@"pdf_url"]];
 }
 
 
@@ -51,7 +51,8 @@
     NSData * data = [Utils dataWithNameFile:name andDirectory:NSCachesDirectory];
     if (data == nil){
         // Descargar la imagen
-//        [self downLoadPhotoWithURL:urlImage];
+        NSURL *url = [NSURL URLWithString:self.urlImage];
+       [self downLoadPhotoWithURL:url];
         return nil;
     }else{
         // Usar la imagen

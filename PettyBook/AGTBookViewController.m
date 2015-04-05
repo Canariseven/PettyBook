@@ -14,7 +14,7 @@
 #import "AGTPDFReaderViewController.h"
 #import "ReaderViewController.h"
 #import "Utils.h"
-
+#import "services.h"
 
 @interface AGTBookViewController ()<ReaderViewControllerDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageBook;
@@ -29,7 +29,7 @@
 @property (nonatomic, strong) AGTTagsDataSourceTableView *DT;
 @property (nonatomic, strong) UILabel *numberOfTags;
 @property (nonatomic, strong) UIView *circle;
-
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property BOOL openTableViewTag;
 @end
 
@@ -52,6 +52,7 @@
     [super viewDidLoad];
     CGPoint center = CGPointMake(self.view.center.x, self.view.center.y);
     self.backBookForRadius.center = center;
+    self.activityIndicator.hidden = YES;
     // Do any additional setup after loading the view from its nib.
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -327,34 +328,82 @@
         AGTPDFReaderViewController * pdfView = [[AGTPDFReaderViewController alloc]initWithModel:self.model];
         [self.navigationController pushViewController:pdfView animated:YES];
         
-    }else if (buttonIndex == 2){{
-        NSString *filePath = [NSString stringWithFormat:@"%@",[Utils urlWithNameFile:@"Reader.pdf" andDirectory:NSCachesDirectory]];
-        
-        filePath = [filePath stringByReplacingOccurrencesOfString:@"file:///" withString:@""];
-        NSString *phrase = nil; // Document password (for unlocking most encrypted PDF files)
-        
-        ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:phrase];
-        
-        if (document != nil) // Must have a valid ReaderDocument object in order to proceed
-        {
-            
-            ReaderViewController * readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
-            
-            readerViewController.delegate = self; // Set the ReaderViewController delegate to self
-            
-            readerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-            readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-            
-            [self presentViewController:readerViewController animated:YES completion:NULL];
-            
-        }
-    }
+    }else if (buttonIndex == 2){
+        [self checkPDFonCacheWithName:[self.model.urlPDF lastPathComponent]];
         
     }
 }
 
+
+
 #pragma mark - Delegate ReaderViewController
 -(void)dismissReaderViewController:(ReaderViewController *)viewController{
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+// ESTO TENDRIA QUE REFACTORIZARLO PERO POR NO TENER MUCHO TIEMPO COPIO Y PEGO del AGTPDFReaderViewController
+
+
+
+-(void)downloadPDFWithURL:(NSURL *)url andName:(NSString *)name{
+    [self.activityIndicator startAnimating];
+    self.activityIndicator.hidden = NO;
+    
+    [services downloadDataWithURL:url
+              statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
+                  [self.activityIndicator stopAnimating];
+                  self.activityIndicator.hidden = YES;
+                  [self loadAndSaveData:data withName:name];
+              } failure:^(NSURLResponse *response, NSError *error) {
+                  [self.activityIndicator stopAnimating];
+                  self.activityIndicator.hidden = YES;
+              }];
+}
+
+-(void)checkPDFonCacheWithName:(NSString *)name{
+    
+    NSData *data = [Utils dataWithNameFile:name andDirectory:NSCachesDirectory];
+    if (data == nil) {
+        // llamamos al servicio
+        NSURL * url = [NSURL URLWithString:self.model.urlPDF];
+        [self downloadPDFWithURL:url andName:name];
+    }else{
+        // lo cargamos
+        [self loadPDF];
+    }
+}
+-(void)loadAndSaveData:(NSData *)data withName:(NSString *)name{
+    
+    BOOL rc = [Utils saveWithData:data name:name andDirectory:NSCachesDirectory];
+    if (rc == YES) {
+        [self loadPDF];
+    }else{
+        //volvemos a descargar el archivo o mostramos el error
+        
+    }
+}
+-(void)loadPDF{
+    NSString *filePath = [NSString stringWithFormat:@"%@",[Utils urlWithNameFile:[self.model.urlPDF lastPathComponent] andDirectory:NSCachesDirectory]];
+    
+    filePath = [filePath stringByReplacingOccurrencesOfString:@"file:///" withString:@""];
+    NSString *phrase = nil; // Document password (for unlocking most encrypted PDF files)
+    
+    ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:phrase];
+    
+    if (document != nil) // Must have a valid ReaderDocument object in order to proceed
+    {
+        
+        ReaderViewController * readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
+        
+        readerViewController.delegate = self; // Set the ReaderViewController delegate to self
+        
+        readerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+        
+        [self presentViewController:readerViewController animated:YES completion:NULL];
+        
+    }
+
+
 }
 @end

@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AGTBookViewController">
             <connections>
+                <outlet property="activityIndicator" destination="dvf-V2-hCi" id="SZ1-2U-yui"/>
                 <outlet property="backBookForRadius" destination="2Cx-n8-g3z" id="bEq-Jf-DRW"/>
                 <outlet property="backBookView" destination="oPh-lX-nTM" id="dGE-gq-8I3"/>
                 <outlet property="favouriteBook" destination="o1M-eq-Y63" id="9zI-WG-W5U"/>
@@ -100,6 +101,11 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="dvf-V2-hCi">
+                    <rect key="frame" x="494" y="82" width="37" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <color key="color" red="0.4549019608" green="0.87843137250000003" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>

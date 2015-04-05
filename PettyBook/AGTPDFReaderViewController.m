@@ -50,6 +50,7 @@
 -(void)downloadPDFWithURL:(NSURL *)url andName:(NSString *)name{
     [self.activityIndicator startAnimating];
     self.activityIndicator.hidden = NO;
+    
 [services downloadDataWithURL:url
          statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
              [self.activityIndicator stopAnimating];
