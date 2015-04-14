@@ -14,6 +14,7 @@
 		3248788D1AC8989C00048B99 /* AGTTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248788B1AC8989C00048B99 /* AGTTagTableViewCell.m */; };
 		3248788E1AC8989C00048B99 /* AGTTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3248788C1AC8989C00048B99 /* AGTTagTableViewCell.xib */; };
 		3248789D1AC8A40800048B99 /* AGTTagsDataSourceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248789C1AC8A40800048B99 /* AGTTagsDataSourceTableView.m */; };
+		326436D31ADD8C5700FE2FB5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 326436D11ADD8C5700FE2FB5 /* Model.xcdatamodeld */; };
 		32A1EDAF1ACFEC09009AE83F /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDAE1ACFEC09009AE83F /* Utils.m */; };
 		32A1EDD31AD03834009AE83F /* ReaderConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDC01AD03834009AE83F /* ReaderConstants.m */; };
 		32A1EDD41AD03834009AE83F /* ReaderDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDC21AD03834009AE83F /* ReaderDocument.m */; };
@@ -98,6 +99,7 @@
 		3248788C1AC8989C00048B99 /* AGTTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTTagTableViewCell.xib; sourceTree = "<group>"; };
 		3248789B1AC8A40800048B99 /* AGTTagsDataSourceTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTTagsDataSourceTableView.h; sourceTree = "<group>"; };
 		3248789C1AC8A40800048B99 /* AGTTagsDataSourceTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTTagsDataSourceTableView.m; sourceTree = "<group>"; };
+		326436D21ADD8C5700FE2FB5 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		32A1EDAD1ACFEC09009AE83F /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		32A1EDAE1ACFEC09009AE83F /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		32A1EDBF1AD03834009AE83F /* ReaderConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderConstants.h; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 		32DC7CC11AC7126600A074E8 = {
 			isa = PBXGroup;
 			children = (
+				326436D11ADD8C5700FE2FB5 /* Model.xcdatamodeld */,
 				32A1EE271AD0390D009AE83F /* Frameworks */,
 				32DC7CCC1AC7126600A074E8 /* PettyBook */,
 				32DC7CE01AC7126600A074E8 /* PettyBookTests */,
@@ -619,6 +622,7 @@
 				32A1EDAF1ACFEC09009AE83F /* Utils.m in Sources */,
 				32D16B971AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m in Sources */,
 				32A1EDDB1AD03834009AE83F /* ThumbsViewController.m in Sources */,
+				326436D31ADD8C5700FE2FB5 /* Model.xcdatamodeld in Sources */,
 				32B05BFA1ACFD4D800435508 /* AGTPDFReaderViewController.m in Sources */,
 				3248789D1AC8A40800048B99 /* AGTTagsDataSourceTableView.m in Sources */,
 				32A1EDD41AD03834009AE83F /* ReaderDocument.m in Sources */,
@@ -834,6 +838,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		326436D11ADD8C5700FE2FB5 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				326436D21ADD8C5700FE2FB5 /* Model.xcdatamodel */,
+			);
+			currentVersion = 326436D21ADD8C5700FE2FB5 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 32DC7CC21AC7126600A074E8 /* Project object */;
 }
