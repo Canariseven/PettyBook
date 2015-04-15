@@ -27,15 +27,20 @@
                           context:(NSManagedObjectContext *)context{
     // Pasamos la imagen a un data
     AGTPhoto *photo = [self insertInManagedObjectContext:context];
+    
     NSManagedObjectContext * privateContext = [[NSManagedObjectContext alloc]initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     privateContext.persistentStoreCoordinator = context.persistentStoreCoordinator;
+    
     [privateContext performBlock:^{
+        
         NSURL *url = [NSURL URLWithString:imageURL];
+        
         [AGTPhoto downLoadPhotoWithURL:url statusOperationWith:^(NSData *data) {
             photo.imageData = data;
         } failure:^(NSError *error) {
             photo.imageData = nil;
         }];
+        
     }];
     
     return photo;

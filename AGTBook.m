@@ -29,8 +29,8 @@
 +(void)extractFromJSONString:(NSString *)elements book:(AGTBook *)book context:(NSManagedObjectContext *)context{
     NSArray * arr = [elements componentsSeparatedByString:@", "];
     for (NSString *tag in arr) {
-        AGTTags *t = [AGTTags tagWithTag:tag context:context];
-        [book addTagsObject:t];
+        [AGTTags tagWithTag:tag book:book context:context];
     }
+    
 }
 @end
