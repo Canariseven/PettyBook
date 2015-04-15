@@ -8,19 +8,18 @@
 
 #import "AGTDataSourceAndDelegateTableView.h"
 #import "AGTLibraryTableViewCell.h"
-#import "AGTLibrary.h"
 #import "AGTLibraryTableViewCell.h"
 #import "AGTBook.h"
 #import "AGTBookViewController.h"
 #import "services.h"
 #import "AGTLibraryTableViewController.h"
+#import "AGTPhoto.h"
 @interface AGTDataSourceAndDelegateTableView()
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @end
 @implementation AGTDataSourceAndDelegateTableView
--(id)initWithModel:(AGTLibrary *)model controller:(AGTLibraryTableViewController *)controller{
-    if (self=[super init]) {
-        _model = model;
+-(id)initWithFetchedResultsController:(NSFetchedResultsController *)aFetchedResultsController style:(UITableViewStyle)aStyle controller:(AGTLibraryTableViewController *)controller{
+    if (self = [super initWithFetchedResultsController:aFetchedResultsController style:aStyle]) {
         _controller = controller;
     }
     return self;
@@ -32,97 +31,140 @@
     return 40;
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return self.model.tags[section];
+    return @"";
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.model booksCountForTag:self.model.tags[section]];
+    return self.fetchedResultsController.fetchedObjects.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.model.tags.count;
+    return 1;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *view = [[UIView alloc]init];
-    view.backgroundColor = [UIColor whiteColor];
-    UILabel *labelTitle =[[UILabel alloc]initWithFrame:CGRectMake(0,15, tableView.frame.size.width, 15)];
-    labelTitle.text = [self.model.tags[section] uppercaseString];
-    labelTitle.font = [UIFont fontWithName:@"AvenirNext" size:18.0];
-    labelTitle.textAlignment = NSTextAlignmentCenter;
-    labelTitle.baselineAdjustment = UIBaselineAdjustmentNone;
-    labelTitle.textColor = [UIColor colorWithHue:0 saturation:0 brightness:0.18 alpha:1];
-    [view addSubview:labelTitle];
-    return view;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    UIView *view = [[UIView alloc]init];
+//    view.backgroundColor = [UIColor whiteColor];
+//    UILabel *labelTitle =[[UILabel alloc]initWithFrame:CGRectMake(0,15, tableView.frame.size.width, 15)];
+//    labelTitle.text = [self.model.tags[section] uppercaseString];
+//    labelTitle.font = [UIFont fontWithName:@"AvenirNext" size:18.0];
+//    labelTitle.textAlignment = NSTextAlignmentCenter;
+//    labelTitle.baselineAdjustment = UIBaselineAdjustmentNone;
+//    labelTitle.textColor = [UIColor colorWithHue:0 saturation:0 brightness:0.18 alpha:1];
+//    [view addSubview:labelTitle];
+//    return view;
+//}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    AGTBook * book = [self.model bookForTag:self.model.tags[indexPath.section] atIndex:indexPath.row];
+    AGTBook * book = [self.fetchedResultsController objectAtIndexPath:indexPath];
     AGTLibraryTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CELL_FOR_LIBRARY];
     if (cell == nil) {
         // La tenemos que crear nosotros desde cero
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AGTLibraryTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
-    }else{
-        cell.imageBook.image = nil;
     }
     // Configurarla
     // Sincronizar model (personaje) -> vista(celda)
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (book.image == nil){
+    if (book.photo.image == nil){
         [cell.activityIndicator startAnimating];
         cell.activityIndicator.hidden = NO;
-        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        [nc addObserver:self selector:@selector(receivedNotification:) name:book.title object:nil];
+       //Recibimos notificación
+        [self setupKVO:indexPath];
         
     }else{
-        cell.imageBook.image = book.image;
+        cell.imageBook.image = book.photo.image;
         [cell.activityIndicator stopAnimating];
         cell.activityIndicator.hidden = YES;
     }
     
     cell.titleBook.text = book.title;
-    cell.authorBook.text = book.authors[0];
+//    cell.authorBook.text = book.authors[0];
     // Devolverla
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    AGTBook * book = [self.model bookForTag:self.model.tags[indexPath.section] atIndex:indexPath.row];
-    if ([self.delegate respondsToSelector:@selector(dataSourceAndDelegateTableView:didSelectBook:)]) {
-        [self.delegate dataSourceAndDelegateTableView:self didSelectBook:book];
-    }
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    NSNotification *n = [[NSNotification alloc]initWithName:PDF_CHANGED object:book userInfo:nil];
-    [nc postNotification:n];
-    
-}
--(void) dataSourceAndDelegateTableView:(AGTDataSourceAndDelegateTableView *)dt didSelectBook:(AGTBook *)book{
-    AGTBookViewController * bookVC = [[AGTBookViewController alloc] initWithModel:book];
-    [self.controller.navigationController pushViewController:bookVC animated:YES];
-}
 
--(void)receivedNotification:(NSNotification *)notifcation {
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc removeObserver:self name:notifcation.name object:notifcation.object];
-    [self reloadRowCellWithNameNotif:notifcation.name];
+
+#pragma mark - KVO
+-(void) setupKVO:(NSIndexPath *)indexPath{
+    AGTBook *book = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSArray * keys = [AGTPhoto observableKeyNames];
+    for (NSString *key in keys) {
+        [book.photo addObserver:self
+               forKeyPath:key
+                  options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                  context:NULL];
+    }
     
 }
 
--(void)reloadRowCellWithNameNotif:(NSString *)name{
-    NSArray *array = self.controller.tableView.visibleCells;
-    NSArray *arrIndex = self.controller.tableView.indexPathsForVisibleRows;
-    NSUInteger index = 0;
-    for (AGTLibraryTableViewCell *cell in array) {
-        if ([cell.titleBook.text isEqualToString:name]) {
-            // Introducir delay porque carga muy rápido y rompe (dos animaciones misma celda)
-            double delayInSeconds = 1.0;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds *NSEC_PER_SEC));
-            dispatch_after(popTime, dispatch_get_main_queue(), ^{
-                [self.controller.tableView reloadRowsAtIndexPaths:@[arrIndex[index]] withRowAnimation:UITableViewRowAnimationNone];
-            });
-            
-        }
-        index ++;
+-(void) tearDownKVO:(AGTPhoto *)photo{
+    NSArray * keys = [AGTPhoto observableKeyNames];
+    for (NSString *key in keys) {
+        [photo removeObserver:self
+                  forKeyPath:key];
     }
 }
+
+-(void)observeValueForKeyPath:(NSString *)keyPath
+                     ofObject:(id)object
+                       change:(NSDictionary *)change
+                      context:(void *)context{
+    AGTPhoto *photo = object;
+    [self tearDownKVO:photo];
+    [self returnIndexPathOfBook:photo.book];
+    [self.tableView reloadRowsAtIndexPaths:@[[self returnIndexPathOfBook:photo.book]] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+-(NSIndexPath *)returnIndexPathOfBook:(AGTBook *)book{
+ 
+
+    NSIndexSet *indexes = [self.fetchedResultsController.fetchedObjects indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop){
+        AGTBook *s = (AGTBook*)obj;
+        NSRange range = [s.objectID.description rangeOfString: book.objectID.description];
+        return range.location != NSNotFound;
+    }];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:indexes.firstIndex inSection:0];
+    return indexPath;
+}
+
+//
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    AGTBook * book = [self.model bookForTag:self.model.tags[indexPath.section] atIndex:indexPath.row];
+//    if ([self.delegate respondsToSelector:@selector(dataSourceAndDelegateTableView:didSelectBook:)]) {
+//        [self.delegate dataSourceAndDelegateTableView:self didSelectBook:book];
+//    }
+//    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+//    NSNotification *n = [[NSNotification alloc]initWithName:PDF_CHANGED object:book userInfo:nil];
+//    [nc postNotification:n];
+//    
+//}
+//-(void) dataSourceAndDelegateTableView:(AGTDataSourceAndDelegateTableView *)dt didSelectBook:(AGTBook *)book{
+//    AGTBookViewController * bookVC = [[AGTBookViewController alloc] initWithModel:book];
+//    [self.controller.navigationController pushViewController:bookVC animated:YES];
+//}
+//
+//-(void)receivedNotification:(NSNotification *)notifcation {
+//    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+//    [nc removeObserver:self name:notifcation.name object:notifcation.object];
+//    [self reloadRowCellWithNameNotif:notifcation.name];
+//    
+//}
+//
+//-(void)reloadRowCellWithNameNotif:(NSString *)name{
+//    NSArray *array = self.controller.tableView.visibleCells;
+//    NSArray *arrIndex = self.controller.tableView.indexPathsForVisibleRows;
+//    NSUInteger index = 0;
+//    for (AGTLibraryTableViewCell *cell in array) {
+//        if ([cell.titleBook.text isEqualToString:name]) {
+//            // Introducir delay porque carga muy rápido y rompe (dos animaciones misma celda)
+//            double delayInSeconds = 1.0;
+//            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds *NSEC_PER_SEC));
+//            dispatch_after(popTime, dispatch_get_main_queue(), ^{
+//                [self.controller.tableView reloadRowsAtIndexPaths:@[arrIndex[index]] withRowAnimation:UITableViewRowAnimationNone];
+//            });
+//            
+//        }
+//        index ++;
+//    }
+//}
 
 
 @end

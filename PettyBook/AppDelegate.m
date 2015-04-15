@@ -7,18 +7,14 @@
 //
 
 #import "AppDelegate.h"
-#import "AGTBook.h"
-#import "AGTLibrary.h"
-#import "AGTLibraryTableViewController.h"
-#import "AGTBookViewController.h"
-#import "AGTDataSourceAndDelegateTableView.h"
+
 #import "AGTLoadingDataViewController.h"
-#import "AGTPDFReaderViewController.h"
-#import "Utils.h"
+#import "AGTCoreDataStack.h"
+
 
 
 @interface AppDelegate ()
-
+@property (nonatomic, strong) AGTCoreDataStack *stack;
 @end
 
 @implementation AppDelegate
@@ -30,7 +26,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     [self appereances];
-    AGTLoadingDataViewController *loading = [[AGTLoadingDataViewController alloc]initWithWindow:self.window];
+    self.stack = [AGTCoreDataStack coreDataStackWithModelName:@"Model"];
+    AGTLoadingDataViewController *loading = [[AGTLoadingDataViewController alloc]initWithWindow:self.window andContext:self.stack.context];
     
 
 

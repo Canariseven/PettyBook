@@ -8,6 +8,12 @@
 
 @implementation AGTTags
 
-// Custom logic goes here.
++(instancetype)tagWithTag:(NSString *)tag context:(NSManagedObjectContext *)context{
+    AGTTags *t = [self insertInManagedObjectContext:context];
+    t.tags = tag;
+    return t;
+}
+
+
 
 @end

@@ -12,5 +12,6 @@
 #define URL_LIBRARY_JSON @"https://t.co/K9ziV0z3SJ"
 @interface AGTLoadingDataViewController : UIViewController
 @property (nonatomic, strong) NSArray *books;
--(id) initWithWindow:(UIWindow *)window;
+@property (nonatomic, strong) NSManagedObjectContext *context;
+-(id) initWithWindow:(UIWindow *)window andContext:(NSManagedObjectContext *)context;
 @end

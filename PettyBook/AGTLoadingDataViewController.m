@@ -22,9 +22,10 @@
 
 @end
 @implementation AGTLoadingDataViewController
--(id) initWithWindow:(UIWindow *)window{
+-(id) initWithWindow:(UIWindow *)window andContext:(NSManagedObjectContext *)context{
     if (self= [super initWithNibName:nil bundle:nil]) {
         _window = window;
+        _context = context;
     }
     return self;
 }
@@ -72,14 +73,11 @@
     
     if (JSONObjects != nil) {
         if ([JSONObjects isKindOfClass:[NSArray class]]) {
-        NSMutableArray * arr = [[NSMutableArray alloc]init];
+
         for (NSDictionary *dict in JSONObjects){
-            AGTBook *book = [[AGTBook alloc] initWithDictionary:dict];
-            [arr addObject:book];
+            [AGTBook bookWithDict:dict context:self.context];
         }
-        self.books = arr;
-        AGTLibrary * library = [[AGTLibrary alloc] initWithBooks:self.books];
-        self.lib = library;
+
         // Hilo principal, para salir de inmediato
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.activityIndicator stopAnimating];
@@ -87,10 +85,10 @@
             
             if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
                 // Tipo tableta
-                [self configureForPad:self.lib];
+                [self configureForPad];
             }else{
                 // Tipo teléfono
-                [self configureForPhone:self.lib];
+                [self configureForPhone];
             }
             
         });
@@ -101,31 +99,43 @@
     }
     
 }
-
--(void)configureForPad:(AGTLibrary *)library{
-    AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWihtModel:library];
-    UINavigationController *navLibrary = [[UINavigationController alloc] initWithRootViewController:tLibrary];
-    
-    // Cambiar el libro inicial por el que se cerró.
-    NSString *str = SECTION_FAVOURITES;
-    AGTBook * b= [library bookForTag:str atIndex:0];
-    if (b == nil) {
-        b = [library bookForTag:library.tags[1] atIndex:0];
-    }
-    AGTBookViewController *book = [[AGTBookViewController alloc] initWithModel:b];
-    UINavigationController *navBook = [[UINavigationController alloc] initWithRootViewController:book];
-    
-    UISplitViewController *split = [[UISplitViewController alloc]init];
-    split.viewControllers = @[navLibrary,navBook];
-    split.delegate = book;
-    tLibrary.controllerOfTable.delegate = book;
-    self.window.rootViewController = split;
+-(NSFetchedResultsController *)fetchedAllBooks{
+    NSFetchRequest * req = [NSFetchRequest fetchRequestWithEntityName:[AGTBook entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTBookAttributes.title ascending:YES]];
+    req.fetchBatchSize = 20;
+    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc]initWithFetchRequest:req
+                                                                        managedObjectContext:self.context
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
+    return fc;
 }
 
--(void)configureForPhone:(AGTLibrary *)library{
-    AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWihtModel:library];
+-(void)configureForPad{
+//    AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWihtModel:library];
+    AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWithFetchedResultsController:[self fetchedAllBooks] style:UITableViewStyleGrouped];
     UINavigationController *navLibrary = [[UINavigationController alloc] initWithRootViewController:tLibrary];
-    tLibrary.controllerOfTable.delegate = tLibrary.controllerOfTable;
+
+    // Cambiar el libro inicial por el que se cerró.
+//    NSString *str = SECTION_FAVOURITES;
+//    AGTBook * b= [library bookForTag:str atIndex:0];
+//    if (b == nil) {
+//        b = [library bookForTag:library.tags[1] atIndex:0];
+//    }
+//    AGTBookViewController *book = [[AGTBookViewController alloc] initWithModel:b];
+//    UINavigationController *navBook = [[UINavigationController alloc] initWithRootViewController:book];
+//    
+//    UISplitViewController *split = [[UISplitViewController alloc]init];
+//    split.viewControllers = @[navLibrary,navBook];
+//    split.delegate = book;
+//    tLibrary.controllerOfTable.delegate = book;
+    self.window.rootViewController = navLibrary;
+}
+
+-(void)configureForPhone{
+    AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWithFetchedResultsController:[self fetchedAllBooks] style:UITableViewStyleGrouped];
+//    AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWihtModel:library];
+    UINavigationController *navLibrary = [[UINavigationController alloc] initWithRootViewController:tLibrary];
+//    tLibrary.controllerOfTable.delegate = tLibrary.controllerOfTable;
     self.window.rootViewController = navLibrary;
 }
 

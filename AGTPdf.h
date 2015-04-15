@@ -1,5 +1,7 @@
 #import "_AGTPdf.h"
 
 @interface AGTPdf : _AGTPdf {}
-// Custom logic goes here.
+@property (nonatomic, copy) NSString *pdfURL;
++(instancetype) pdfWithPdfURL:(NSString *)pdfURL
+                        context:(NSManagedObjectContext *)context;
 @end

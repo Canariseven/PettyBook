@@ -1,5 +1,5 @@
 #import "_AGTTags.h"
 
 @interface AGTTags : _AGTTags {}
-// Custom logic goes here.
++(instancetype)tagWithTag:(NSString *)tag context:(NSManagedObjectContext *)context;
 @end
