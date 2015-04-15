@@ -8,8 +8,8 @@
 
 @import Foundation;
 @import UIKit;
-
+@class AGTBook;
 @interface AGTTagsDataSourceTableView : NSObject<UITableViewDataSource>
-@property (nonatomic, strong) NSArray *tags;
--(id)initWhitArrayOfTags:(NSArray *)tags;
+@property (nonatomic, strong) AGTBook *book;
+-(id)initWhithBook:(AGTBook *)book;
 @end

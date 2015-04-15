@@ -9,6 +9,7 @@
 #import "AGTLoadingDataViewController.h"
 #import "AGTLibrary.h"
 #import "AGTBook.h"
+#import "AGTTags.h"
 #import "AGTLibraryTableViewController.h"
 #import "AGTBookViewController.h"
 #import "services.h"
@@ -99,10 +100,10 @@
     }
     
 }
--(NSFetchedResultsController *)fetchedAllBooks{
-    NSFetchRequest * req = [NSFetchRequest fetchRequestWithEntityName:[AGTBook entityName]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTBookAttributes.title ascending:YES]];
-    req.fetchBatchSize = 20;
+-(NSFetchedResultsController *)fetchedAllTags{
+    NSFetchRequest * req = [NSFetchRequest fetchRequestWithEntityName:[AGTTags entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagsAttributes.tags ascending:YES]];
+    req.fetchBatchSize = 10;
     NSFetchedResultsController *fc = [[NSFetchedResultsController alloc]initWithFetchRequest:req
                                                                         managedObjectContext:self.context
                                                                           sectionNameKeyPath:nil
@@ -111,8 +112,7 @@
 }
 
 -(void)configureForPad{
-//    AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWihtModel:library];
-    AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWithFetchedResultsController:[self fetchedAllBooks] style:UITableViewStyleGrouped];
+    AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWithFetchedResultsController:[self fetchedAllTags] style:UITableViewStyleGrouped];
     UINavigationController *navLibrary = [[UINavigationController alloc] initWithRootViewController:tLibrary];
 
     // Cambiar el libro inicial por el que se cerró.
@@ -121,21 +121,29 @@
 //    if (b == nil) {
 //        b = [library bookForTag:library.tags[1] atIndex:0];
 //    }
-//    AGTBookViewController *book = [[AGTBookViewController alloc] initWithModel:b];
-//    UINavigationController *navBook = [[UINavigationController alloc] initWithRootViewController:book];
-//    
-//    UISplitViewController *split = [[UISplitViewController alloc]init];
-//    split.viewControllers = @[navLibrary,navBook];
-//    split.delegate = book;
-//    tLibrary.controllerOfTable.delegate = book;
-    self.window.rootViewController = navLibrary;
+    NSFetchedResultsController *fc = [self fetchedAllTags];
+    NSError *error = nil;
+    [fc performFetch:&error];
+    if (error == nil) {
+        AGTTags *tag =   fc.fetchedObjects.firstObject;
+        AGTBook *b = [tag.books allObjects].firstObject;
+        
+        
+        AGTBookViewController *book = [[AGTBookViewController alloc] initWithModel:b];
+        UINavigationController *navBook = [[UINavigationController alloc] initWithRootViewController:book];
+        
+        UISplitViewController *split = [[UISplitViewController alloc]init];
+        split.viewControllers = @[navLibrary,navBook];
+        split.delegate = book;
+        tLibrary.controllerOfTable.delegate = book;
+        self.window.rootViewController = split;
+    }
 }
 
 -(void)configureForPhone{
-    AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWithFetchedResultsController:[self fetchedAllBooks] style:UITableViewStyleGrouped];
-//    AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWihtModel:library];
+     AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWithFetchedResultsController:[self fetchedAllTags] style:UITableViewStyleGrouped];
     UINavigationController *navLibrary = [[UINavigationController alloc] initWithRootViewController:tLibrary];
-//    tLibrary.controllerOfTable.delegate = tLibrary.controllerOfTable;
+    tLibrary.controllerOfTable.delegate = tLibrary.controllerOfTable;
     self.window.rootViewController = navLibrary;
 }
 

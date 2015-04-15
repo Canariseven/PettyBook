@@ -30,6 +30,7 @@
 		326437021ADDB93D00FE2FB5 /* AGTCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 326436FC1ADDB93D00FE2FB5 /* AGTCoreDataStack.m */; };
 		326437031ADDB93D00FE2FB5 /* AGTCoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326436FE1ADDB93D00FE2FB5 /* AGTCoreDataTableViewController.m */; };
 		326437041ADDB93D00FE2FB5 /* AGTEntityObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 326437001ADDB93D00FE2FB5 /* AGTEntityObserver.m */; };
+		329452B71ADEEF42005EDFA9 /* AGTBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248787A1AC8820100048B99 /* AGTBookViewController.m */; };
 		32A1EDAF1ACFEC09009AE83F /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDAE1ACFEC09009AE83F /* Utils.m */; };
 		32A1EDD31AD03834009AE83F /* ReaderConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDC01AD03834009AE83F /* ReaderConstants.m */; };
 		32A1EDD41AD03834009AE83F /* ReaderDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDC21AD03834009AE83F /* ReaderDocument.m */; };
@@ -733,6 +734,7 @@
 				32A1EDF31AD03844009AE83F /* ReaderThumbRequest.m in Sources */,
 				32A1EDF41AD03844009AE83F /* ReaderThumbCache.m in Sources */,
 				32DC7CD31AC7126600A074E8 /* AppDelegate.m in Sources */,
+				329452B71ADEEF42005EDFA9 /* AGTBookViewController.m in Sources */,
 				32A1EDD71AD03834009AE83F /* ReaderMainPagebar.m in Sources */,
 				326436F11ADD9A4200FE2FB5 /* AGTPdf.m in Sources */,
 				326436F61ADD9A4200FE2FB5 /* AGTPhoto.m in Sources */,

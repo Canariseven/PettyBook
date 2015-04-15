@@ -8,17 +8,19 @@
 
 #import "AGTTagsDataSourceTableView.h"
 #import "AGTTagTableViewCell.h"
+#import "AGTBook.h"
+#import "AGTTags.h"
 @implementation AGTTagsDataSourceTableView
--(id)initWhitArrayOfTags:(NSArray *)tags{
+-(id)initWhithBook:(AGTBook *)book{
     if (self = [super init]) {
-        _tags = tags;
+        _book = book;
     }
     return self;
 }
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.tags.count;
+    return self.book.tags.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -28,7 +30,9 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AGTTagTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    cell.tagLabel.text = self.tags[indexPath.row];
+    AGTTags *t = [self.book.tags allObjects][indexPath.row];
+    
+    cell.tagLabel.text = t.tags;
 
     return cell;
 }

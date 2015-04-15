@@ -14,6 +14,7 @@
 #import "services.h"
 #import "AGTLibraryTableViewController.h"
 #import "AGTPhoto.h"
+#import "AGTTags.h"
 @interface AGTDataSourceAndDelegateTableView()
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @end
@@ -34,33 +35,36 @@
     return @"";
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.fetchedResultsController.fetchedObjects.count;
+    AGTTags *tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
+    return tag.books.count;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return [self.fetchedResultsController.fetchedObjects count];
 }
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    UIView *view = [[UIView alloc]init];
-//    view.backgroundColor = [UIColor whiteColor];
-//    UILabel *labelTitle =[[UILabel alloc]initWithFrame:CGRectMake(0,15, tableView.frame.size.width, 15)];
-//    labelTitle.text = [self.model.tags[section] uppercaseString];
-//    labelTitle.font = [UIFont fontWithName:@"AvenirNext" size:18.0];
-//    labelTitle.textAlignment = NSTextAlignmentCenter;
-//    labelTitle.baselineAdjustment = UIBaselineAdjustmentNone;
-//    labelTitle.textColor = [UIColor colorWithHue:0 saturation:0 brightness:0.18 alpha:1];
-//    [view addSubview:labelTitle];
-//    return view;
-//}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc]init];
+    view.backgroundColor = [UIColor whiteColor];
+    UILabel *labelTitle =[[UILabel alloc]initWithFrame:CGRectMake(0,15, tableView.frame.size.width, 15)];
+    AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
+    labelTitle.text =[tag.tags  uppercaseString];
+    labelTitle.font = [UIFont fontWithName:@"AvenirNext" size:18.0];
+    labelTitle.textAlignment = NSTextAlignmentCenter;
+    labelTitle.baselineAdjustment = UIBaselineAdjustmentNone;
+    labelTitle.textColor = [UIColor colorWithHue:0 saturation:0 brightness:0.18 alpha:1];
+    [view addSubview:labelTitle];
+    return view;
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    AGTBook * book = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
+    NSArray *arr = [tag.books allObjects];
+    AGTBook *book = [arr objectAtIndex:indexPath.row];
     AGTLibraryTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CELL_FOR_LIBRARY];
     if (cell == nil) {
         // La tenemos que crear nosotros desde cero
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AGTLibraryTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-
     // Configurarla
     // Sincronizar model (personaje) -> vista(celda)
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -86,7 +90,10 @@
 
 #pragma mark - KVO
 -(void) setupKVO:(NSIndexPath *)indexPath{
-    AGTBook *book = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
+    NSArray *arr = [tag.books allObjects];
+    AGTBook *book = [arr objectAtIndex:indexPath.row];
+    
     NSArray * keys = [AGTPhoto observableKeyNames];
     for (NSString *key in keys) {
         [book.photo addObserver:self
@@ -111,36 +118,37 @@
                       context:(void *)context{
     AGTPhoto *photo = object;
     [self tearDownKVO:photo];
-    [self returnIndexPathOfBook:photo.book];
-    [self.tableView reloadRowsAtIndexPaths:@[[self returnIndexPathOfBook:photo.book]] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadData];
 }
--(NSIndexPath *)returnIndexPathOfBook:(AGTBook *)book{
- 
-
-    NSIndexSet *indexes = [self.fetchedResultsController.fetchedObjects indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop){
-        AGTBook *s = (AGTBook*)obj;
-        NSRange range = [s.objectID.description rangeOfString: book.objectID.description];
-        return range.location != NSNotFound;
-    }];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:indexes.firstIndex inSection:0];
-    return indexPath;
-}
+//-(NSIndexPath *)returnIndexPathOfBook:(AGTBook *)book{
+//    NSIndexSet *indexes = [self.fetchedResultsController.fetchedObjects indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop){
+//        AGTTags *s = (AGTTags*)obj;
+//        NSRange range = [s.objectID.description rangeOfString: book.objectID.description];
+//        return range.location != NSNotFound;
+//    }];
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:indexes.firstIndex inSection:0];
+//    return indexPath;
+//}
 
 //
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    AGTBook * book = [self.model bookForTag:self.model.tags[indexPath.section] atIndex:indexPath.row];
-//    if ([self.delegate respondsToSelector:@selector(dataSourceAndDelegateTableView:didSelectBook:)]) {
-//        [self.delegate dataSourceAndDelegateTableView:self didSelectBook:book];
-//    }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
+    NSArray *arr = [tag.books allObjects];
+    AGTBook *book = [arr objectAtIndex:indexPath.row];
+    
+
+    if ([self.delegate respondsToSelector:@selector(dataSourceAndDelegateTableView:didSelectBook:)]) {
+        [self.delegate dataSourceAndDelegateTableView:self didSelectBook:book];
+    }
 //    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 //    NSNotification *n = [[NSNotification alloc]initWithName:PDF_CHANGED object:book userInfo:nil];
 //    [nc postNotification:n];
-//    
-//}
-//-(void) dataSourceAndDelegateTableView:(AGTDataSourceAndDelegateTableView *)dt didSelectBook:(AGTBook *)book{
-//    AGTBookViewController * bookVC = [[AGTBookViewController alloc] initWithModel:book];
-//    [self.controller.navigationController pushViewController:bookVC animated:YES];
-//}
+    
+}
+-(void) dataSourceAndDelegateTableView:(AGTDataSourceAndDelegateTableView *)dt didSelectBook:(AGTBook *)book{
+    AGTBookViewController * bookVC = [[AGTBookViewController alloc] initWithModel:book];
+    [self.controller.navigationController pushViewController:bookVC animated:YES];
+}
 //
 //-(void)receivedNotification:(NSNotification *)notifcation {
 //    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];

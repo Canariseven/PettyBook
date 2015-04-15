@@ -15,6 +15,7 @@
 #import "ReaderViewController.h"
 #import "Utils.h"
 #import "services.h"
+#import "AGTPhoto.h"
 
 @interface AGTBookViewController ()<ReaderViewControllerDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageBook;
@@ -44,7 +45,7 @@
     if (self = [super initWithNibName:nibName bundle:nil]) {
         _model = model;
         self.title = model.title;
-        _DT = [[AGTTagsDataSourceTableView alloc] initWhitArrayOfTags:self.model.tags];
+        _DT = [[AGTTagsDataSourceTableView alloc] initWhithBook:self.model];
     }
     return self;
 }
@@ -119,8 +120,8 @@
     [self titleAndAuthorOnNavigationBar];
     [self.tableView reloadData];
     [self checkButtonColor];
-    if (self.model.image !=nil){
-        self.imageBook.image = self.model.image;
+    if (self.model.photo.image !=nil){
+        self.imageBook.image = self.model.photo.image;
     }else{
         
     }
@@ -130,11 +131,11 @@
 }
 
 -(void)checkButtonColor{
-    if (self.model.isFavourite == NO){
-        self.favouriteBook.backgroundColor = [UIColor clearColor];
-    }else{
-        self.favouriteBook.backgroundColor = [UIColor colorWithHue:0.53 saturation:0.79 brightness:0.70 alpha:1];
-    }
+//    if (self.model.isFavourite == NO){
+//        self.favouriteBook.backgroundColor = [UIColor clearColor];
+//    }else{
+//        self.favouriteBook.backgroundColor = [UIColor colorWithHue:0.53 saturation:0.79 brightness:0.70 alpha:1];
+//    }
 }
 -(void)titleAndAuthorOnNavigationBar{
     UILabel *labelTitle =[[UILabel alloc]initWithFrame:CGRectMake(0,0, 200, 15)];
@@ -146,7 +147,7 @@
     labelTitle.textColor = [UIColor colorWithHue:0.53 saturation:0.79 brightness:0.99 alpha:1];
     
     UILabel *labelAuthors =[[UILabel alloc]initWithFrame:CGRectMake(0, 18, 200, 15)];
-    labelAuthors.text = self.model.authorStr;
+    labelAuthors.text = self.model.authors;
     labelAuthors.font = [UIFont fontWithName:@"HelveticaNeue" size:14.0];
     labelAuthors.textAlignment = NSTextAlignmentCenter;
     labelAuthors.minimumScaleFactor = 0.5;
@@ -192,11 +193,11 @@
 
 - (IBAction)favouriteButton:(id)sender {
     
-    if (self.model.isFavourite == YES){
-        self.model.isFavourite = NO;
-    }else{
-        self.model.isFavourite = YES;
-    }
+//    if (self.model.isFavourite == YES){
+//        self.model.isFavourite = NO;
+//    }else{
+//        self.model.isFavourite = YES;
+//    }
 }
 
 #pragma mark - DELEGATE
@@ -220,7 +221,7 @@
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self name:self.model.title object:self.model];
     self.model = book;
-    self.DT.tags = self.model.tags;
+    self.DT.book = self.model;
     [self sincronizeDataOfView];
 }
 
@@ -325,11 +326,11 @@
 
     if (buttonIndex == 1) {
         // Presento el webView
-        AGTPDFReaderViewController * pdfView = [[AGTPDFReaderViewController alloc]initWithModel:self.model];
-        [self.navigationController pushViewController:pdfView animated:YES];
+//        AGTPDFReaderViewController * pdfView = [[AGTPDFReaderViewController alloc]initWithModel:self.model];
+//        [self.navigationController pushViewController:pdfView animated:YES];
         
     }else if (buttonIndex == 2){
-        [self checkPDFonCacheWithName:[self.model.urlPDF lastPathComponent]];
+//        [self checkPDFonCacheWithName:[self.model.urlPDF lastPathComponent]];
         
     }
 }
@@ -365,45 +366,45 @@
     NSData *data = [Utils dataWithNameFile:name andDirectory:NSCachesDirectory];
     if (data == nil) {
         // llamamos al servicio
-        NSURL * url = [NSURL URLWithString:self.model.urlPDF];
-        [self downloadPDFWithURL:url andName:name];
+//        NSURL * url = [NSURL URLWithString:self.model.urlPDF];
+//        [self downloadPDFWithURL:url andName:name];
     }else{
         // lo cargamos
-        [self loadPDF];
+//        [self loadPDF];
     }
 }
 -(void)loadAndSaveData:(NSData *)data withName:(NSString *)name{
     
     BOOL rc = [Utils saveWithData:data name:name andDirectory:NSCachesDirectory];
     if (rc == YES) {
-        [self loadPDF];
+//        [self loadPDF];
     }else{
         //volvemos a descargar el archivo o mostramos el error
         
     }
 }
--(void)loadPDF{
-    NSString *filePath = [NSString stringWithFormat:@"%@",[Utils urlWithNameFile:[self.model.urlPDF lastPathComponent] andDirectory:NSCachesDirectory]];
-    
-    filePath = [filePath stringByReplacingOccurrencesOfString:@"file:///" withString:@""];
-    NSString *phrase = nil; // Document password (for unlocking most encrypted PDF files)
-    
-    ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:phrase];
-    
-    if (document != nil) // Must have a valid ReaderDocument object in order to proceed
-    {
-        
-        ReaderViewController * readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
-        
-        readerViewController.delegate = self; // Set the ReaderViewController delegate to self
-        
-        readerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-        
-        [self presentViewController:readerViewController animated:YES completion:NULL];
-        
-    }
-
-
-}
+//-(void)loadPDF{
+//    NSString *filePath = [NSString stringWithFormat:@"%@",[Utils urlWithNameFile:[self.model.urlPDF lastPathComponent] andDirectory:NSCachesDirectory]];
+//    
+//    filePath = [filePath stringByReplacingOccurrencesOfString:@"file:///" withString:@""];
+//    NSString *phrase = nil; // Document password (for unlocking most encrypted PDF files)
+//    
+//    ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:phrase];
+//    
+//    if (document != nil) // Must have a valid ReaderDocument object in order to proceed
+//    {
+//        
+//        ReaderViewController * readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
+//        
+//        readerViewController.delegate = self; // Set the ReaderViewController delegate to self
+//        
+//        readerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//        readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+//        
+//        [self presentViewController:readerViewController animated:YES completion:NULL];
+//        
+//    }
+//
+//
+//}
 @end
