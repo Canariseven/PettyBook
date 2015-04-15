@@ -26,11 +26,7 @@
 +(instancetype) photoWithImageURL:(NSString *)imageURL
                           context:(NSManagedObjectContext *)context{
     // Pasamos la imagen a un data
-//    UIImage *image = [AGTPhoto imageWithURL:imageURL];
-//    NSData *dataImage = UIImageJPEGRepresentation(image, 0.8);
     AGTPhoto *photo = [self insertInManagedObjectContext:context];
-//    photo.imageData = dataImage;
-    
     NSManagedObjectContext * privateContext = [[NSManagedObjectContext alloc]initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     privateContext.persistentStoreCoordinator = context.persistentStoreCoordinator;
     [privateContext performBlock:^{
@@ -40,11 +36,7 @@
         } failure:^(NSError *error) {
             photo.imageData = nil;
         }];
-        
     }];
-    
-   
- 
     
     return photo;
 }

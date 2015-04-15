@@ -60,6 +60,7 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AGTLibraryTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
+
     // Configurarla
     // Sincronizar model (personaje) -> vista(celda)
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -111,7 +112,7 @@
     AGTPhoto *photo = object;
     [self tearDownKVO:photo];
     [self returnIndexPathOfBook:photo.book];
-    [self.tableView reloadRowsAtIndexPaths:@[[self returnIndexPathOfBook:photo.book]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadRowsAtIndexPaths:@[[self returnIndexPathOfBook:photo.book]] withRowAnimation:UITableViewRowAnimationFade];
 }
 -(NSIndexPath *)returnIndexPathOfBook:(AGTBook *)book{
  
