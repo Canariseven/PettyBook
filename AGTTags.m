@@ -12,7 +12,9 @@
     // Buscamos el tag
     AGTTags *t = [AGTTags searchTag:tag context:context];
     // Vinculamos el libro
-    [t addBooksObject:book];
+    if (book != nil) {
+        [t addBooksObject:book];
+    }
     // Devolvemos
     return t;
 }
@@ -66,7 +68,8 @@
         }else{
             [favouriteTag addBooksObject:book];
         }
-
+        NSError *error;
+        [context save:&error];
 
     }
 }

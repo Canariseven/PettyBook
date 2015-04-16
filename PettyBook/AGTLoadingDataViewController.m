@@ -78,7 +78,7 @@
         for (NSDictionary *dict in JSONObjects){
             [AGTBook bookWithDict:dict context:self.context];
         }
-
+//            [AGTTags tagWithTag:NAME_TAG_FAVOURITES book:nil context:self.context];
         // Hilo principal, para salir de inmediato
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.activityIndicator stopAnimating];
@@ -103,10 +103,10 @@
 -(NSFetchedResultsController *)fetchedAllTags{
     NSFetchRequest * req = [NSFetchRequest fetchRequestWithEntityName:[AGTTags entityName]];
     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagsAttributes.tags ascending:YES]];
-    req.fetchBatchSize = 10;
+
     NSFetchedResultsController *fc = [[NSFetchedResultsController alloc]initWithFetchRequest:req
                                                                         managedObjectContext:self.context
-                                                                          sectionNameKeyPath:nil
+                                                                          sectionNameKeyPath:AGTTagsAttributes.tags
                                                                                    cacheName:nil];
     return fc;
 }

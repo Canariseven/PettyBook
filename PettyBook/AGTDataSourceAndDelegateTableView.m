@@ -46,7 +46,11 @@
     view.backgroundColor = [UIColor whiteColor];
     UILabel *labelTitle =[[UILabel alloc]initWithFrame:CGRectMake(0,15, tableView.frame.size.width, 15)];
     AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
-    labelTitle.text =[tag.tags  uppercaseString];
+    NSString *text = tag.tags;
+    if ([tag.tags isEqualToString:NAME_TAG_FAVOURITES]){
+        text =[tag.tags stringByReplacingOccurrencesOfString:@"00" withString:@""];
+    }
+    labelTitle.text =[text  uppercaseString];
     labelTitle.font = [UIFont fontWithName:@"AvenirNext" size:18.0];
     labelTitle.textAlignment = NSTextAlignmentCenter;
     labelTitle.baselineAdjustment = UIBaselineAdjustmentNone;

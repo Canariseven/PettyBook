@@ -7,7 +7,7 @@
 //
 
 #import "AGTCoreDataTableViewController.h"
-
+#import "AGTTags.h"
 
 
 @interface AGTCoreDataTableViewController()
@@ -71,14 +71,12 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return [[self.fetchedResultsController sections] count];
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    AGTTags *tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
+    return tag.books.count;
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return [self.fetchedResultsController.fetchedObjects count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
