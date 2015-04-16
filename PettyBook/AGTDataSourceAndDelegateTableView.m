@@ -86,6 +86,17 @@
     return cell;
 }
 
+-(void)checkFavourites{
+    NSFetchRequest * req = [[NSFetchRequest alloc]initWithEntityName:[AGTTags entityName]];
+    req.predicate = [NSPredicate predicateWithFormat:@"tags == %@",@"FAVORITOS"];
+    NSFetchedResultsController *resq = [[NSFetchedResultsController alloc] initWithFetchRequest:req
+                                                                           managedObjectContext:self.fetchedResultsController.managedObjectContext
+                                                                             sectionNameKeyPath:nil
+                                                                                        cacheName:nil];
+    NSError *error;
+    [resq performFetch:&error];
+    
+}
 
 
 #pragma mark - KVO

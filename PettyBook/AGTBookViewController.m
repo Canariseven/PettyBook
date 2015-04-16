@@ -193,11 +193,11 @@
 
 - (IBAction)favouriteButton:(id)sender {
     
-//    if (self.model.isFavourite == YES){
-//        self.model.isFavourite = NO;
-//    }else{
-//        self.model.isFavourite = YES;
-//    }
+    if (self.model.isFavourite == YES){
+        self.model.isFavourite = NO;
+    }else{
+        self.model.isFavourite = YES;
+    }
 }
 
 #pragma mark - DELEGATE

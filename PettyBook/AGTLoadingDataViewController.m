@@ -136,6 +136,8 @@
         split.viewControllers = @[navLibrary,navBook];
         split.delegate = book;
         tLibrary.controllerOfTable.delegate = book;
+        
+        
         self.window.rootViewController = split;
     }
 }
@@ -144,6 +146,7 @@
      AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWithFetchedResultsController:[self fetchedAllTags] style:UITableViewStyleGrouped];
     UINavigationController *navLibrary = [[UINavigationController alloc] initWithRootViewController:tLibrary];
     tLibrary.controllerOfTable.delegate = tLibrary.controllerOfTable;
+    
     self.window.rootViewController = navLibrary;
 }
 

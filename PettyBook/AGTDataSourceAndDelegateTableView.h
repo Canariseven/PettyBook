@@ -22,7 +22,7 @@
 @end
 
 
-@interface AGTDataSourceAndDelegateTableView : AGTCoreDataTableViewController <AGTDataSourceAndDelegateTableViewDelegate>
+@interface AGTDataSourceAndDelegateTableView : AGTCoreDataTableViewController <UITableViewDelegate, UITableViewDataSource ,AGTDataSourceAndDelegateTableViewDelegate>
 @property (nonatomic, weak) id<AGTDataSourceAndDelegateTableViewDelegate> delegate;
 @property (nonatomic, strong) AGTLibraryTableViewController *controller;
            

@@ -43,5 +43,31 @@
     return eTag;
 }
 
++(void)searchTagFavourite:(NSManagedObjectContext *)context andInserBook:(AGTBook *)book actionDelete:(BOOL)delete{
+    NSFetchRequest * req = [[NSFetchRequest alloc]initWithEntityName:[AGTTags entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagsAttributes.tags ascending:YES]];
+    req.predicate = [NSPredicate predicateWithFormat:@"tags == %@",NAME_TAG_FAVOURITES];
+    NSFetchedResultsController *resq = [[NSFetchedResultsController alloc] initWithFetchRequest:req
+                                                                           managedObjectContext:context
+                                                                             sectionNameKeyPath:nil
+                                                                                      cacheName:nil];
+    NSError *error;
+    [resq performFetch:&error];
+    if (resq.fetchedObjects.count == 0) {
+        // No se ha encontrado tenemos que crearlo y añadir el libro
+        [self tagWithTag:NAME_TAG_FAVOURITES book:book context:context];
+        
+    }else{
+        // Existe añadimos el libro
+        AGTTags * favouriteTag = resq.fetchedObjects.lastObject;
+        
+        if (delete == YES) {
+            [favouriteTag removeBooksObject:book];
+        }else{
+            [favouriteTag addBooksObject:book];
+        }
 
+
+    }
+}
 @end

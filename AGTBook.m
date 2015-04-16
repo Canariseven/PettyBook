@@ -12,6 +12,22 @@
 @end
 
 @implementation AGTBook
+@synthesize isFavourite = _isFavourite;
+#pragma mark - Properties 
+
+-(void)setIsFavourite:(BOOL)isFavourite{
+    if (isFavourite) {
+        // Añadimos el tag
+        [AGTTags searchTagFavourite:self.managedObjectContext andInserBook:self actionDelete:NO];
+    }else{
+        // Quitamos el tag
+        [AGTTags searchTagFavourite:self.managedObjectContext andInserBook:self actionDelete:YES];
+    }
+    _isFavourite = isFavourite;
+//    [self saveOrDeleteStatusOnUserDefault];
+//    [self createNotificactionFavouriteChanged];
+}
+
 +(instancetype) bookWithDict:(NSDictionary *)dict
                       context:(NSManagedObjectContext *)context{
     AGTBook * book = [self insertInManagedObjectContext:context];

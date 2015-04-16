@@ -24,6 +24,7 @@
     if (self = [super initWithNibName:nil bundle:nil]) {
         _fetchedResultsController = fetchedResultsController;
         _style = aStyle;
+        self.controllerOfTable = [[AGTDataSourceAndDelegateTableView alloc]initWithFetchedResultsController:self.fetchedResultsController style:self.style controller:self];
     }
     return self;
 }
@@ -31,7 +32,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.navigationController.toolbar.backgroundColor = [UIColor whiteColor];
-    self.controllerOfTable = [[AGTDataSourceAndDelegateTableView alloc]initWithFetchedResultsController:self.fetchedResultsController style:self.style controller:self];
+
     self.tableView.delegate = self.controllerOfTable;
     self.tableView.dataSource = self.controllerOfTable;
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logoPettyBook"]];
@@ -46,12 +47,12 @@
 }
 
 
-//-(void)reloadSectionsWithNotif:(NSNotification *)notification{
+-(void)reloadSectionsWithNotif:(NSNotification *)notification{
 //    self.controllerOfTable.model = notification.object;
-//    NSIndexSet *set = [[NSIndexSet alloc]initWithIndex:0];
-//    
-//    [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationAutomatic];
-//}
+    NSIndexSet *set = [[NSIndexSet alloc]initWithIndex:0];
+    
+    [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationAutomatic];
+}
 
 
 @end
