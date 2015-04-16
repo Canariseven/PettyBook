@@ -11,8 +11,9 @@
 @class AGTBook;
 @class AGTLibrary;
 @class AGTDataSourceAndDelegateTableView;
+#import "AGTBookViewController.h"
 
-@interface AGTLibraryTableViewController : UIViewController
+@interface AGTLibraryTableViewController : UIViewController <AGTBookViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic) UITableViewStyle style;

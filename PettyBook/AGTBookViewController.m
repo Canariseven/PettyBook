@@ -17,7 +17,7 @@
 #import "services.h"
 #import "AGTPhoto.h"
 
-@interface AGTBookViewController ()<ReaderViewControllerDelegate, UIAlertViewDelegate>
+@interface AGTBookViewController ()<ReaderViewControllerDelegate, UIAlertViewDelegate, AGTDataSourceAndDelegateTableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageBook;
 @property (weak, nonatomic) IBOutlet UIButton *tagsButton;
 @property (weak, nonatomic) IBOutlet UIButton *readBookButton;
@@ -42,6 +42,7 @@
      }else{
          nibName = @"AGTBookIphoneViewController";
      }
+    
     if (self = [super initWithNibName:nibName bundle:nil]) {
         _model = model;
         self.title = model.title;
@@ -62,7 +63,7 @@
     
     self.tableView.dataSource = self.DT;
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc addObserver:self selector:@selector(reloadCellWithNotification:) name:self.model.title object:nil];
+    [self setupKVO];
     [nc addObserver:self selector:@selector(reloadButton:) name:RELOAD_SECTION_FAVOURITES object:nil];
     [self settingsOfViews];
     [self sincronizeDataOfView];
@@ -71,7 +72,7 @@
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    
+    [self tearDownKVO];
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self];
 }
@@ -131,11 +132,11 @@
 }
 
 -(void)checkButtonColor{
-//    if (self.model.isFavourite == NO){
-//        self.favouriteBook.backgroundColor = [UIColor clearColor];
-//    }else{
-//        self.favouriteBook.backgroundColor = [UIColor colorWithHue:0.53 saturation:0.79 brightness:0.70 alpha:1];
-//    }
+    if (self.model.isFavourite == NO){
+        self.favouriteBook.backgroundColor = [UIColor clearColor];
+    }else{
+        self.favouriteBook.backgroundColor = [UIColor colorWithHue:0.53 saturation:0.79 brightness:0.70 alpha:1];
+    }
 }
 -(void)titleAndAuthorOnNavigationBar{
     UILabel *labelTitle =[[UILabel alloc]initWithFrame:CGRectMake(0,0, 200, 15)];
@@ -192,11 +193,14 @@
 }
 
 - (IBAction)favouriteButton:(id)sender {
-    
     if (self.model.isFavourite == YES){
         self.model.isFavourite = NO;
     }else{
         self.model.isFavourite = YES;
+    }
+    [self checkButtonColor];
+    if ([self.delegate respondsToSelector:@selector(bookViewControllerDelegate:didSelectFavouriteBook:)]) {
+        [self.delegate bookViewControllerDelegate:self didSelectFavouriteBook:self.model];
     }
 }
 
@@ -220,13 +224,51 @@
     // Al cambiar de libro borro el obserador de la notificacion anterior
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self name:self.model.title object:self.model];
+    [self tearDownKVO];
     self.model = book;
     self.DT.book = self.model;
+
+    [self setupKVO];
     [self sincronizeDataOfView];
 }
 
+
+
 #pragma mark - NOTIFICACIONES
-#pragma mark - Notification Title of BOOK
+#pragma mark - Notification Title of BOOK  KVO
+
+#pragma mark - KVO
+-(void) setupKVO{
+    NSArray * keys = [AGTPhoto observableKeyNames];
+    for (NSString *key in keys) {
+        [self.model.photo addObserver:self
+                     forKeyPath:key
+                        options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                        context:NULL];
+    }
+    
+}
+
+-(void) tearDownKVO{
+    NSArray * keys = [AGTPhoto observableKeyNames];
+    for (NSString *key in keys) {
+        [self.model.photo removeObserver:self
+                   forKeyPath:key];
+    }
+}
+
+
+-(void)observeValueForKeyPath:(NSString *)keyPath
+                     ofObject:(id)object
+                       change:(NSDictionary *)change
+                      context:(void *)context{
+    
+    if ([object isKindOfClass:[AGTPhoto class]]) {
+        [self sincronizeDataOfView];
+    }
+    
+}
+
 -(void)reloadCellWithNotification:(NSNotification *)notifcation {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -235,12 +277,6 @@
         
     });
 }
-
-#pragma mark - Notification RELOAD_SECTION_FAVOURITES
--(void)reloadButton:(NSNotification *)notification{
-    [self checkButtonColor];
-}
-
 
 #pragma mark - Animations
 -(void) animateTableView:(CGFloat)value {

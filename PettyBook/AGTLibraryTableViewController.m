@@ -11,6 +11,7 @@
 #import "AGTLibrary.h"
 #import "AGTLibraryTableViewCell.h"
 #import "AGTDataSourceAndDelegateTableView.h"
+#import "AGTTags.h"
 @interface AGTLibraryTableViewController()
 // Creo la propiedad para el controlador de la tableView
 
@@ -31,28 +32,66 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.navigationController.toolbar.backgroundColor = [UIColor whiteColor];
 
+    NSError *error;
+    [self.fetchedResultsController performFetch:&error];
+    
+    self.navigationController.toolbar.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self.controllerOfTable;
     self.tableView.dataSource = self.controllerOfTable;
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logoPettyBook"]];
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
-    self.tableView.backgroundColor = [UIColor clearColor];
-
-
+//    [self setupKVO];
+}
+-(void)dealloc{
+//    [self tearDownKVO];
     
+}
+-(void)setupKVO{
+    NSArray *keys = [AGTTags observableKeyNames];
+    AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:0];
+    
+    for (NSString *key in keys) {
+        [tag addObserver:self
+              forKeyPath:key
+                 options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                 context:NULL];
+    }
+    
+}
+-(void) tearDownKVO{
+    NSArray * keys = [AGTTags observableKeyNames];
+    AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:0];
+    for (NSString *key in keys) {
+        [tag removeObserver:self
+                   forKeyPath:key];
+    }
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath
+                     ofObject:(id)object
+                       change:(NSDictionary *)change
+                      context:(void *)context{
+    
+    if ([object isKindOfClass:[AGTTags class]]) {
+        NSError *error;
+        [self.fetchedResultsController performFetch:&error];
+        
+        NSIndexSet *set = [[NSIndexSet alloc]initWithIndex:0];
+        [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
 
 
--(void)reloadSectionsWithNotif:(NSNotification *)notification{
-//    self.controllerOfTable.model = notification.object;
-    NSIndexSet *set = [[NSIndexSet alloc]initWithIndex:0];
+-(void)bookViewControllerDelegate:(AGTBookViewController *)dt didSelectFavouriteBook:(AGTBook *)favouriteBook{
     
+    NSIndexSet *set = [[NSIndexSet alloc]initWithIndex:0];
     [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationAutomatic];
 }
+
 
 
 @end

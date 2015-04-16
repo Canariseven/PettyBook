@@ -7,7 +7,9 @@
 @end
 
 @implementation AGTTags
-
++(NSArray *)observableKeyNames{
+    return @[AGTTagsAttributes.tags,AGTTagsRelationships.books];
+}
 +(instancetype)tagWithTag:(NSString *)tag book:(AGTBook *)book context:(NSManagedObjectContext *)context{
     // Buscamos el tag
     AGTTags *t = [AGTTags searchTag:tag context:context];
@@ -55,6 +57,8 @@
                                                                                       cacheName:nil];
     NSError *error;
     [resq performFetch:&error];
+    
+    
     if (resq.fetchedObjects.count == 0) {
         // No se ha encontrado tenemos que crearlo y añadir el libro
         [self tagWithTag:NAME_TAG_FAVOURITES book:book context:context];
@@ -68,8 +72,7 @@
         }else{
             [favouriteTag addBooksObject:book];
         }
-        NSError *error;
-        [context save:&error];
+
 
     }
 }

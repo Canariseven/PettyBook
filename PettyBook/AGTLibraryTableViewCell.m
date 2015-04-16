@@ -14,7 +14,15 @@
 @end
 
 @implementation AGTLibraryTableViewCell
-
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.backView.center = self.center;
+        self.backView.layer.cornerRadius = 5;
+        self.backgroundColor = [UIColor clearColor];
+        [self addVerticalLine];
+    }
+    return self;
+}
 - (void)awakeFromNib {
     self.backView.center = self.center;
     self.backView.layer.cornerRadius = 5;

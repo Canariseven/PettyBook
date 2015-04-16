@@ -10,7 +10,6 @@
 #import "AGTLibraryTableViewCell.h"
 #import "AGTLibraryTableViewCell.h"
 #import "AGTBook.h"
-#import "AGTBookViewController.h"
 #import "services.h"
 #import "AGTLibraryTableViewController.h"
 #import "AGTPhoto.h"
@@ -20,8 +19,10 @@
 @end
 @implementation AGTDataSourceAndDelegateTableView
 -(id)initWithFetchedResultsController:(NSFetchedResultsController *)aFetchedResultsController style:(UITableViewStyle)aStyle controller:(AGTLibraryTableViewController *)controller{
-    if (self = [super initWithFetchedResultsController:aFetchedResultsController style:aStyle]) {
+    if (self = [super init]) {
         _controller = controller;
+        _fetchedResultsController = aFetchedResultsController;
+
     }
     return self;
 }
@@ -64,10 +65,14 @@
     NSArray *arr = [tag.books allObjects];
     AGTBook *book = [arr objectAtIndex:indexPath.row];
     AGTLibraryTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CELL_FOR_LIBRARY];
+    cell.backgroundColor = [UIColor clearColor];
     if (cell == nil) {
         // La tenemos que crear nosotros desde cero
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AGTLibraryTableViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
+//        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AGTLibraryTableViewCell" owner:self options:nil];
+//        cell = [nib objectAtIndex:0];
+        UINib *nib = [UINib nibWithNibName:@"AGTLibraryTableViewCell" bundle:nil];
+        [tableView registerNib:nib forCellReuseIdentifier:CELL_FOR_LIBRARY];
+        cell = [tableView dequeueReusableCellWithIdentifier:CELL_FOR_LIBRARY];
     }
     // Configurarla
     // Sincronizar model (personaje) -> vista(celda)
@@ -96,10 +101,9 @@
     NSFetchedResultsController *resq = [[NSFetchedResultsController alloc] initWithFetchRequest:req
                                                                            managedObjectContext:self.fetchedResultsController.managedObjectContext
                                                                              sectionNameKeyPath:nil
-                                                                                        cacheName:nil];
+                                                                                      cacheName:nil];
     NSError *error;
     [resq performFetch:&error];
-    
 }
 
 
@@ -127,14 +131,21 @@
     }
 }
 
+
 -(void)observeValueForKeyPath:(NSString *)keyPath
                      ofObject:(id)object
                        change:(NSDictionary *)change
                       context:(void *)context{
-    AGTPhoto *photo = object;
-    [self tearDownKVO:photo];
-    [self.tableView reloadData];
+    
+    if ([object isKindOfClass:[AGTPhoto class]]) {
+        AGTPhoto *photo = object;
+        [self tearDownKVO:photo];
+
+    }
+    [self.controller.tableView reloadData];
+    
 }
+
 //-(NSIndexPath *)returnIndexPathOfBook:(AGTBook *)book{
 //    NSIndexSet *indexes = [self.fetchedResultsController.fetchedObjects indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop){
 //        AGTTags *s = (AGTTags*)obj;
@@ -162,8 +173,11 @@
 }
 -(void) dataSourceAndDelegateTableView:(AGTDataSourceAndDelegateTableView *)dt didSelectBook:(AGTBook *)book{
     AGTBookViewController * bookVC = [[AGTBookViewController alloc] initWithModel:book];
+    bookVC.delegate = self.controller;
     [self.controller.navigationController pushViewController:bookVC animated:YES];
 }
+
+
 //
 //-(void)receivedNotification:(NSNotification *)notifcation {
 //    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];

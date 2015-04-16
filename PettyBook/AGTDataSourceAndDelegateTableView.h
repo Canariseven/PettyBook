@@ -8,12 +8,14 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "AGTCoreDataTableViewController.h"
+#import "AGTBookViewController.h"
 @import CoreData;
 
 @class  AGTLibrary;
 @class AGTBook;
 @class AGTDataSourceAndDelegateTableView;
 @class AGTLibraryTableViewController;
+
 @protocol AGTDataSourceAndDelegateTableViewDelegate <NSObject>
 
 @optional
@@ -22,9 +24,10 @@
 @end
 
 
-@interface AGTDataSourceAndDelegateTableView : AGTCoreDataTableViewController <UITableViewDelegate, UITableViewDataSource ,AGTDataSourceAndDelegateTableViewDelegate>
+@interface AGTDataSourceAndDelegateTableView : UITableViewController <UITableViewDelegate, UITableViewDataSource ,AGTDataSourceAndDelegateTableViewDelegate>
 @property (nonatomic, weak) id<AGTDataSourceAndDelegateTableViewDelegate> delegate;
 @property (nonatomic, strong) AGTLibraryTableViewController *controller;
-           
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+
 -(id)initWithFetchedResultsController:(NSFetchedResultsController *)aFetchedResultsController style:(UITableViewStyle)aStyle controller:(AGTLibraryTableViewController *)controller;
 @end

@@ -8,8 +8,18 @@
 
 @import UIKit;
 @class  AGTBook;
+@class AGTBookViewController;
 #import "AGTDataSourceAndDelegateTableView.h"
-@interface AGTBookViewController : UIViewController<UISplitViewControllerDelegate,AGTDataSourceAndDelegateTableViewDelegate>
+
+@protocol AGTBookViewControllerDelegate <NSObject>
+
+@optional
+-(void) bookViewControllerDelegate:(AGTBookViewController *)dt didSelectFavouriteBook:(AGTBook *)favouriteBook;
+
+@end
+
+@interface AGTBookViewController : UIViewController<UISplitViewControllerDelegate>
+@property (nonatomic, weak) id<AGTBookViewControllerDelegate> delegate;
 @property (nonatomic, strong) AGTBook *model;
 -(id)initWithModel:(AGTBook *)model;
 

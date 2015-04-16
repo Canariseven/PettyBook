@@ -8,7 +8,7 @@
 
 #import "AGTCoreDataTableViewController.h"
 #import "AGTTags.h"
-
+#import "AGTBook.h"
 
 @interface AGTCoreDataTableViewController()
 @property (nonatomic) BOOL beganUpdates;
@@ -146,7 +146,7 @@
                 [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
                 break;
                 
-            case NSFetchedResultsChangeUpdate:
+            case NSFetchedResultsChangeUpdate:            
                 [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
                 break;
                 
@@ -160,7 +160,11 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    if (self.beganUpdates) [self.tableView endUpdates];
+    if (self.beganUpdates) {
+        [self.tableView endUpdates];
+        NSIndexPath * indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexpath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
 }
 
 - (void)endSuspensionOfUpdatesDueToContextChanges

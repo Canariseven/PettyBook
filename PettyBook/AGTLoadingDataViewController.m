@@ -33,7 +33,6 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
     NSData * data = [self checkDataOnCache];
@@ -51,7 +50,7 @@
 }
 
 -(void)dowloadLibrary{
-//    services * download = [services sharedServices];
+    //    services * download = [services sharedServices];
     NSURL * url =  [NSURL URLWithString:URL_LIBRARY_JSON];
     [services downloadDataWithURL:url statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
         BOOL result = [Utils saveWithData:data name:@"books_readable.json" andDirectory:NSDocumentDirectory];
@@ -60,39 +59,46 @@
         }
         [self libraryWithData:data];
     } failure:^(NSURLResponse *response, NSError *error) {
-      
+        
         NSLog(@"Error solicitud: %@", response.description);
         NSLog(@"Error: %@", error.localizedDescription);
-     }];
+    }];
 }
 
 -(void)libraryWithData:(NSData *)data{
     NSError *err;
     id JSONObjects = [NSJSONSerialization JSONObjectWithData:data
-                                                          options:kNilOptions
-                                                            error:&err];
+                                                     options:kNilOptions
+                                                       error:&err];
     
     if (JSONObjects != nil) {
         if ([JSONObjects isKindOfClass:[NSArray class]]) {
-
-        for (NSDictionary *dict in JSONObjects){
-            [AGTBook bookWithDict:dict context:self.context];
-        }
-//            [AGTTags tagWithTag:NAME_TAG_FAVOURITES book:nil context:self.context];
-        // Hilo principal, para salir de inmediato
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.activityIndicator stopAnimating];
-            self.activityIndicator.hidden = YES;
             
-            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
-                // Tipo tableta
-                [self configureForPad];
-            }else{
-                // Tipo teléfono
-                [self configureForPhone];
+            for (NSDictionary *dict in JSONObjects){
+                [AGTBook bookWithDict:dict context:self.context];
             }
-            
-        });
+            [AGTTags tagWithTag:NAME_TAG_FAVOURITES book:nil context:self.context];
+            // Hilo principal, para salir de inmediato
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.activityIndicator stopAnimating];
+                self.activityIndicator.hidden = YES;
+                
+                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+                    // Tipo tableta
+                    
+                }else{
+                    //                 Tipo teléfon;
+                    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+                    
+                    if (height > 720.0) {
+                        [self configureForPad];
+                    } else {
+                        [self configureForPhone];
+                    }
+                    
+                }
+                
+            });
         }
         
     }else{
@@ -103,10 +109,10 @@
 -(NSFetchedResultsController *)fetchedAllTags{
     NSFetchRequest * req = [NSFetchRequest fetchRequestWithEntityName:[AGTTags entityName]];
     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagsAttributes.tags ascending:YES]];
-
+    
     NSFetchedResultsController *fc = [[NSFetchedResultsController alloc]initWithFetchRequest:req
                                                                         managedObjectContext:self.context
-                                                                          sectionNameKeyPath:AGTTagsAttributes.tags
+                                                                          sectionNameKeyPath:nil
                                                                                    cacheName:nil];
     return fc;
 }
@@ -114,36 +120,38 @@
 -(void)configureForPad{
     AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWithFetchedResultsController:[self fetchedAllTags] style:UITableViewStyleGrouped];
     UINavigationController *navLibrary = [[UINavigationController alloc] initWithRootViewController:tLibrary];
-
+    
     // Cambiar el libro inicial por el que se cerró.
-//    NSString *str = SECTION_FAVOURITES;
-//    AGTBook * b= [library bookForTag:str atIndex:0];
-//    if (b == nil) {
-//        b = [library bookForTag:library.tags[1] atIndex:0];
-//    }
+    //    NSString *str = SECTION_FAVOURITES;
+    //    AGTBook * b= [library bookForTag:str atIndex:0];
+    //    if (b == nil) {
+    //        b = [library bookForTag:library.tags[1] atIndex:0];
+    //    }
     NSFetchedResultsController *fc = [self fetchedAllTags];
-    NSError *error = nil;
+    NSError *error;
     [fc performFetch:&error];
-    if (error == nil) {
-        AGTTags *tag =   fc.fetchedObjects.firstObject;
-        AGTBook *b = [tag.books allObjects].firstObject;
-        
-        
-        AGTBookViewController *book = [[AGTBookViewController alloc] initWithModel:b];
-        UINavigationController *navBook = [[UINavigationController alloc] initWithRootViewController:book];
-        
-        UISplitViewController *split = [[UISplitViewController alloc]init];
-        split.viewControllers = @[navLibrary,navBook];
-        split.delegate = book;
-        tLibrary.controllerOfTable.delegate = book;
-        
-        
-        self.window.rootViewController = split;
+    AGTTags *tag =   fc.fetchedObjects.firstObject;
+    AGTBook *b = [tag.books allObjects].firstObject;
+    if (b==nil) {
+        tag = fc.fetchedObjects[1];
+        b = [tag.books allObjects].firstObject;
     }
+    
+    AGTBookViewController *book = [[AGTBookViewController alloc] initWithModel:b];
+    UINavigationController *navBook = [[UINavigationController alloc] initWithRootViewController:book];
+    
+    UISplitViewController *split = [[UISplitViewController alloc]init];
+    split.viewControllers = @[navLibrary,navBook];
+    split.delegate = book;
+    tLibrary.controllerOfTable.delegate = book;
+    book.delegate = tLibrary;
+    
+    self.window.rootViewController = split;
+    
 }
 
 -(void)configureForPhone{
-     AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWithFetchedResultsController:[self fetchedAllTags] style:UITableViewStyleGrouped];
+    AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWithFetchedResultsController:[self fetchedAllTags] style:UITableViewStyleGrouped];
     UINavigationController *navLibrary = [[UINavigationController alloc] initWithRootViewController:tLibrary];
     tLibrary.controllerOfTable.delegate = tLibrary.controllerOfTable;
     
