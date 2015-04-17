@@ -17,7 +17,7 @@
 #import "services.h"
 #import "AGTPhoto.h"
 
-@interface AGTBookViewController ()<ReaderViewControllerDelegate, UIAlertViewDelegate, AGTDataSourceAndDelegateTableViewDelegate>
+@interface AGTBookViewController ()<ReaderViewControllerDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageBook;
 @property (weak, nonatomic) IBOutlet UIButton *tagsButton;
 @property (weak, nonatomic) IBOutlet UIButton *readBookButton;
@@ -60,11 +60,9 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-    
     self.tableView.dataSource = self.DT;
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+
     [self setupKVO];
-    [nc addObserver:self selector:@selector(reloadButton:) name:RELOAD_SECTION_FAVOURITES object:nil];
     [self settingsOfViews];
     [self sincronizeDataOfView];
     [self animateViewBook];

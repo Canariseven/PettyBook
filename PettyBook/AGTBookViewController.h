@@ -18,7 +18,7 @@
 
 @end
 
-@interface AGTBookViewController : UIViewController<UISplitViewControllerDelegate>
+@interface AGTBookViewController : UIViewController<UISplitViewControllerDelegate, AGTDataSourceAndDelegateTableViewDelegate>
 @property (nonatomic, weak) id<AGTBookViewControllerDelegate> delegate;
 @property (nonatomic, strong) AGTBook *model;
 -(id)initWithModel:(AGTBook *)model;
