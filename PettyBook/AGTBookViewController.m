@@ -16,7 +16,7 @@
 #import "Utils.h"
 #import "services.h"
 #import "AGTPhoto.h"
-
+#import "AGTAnnotationsCollectionViewController.h"
 @interface AGTBookViewController ()<ReaderViewControllerDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageBook;
 @property (weak, nonatomic) IBOutlet UIButton *tagsButton;
@@ -30,6 +30,7 @@
 @property (nonatomic, strong) AGTTagsDataSourceTableView *DT;
 @property (nonatomic, strong) UILabel *numberOfTags;
 @property (nonatomic, strong) UIView *circle;
+@property (weak, nonatomic) IBOutlet UIView *readerButtonContentView;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property BOOL openTableViewTag;
 @end
@@ -67,6 +68,13 @@
     [self sincronizeDataOfView];
     [self animateViewBook];
     [self addGestureBookImage];
+    
+   
+    
+}
+
+-(void)pushToCommentsVC:(id)sender{
+    
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
@@ -110,12 +118,10 @@
                                       [AGTTagTableViewCell cellWidth] + 40,
                                       self.imageBook.frame.size.height - 30);
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
-
-    
 }
 
 -(void)sincronizeDataOfView{
+    self.readerButtonContentView.transform = CGAffineTransformMakeRotation(M_PI + M_PI_2/2);
     [self titleAndAuthorOnNavigationBar];
     [self.tableView reloadData];
     [self checkButtonColor];
@@ -202,6 +208,17 @@
     }
 }
 
+- (IBAction)commentsButton:(id)sender {
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = CGSizeMake(320, 252);
+    layout.minimumLineSpacing = 20;
+    
+    AGTAnnotationsCollectionViewController * aCV = [[AGTAnnotationsCollectionViewController alloc]initWithNibName:@"AGTAnnotationsCollectionViewController" bundle:nil];
+    [self.navigationController pushViewController:aCV animated:YES];
+    
+    
+}
+
 #pragma mark - DELEGATE
 #pragma mark - UISplitViewControllerDelegate
 -(void) splitViewController:(UISplitViewController *)svc
@@ -267,6 +284,7 @@
     
 }
 
+
 -(void)reloadCellWithNotification:(NSNotification *)notifcation {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -326,6 +344,7 @@
                           delay:0
                         options: UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat
                      animations:^{
+
                          self.viewIcon.transform = CGAffineTransformMakeTranslation(1, 10);
                          
                      }

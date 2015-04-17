@@ -8,14 +8,14 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "AGTCoreDataTableViewController.h"
-#import "AGTBookViewController.h"
+
 @import CoreData;
 
 @class  AGTLibrary;
 @class AGTBook;
 @class AGTDataSourceAndDelegateTableView;
 @class AGTLibraryTableViewController;
-
+@class  AGTBookViewController;
 @protocol AGTDataSourceAndDelegateTableViewDelegate <NSObject>
 
 @optional
@@ -31,3 +31,5 @@
 
 -(id)initWithFetchedResultsController:(NSFetchedResultsController *)aFetchedResultsController style:(UITableViewStyle)aStyle controller:(AGTLibraryTableViewController *)controller;
 @end
+
+

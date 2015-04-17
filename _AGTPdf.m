@@ -4,7 +4,7 @@
 #import "_AGTPdf.h"
 
 const struct AGTPdfAttributes AGTPdfAttributes = {
-	.pdfData = @"pdfData",
+	.pdfURL = @"pdfURL",
 };
 
 const struct AGTPdfRelationships AGTPdfRelationships = {
@@ -40,7 +40,7 @@ const struct AGTPdfRelationships AGTPdfRelationships = {
 	return keyPaths;
 }
 
-@dynamic pdfData;
+@dynamic pdfURL;
 
 @dynamic book;
 

@@ -1,18 +1,18 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to AGTAnnotations.h instead.
 
-@import CoreData;
+#import <CoreData/CoreData.h>
 
 extern const struct AGTAnnotationsAttributes {
-	__unsafe_unretained NSString *creationDate;
-	__unsafe_unretained NSString *modificationDate;
-	__unsafe_unretained NSString *text;
+	 NSString *creationDate;
+	 NSString *modificationDate;
+	 NSString *text;
 } AGTAnnotationsAttributes;
 
 extern const struct AGTAnnotationsRelationships {
-	__unsafe_unretained NSString *book;
-	__unsafe_unretained NSString *location;
-	__unsafe_unretained NSString *photo;
+	 NSString *book;
+	 NSString *location;
+	 NSString *photo;
 } AGTAnnotationsRelationships;
 
 @class AGTBook;
@@ -28,27 +28,27 @@ extern const struct AGTAnnotationsRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) AGTAnnotationsID* objectID;
 
-@property (nonatomic, strong) NSDate* creationDate;
+@property (nonatomic, retain) NSDate* creationDate;
 
 //- (BOOL)validateCreationDate:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSDate* modificationDate;
+@property (nonatomic, retain) NSDate* modificationDate;
 
 //- (BOOL)validateModificationDate:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* text;
+@property (nonatomic, retain) NSString* text;
 
 //- (BOOL)validateText:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) AGTBook *book;
+@property (nonatomic, retain) AGTBook *book;
 
 //- (BOOL)validateBook:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) AGTLocation *location;
+@property (nonatomic, retain) AGTLocation *location;
 
 //- (BOOL)validateLocation:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) AGTPhoto *photo;
+@property (nonatomic, retain) AGTPhoto *photo;
 
 //- (BOOL)validatePhoto:(id*)value_ error:(NSError**)error_;
 

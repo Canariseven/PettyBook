@@ -78,6 +78,7 @@
     // Sincronizar model (personaje) -> vista(celda)
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (book.photo.image == nil){
+        cell.imageBook.image = [UIImage imageNamed:@"iconBook"];
         [cell.activityIndicator startAnimating];
         cell.activityIndicator.hidden = NO;
        //Recibimos notificación

@@ -85,7 +85,7 @@
                 
                 if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
                     // Tipo tableta
-                    
+                        [self configureForPad];
                 }else{
                     //                 Tipo teléfon;
                     CGFloat height = [UIScreen mainScreen].bounds.size.height;

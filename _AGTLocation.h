@@ -1,19 +1,21 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to AGTLocation.h instead.
 
-@import CoreData;
+#import <CoreData/CoreData.h>
 
 extern const struct AGTLocationAttributes {
-	__unsafe_unretained NSString *address;
-	__unsafe_unretained NSString *latitude;
-	__unsafe_unretained NSString *longitude;
+	 NSString *address;
+	 NSString *latitude;
+	 NSString *longitude;
 } AGTLocationAttributes;
 
 extern const struct AGTLocationRelationships {
-	__unsafe_unretained NSString *annotations;
+	 NSString *annotations;
+	 NSString *mapSnapShot;
 } AGTLocationRelationships;
 
 @class AGTAnnotations;
+@class AGTMapSnapShot;
 
 @interface AGTLocationID : NSManagedObjectID {}
 @end
@@ -24,11 +26,11 @@ extern const struct AGTLocationRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) AGTLocationID* objectID;
 
-@property (nonatomic, strong) NSString* address;
+@property (nonatomic, retain) NSString* address;
 
 //- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSNumber* latitude;
+@property (nonatomic, retain) NSNumber* latitude;
 
 @property (atomic) double latitudeValue;
 - (double)latitudeValue;
@@ -36,7 +38,7 @@ extern const struct AGTLocationRelationships {
 
 //- (BOOL)validateLatitude:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSNumber* longitude;
+@property (nonatomic, retain) NSNumber* longitude;
 
 @property (atomic) double longitudeValue;
 - (double)longitudeValue;
@@ -44,9 +46,13 @@ extern const struct AGTLocationRelationships {
 
 //- (BOOL)validateLongitude:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSSet *annotations;
+@property (nonatomic, retain) NSSet *annotations;
 
 - (NSMutableSet*)annotationsSet;
+
+@property (nonatomic, retain) AGTMapSnapShot *mapSnapShot;
+
+//- (BOOL)validateMapSnapShot:(id*)value_ error:(NSError**)error_;
 
 @end
 
@@ -77,5 +83,8 @@ extern const struct AGTLocationRelationships {
 
 - (NSMutableSet*)primitiveAnnotations;
 - (void)setPrimitiveAnnotations:(NSMutableSet*)value;
+
+- (AGTMapSnapShot*)primitiveMapSnapShot;
+- (void)setPrimitiveMapSnapShot:(AGTMapSnapShot*)value;
 
 @end

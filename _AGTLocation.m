@@ -11,6 +11,7 @@ const struct AGTLocationAttributes AGTLocationAttributes = {
 
 const struct AGTLocationRelationships AGTLocationRelationships = {
 	.annotations = @"annotations",
+	.mapSnapShot = @"mapSnapShot",
 };
 
 @implementation AGTLocationID
@@ -63,7 +64,7 @@ const struct AGTLocationRelationships AGTLocationRelationships = {
 }
 
 - (void)setLatitudeValue:(double)value_ {
-	[self setLatitude:@(value_)];
+	[self setLatitude:[NSNumber numberWithDouble:value_]];
 }
 
 - (double)primitiveLatitudeValue {
@@ -72,7 +73,7 @@ const struct AGTLocationRelationships AGTLocationRelationships = {
 }
 
 - (void)setPrimitiveLatitudeValue:(double)value_ {
-	[self setPrimitiveLatitude:@(value_)];
+	[self setPrimitiveLatitude:[NSNumber numberWithDouble:value_]];
 }
 
 @dynamic longitude;
@@ -83,7 +84,7 @@ const struct AGTLocationRelationships AGTLocationRelationships = {
 }
 
 - (void)setLongitudeValue:(double)value_ {
-	[self setLongitude:@(value_)];
+	[self setLongitude:[NSNumber numberWithDouble:value_]];
 }
 
 - (double)primitiveLongitudeValue {
@@ -92,7 +93,7 @@ const struct AGTLocationRelationships AGTLocationRelationships = {
 }
 
 - (void)setPrimitiveLongitudeValue:(double)value_ {
-	[self setPrimitiveLongitude:@(value_)];
+	[self setPrimitiveLongitude:[NSNumber numberWithDouble:value_]];
 }
 
 @dynamic annotations;
@@ -105,6 +106,8 @@ const struct AGTLocationRelationships AGTLocationRelationships = {
 	[self didAccessValueForKey:@"annotations"];
 	return result;
 }
+
+@dynamic mapSnapShot;
 
 @end
 
