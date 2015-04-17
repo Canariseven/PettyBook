@@ -65,11 +65,10 @@
     NSArray *arr = [tag.books allObjects];
     AGTBook *book = [arr objectAtIndex:indexPath.row];
     AGTLibraryTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CELL_FOR_LIBRARY];
+    
+    
     cell.backgroundColor = [UIColor clearColor];
     if (cell == nil) {
-        // La tenemos que crear nosotros desde cero
-//        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AGTLibraryTableViewCell" owner:self options:nil];
-//        cell = [nib objectAtIndex:0];
         UINib *nib = [UINib nibWithNibName:@"AGTLibraryTableViewCell" bundle:nil];
         [tableView registerNib:nib forCellReuseIdentifier:CELL_FOR_LIBRARY];
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_FOR_LIBRARY];
@@ -78,16 +77,16 @@
     // Sincronizar model (personaje) -> vista(celda)
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (book.photo.image == nil){
+        cell.book = book;
+        [cell setupKVO];
         cell.imageBook.image = [UIImage imageNamed:@"iconBook"];
-        [cell.activityIndicator startAnimating];
-        cell.activityIndicator.hidden = NO;
+    
        //Recibimos notificación
-        [self setupKVO:indexPath];
+
         
     }else{
         cell.imageBook.image = book.photo.image;
-        [cell.activityIndicator stopAnimating];
-        cell.activityIndicator.hidden = YES;
+
     }
     
     cell.titleBook.text = book.title;
@@ -108,44 +107,6 @@
 }
 
 
-#pragma mark - KVO
--(void) setupKVO:(NSIndexPath *)indexPath{
-    AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
-    NSArray *arr = [tag.books allObjects];
-    AGTBook *book = [arr objectAtIndex:indexPath.row];
-    
-    NSArray * keys = [AGTPhoto observableKeyNames];
-    for (NSString *key in keys) {
-        [book.photo addObserver:self
-               forKeyPath:key
-                  options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                  context:NULL];
-    }
-    
-}
-
--(void) tearDownKVO:(AGTPhoto *)photo{
-    NSArray * keys = [AGTPhoto observableKeyNames];
-    for (NSString *key in keys) {
-        [photo removeObserver:self
-                  forKeyPath:key];
-    }
-}
-
-
--(void)observeValueForKeyPath:(NSString *)keyPath
-                     ofObject:(id)object
-                       change:(NSDictionary *)change
-                      context:(void *)context{
-    
-    if ([object isKindOfClass:[AGTPhoto class]]) {
-        AGTPhoto *photo = object;
-        [self tearDownKVO:photo];
-
-    }
-    [self.controller.tableView reloadData];
-    
-}
 
 //-(NSIndexPath *)returnIndexPathOfBook:(AGTBook *)book{
 //    NSIndexSet *indexes = [self.fetchedResultsController.fetchedObjects indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop){

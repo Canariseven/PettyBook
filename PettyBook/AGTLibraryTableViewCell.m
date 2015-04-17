@@ -7,28 +7,27 @@
 //
 
 #import "AGTLibraryTableViewCell.h"
-
+#import "AGTPhoto.h"
+#import "AGTBook.h"
 @interface AGTLibraryTableViewCell()
 @property (weak, nonatomic) IBOutlet UIView *backView;
 
 @end
 
 @implementation AGTLibraryTableViewCell
--(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.backView.center = self.center;
-        self.backView.layer.cornerRadius = 5;
-        self.backgroundColor = [UIColor clearColor];
-        [self addVerticalLine];
-    }
-    return self;
-}
+
+
 - (void)awakeFromNib {
     self.backView.center = self.center;
     self.backView.layer.cornerRadius = 5;
     self.backgroundColor = [UIColor clearColor];
     [self addVerticalLine];
+    [self.activityIndicator stopAnimating];
+    self.activityIndicator.hidden = YES;
     // Initialization code
+}
+-(void)dealloc{
+    [self tearDownKVO];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -44,5 +43,45 @@
     verticalLine.backgroundColor = [UIColor blackColor];
     verticalLine.alpha = 0.8;
     [self.backView addSubview:verticalLine];
+}
+
+
+
+#pragma mark - KVO
+-(void) setupKVO{
+    [self.activityIndicator startAnimating];
+    self.activityIndicator.hidden = NO;
+
+    NSArray * keys = [AGTPhoto observableKeyNames];
+    for (NSString *key in keys) {
+        [self.book.photo addObserver:self
+                     forKeyPath:key
+                        options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                        context:NULL];
+    }
+    
+}
+
+-(void) tearDownKVO{
+    NSArray * keys = [AGTPhoto observableKeyNames];
+    for (NSString *key in keys) {
+        [self.book.photo removeObserver:self
+                   forKeyPath:key];
+    }
+}
+
+
+-(void)observeValueForKeyPath:(NSString *)keyPath
+ofObject:(id)object
+change:(NSDictionary *)change
+context:(void *)context{
+    [self.activityIndicator stopAnimating];
+    self.activityIndicator.hidden = YES;
+    if ([object isKindOfClass:[AGTPhoto class]]) {
+        [self tearDownKVO];
+        self.imageBook.image = self.book.photo.image;
+    }
+    
+    
 }
 @end

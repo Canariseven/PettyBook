@@ -36,6 +36,8 @@
 		326EA8521AE1991F00252AC2 /* AGTAnnotationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 326EA8501AE1991F00252AC2 /* AGTAnnotationCollectionViewCell.xib */; };
 		326EA8551AE1AFDB00252AC2 /* AGTAnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326EA8541AE1AFDB00252AC2 /* AGTAnnotationViewController.m */; };
 		326EA8571AE1B01000252AC2 /* AGTAnnotationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 326EA8561AE1B01000252AC2 /* AGTAnnotationViewController.xib */; };
+		326EA85A1AE1C72D00252AC2 /* _AGTMapSnapShot.m in Sources */ = {isa = PBXBuildFile; fileRef = 326EA8581AE1C72D00252AC2 /* _AGTMapSnapShot.m */; };
+		326EA85D1AE1C73D00252AC2 /* AGTMapSnapShot.m in Sources */ = {isa = PBXBuildFile; fileRef = 326EA85C1AE1C73D00252AC2 /* AGTMapSnapShot.m */; };
 		329452B71ADEEF42005EDFA9 /* AGTBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248787A1AC8820100048B99 /* AGTBookViewController.m */; };
 		32A1EDAF1ACFEC09009AE83F /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDAE1ACFEC09009AE83F /* Utils.m */; };
 		32A1EDD31AD03834009AE83F /* ReaderConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDC01AD03834009AE83F /* ReaderConstants.m */; };
@@ -159,6 +161,10 @@
 		326EA8531AE1AFDB00252AC2 /* AGTAnnotationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTAnnotationViewController.h; sourceTree = "<group>"; };
 		326EA8541AE1AFDB00252AC2 /* AGTAnnotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTAnnotationViewController.m; sourceTree = "<group>"; };
 		326EA8561AE1B01000252AC2 /* AGTAnnotationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTAnnotationViewController.xib; sourceTree = "<group>"; };
+		326EA8581AE1C72D00252AC2 /* _AGTMapSnapShot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AGTMapSnapShot.m; sourceTree = SOURCE_ROOT; };
+		326EA8591AE1C72D00252AC2 /* _AGTMapSnapShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AGTMapSnapShot.h; sourceTree = SOURCE_ROOT; };
+		326EA85B1AE1C73D00252AC2 /* AGTMapSnapShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTMapSnapShot.h; sourceTree = SOURCE_ROOT; };
+		326EA85C1AE1C73D00252AC2 /* AGTMapSnapShot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTMapSnapShot.m; sourceTree = SOURCE_ROOT; };
 		32A1EDAD1ACFEC09009AE83F /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		32A1EDAE1ACFEC09009AE83F /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		32A1EDBF1AD03834009AE83F /* ReaderConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderConstants.h; sourceTree = "<group>"; };
@@ -299,6 +305,8 @@
 		326436F81ADD9A6100FE2FB5 /* Machinne Models */ = {
 			isa = PBXGroup;
 			children = (
+				326EA8581AE1C72D00252AC2 /* _AGTMapSnapShot.m */,
+				326EA8591AE1C72D00252AC2 /* _AGTMapSnapShot.h */,
 				326436D41ADD9A4200FE2FB5 /* _AGTAnnotations.h */,
 				326436E21ADD9A4200FE2FB5 /* _AGTAnnotations.m */,
 				326436D51ADD9A4200FE2FB5 /* _AGTLocation.h */,
@@ -551,6 +559,8 @@
 				32DC7CEF1AC7128900A074E8 /* AGTBookA.m */,
 				32DC7CF11AC7133E00A074E8 /* AGTLibrary.h */,
 				32DC7CF21AC7133E00A074E8 /* AGTLibrary.m */,
+				326EA85B1AE1C73D00252AC2 /* AGTMapSnapShot.h */,
+				326EA85C1AE1C73D00252AC2 /* AGTMapSnapShot.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -731,6 +741,7 @@
 				32A1EDF21AD03844009AE83F /* ReaderDocumentOutline.m in Sources */,
 				32A1EDF51AD03844009AE83F /* ReaderThumbQueue.m in Sources */,
 				3248788D1AC8989C00048B99 /* AGTTagTableViewCell.m in Sources */,
+				326EA85D1AE1C73D00252AC2 /* AGTMapSnapShot.m in Sources */,
 				32A1EDF81AD03844009AE83F /* ReaderThumbsView.m in Sources */,
 				32A1EDFA1AD03844009AE83F /* UIXToolbarView.m in Sources */,
 				326436EC1ADD9A4200FE2FB5 /* _AGTLocation.m in Sources */,
@@ -763,6 +774,7 @@
 				32DC7CF71AC7350C00A074E8 /* AGTLibraryTableViewController.m in Sources */,
 				32A1EDF31AD03844009AE83F /* ReaderThumbRequest.m in Sources */,
 				32A1EDF41AD03844009AE83F /* ReaderThumbCache.m in Sources */,
+				326EA85A1AE1C72D00252AC2 /* _AGTMapSnapShot.m in Sources */,
 				32DC7CD31AC7126600A074E8 /* AppDelegate.m in Sources */,
 				329452B71ADEEF42005EDFA9 /* AGTBookViewController.m in Sources */,
 				32A1EDD71AD03834009AE83F /* ReaderMainPagebar.m in Sources */,
