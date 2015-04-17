@@ -13,7 +13,7 @@
     // Pasamos la imagen a un data
     NSData *data = [AGTPdf pdfWithURL:pdfURL];
     AGTPdf *pdf = [self insertInManagedObjectContext:context];
-    pdf.pdfData = data;
+
     return pdf;
 }
 

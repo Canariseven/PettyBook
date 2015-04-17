@@ -8,6 +8,9 @@
 
 #import "AGTAnnotationsCollectionViewController.h"
 #import "AGTAnnotationCollectionViewCell.h"
+#import "AGTAnnotationViewController.h"
+#import "AGTAnnotations.h"
+#import "AGTPhoto.h"
 @interface AGTAnnotationsCollectionViewController ()
 
 @end
@@ -18,7 +21,7 @@ static NSString * const reuseIdentifier = @"annotationCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -59,17 +62,20 @@ static NSString * const reuseIdentifier = @"annotationCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
-    return 15;
+    return [self.fetchedResultsController.fetchedObjects count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     AGTAnnotationCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    AGTAnnotations * annotation = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    cell.photoAnnotation.image = [UIImage imageNamed:@"iconBook"];
-    cell.textAnnotation.text = @"Esaafasfa asdijad daspd ddsddasd dasdasd dasdasd dasdaasjdodi asdjasdp";
+    cell.photoAnnotation.image = annotation.photo.image;
+    cell.textAnnotation.text = annotation.text;
     cell.mapSnapShot.image = [UIImage imageNamed:@"iconBook"];
     // Configure the cell
-    cell.creationDateLabel.text =[NSString stringWithFormat:@"2%ld de Marzo del 2015",(long)indexPath.row];
+    NSDateFormatter *fmt = [[NSDateFormatter alloc]init];
+    fmt.timeStyle = NSDateFormatterMediumStyle;
+    cell.creationDateLabel.text =[fmt stringFromDate:annotation.creationDate];
     return cell;
 }
 
@@ -104,7 +110,9 @@ static NSString * const reuseIdentifier = @"annotationCell";
 }
 */
 -(void) addNewAnnotation:(id)sender{
-    
+    AGTAnnotations *annotation = [AGTAnnotations annotationWithText:@"" context:self.fetchedResultsController.managedObjectContext];
+    AGTAnnotationViewController * aVC = [[AGTAnnotationViewController alloc]initWithAnnotation:annotation];
+    [self.navigationController pushViewController:aVC animated:YES];
 }
 
 @end

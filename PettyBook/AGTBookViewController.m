@@ -17,6 +17,7 @@
 #import "services.h"
 #import "AGTPhoto.h"
 #import "AGTAnnotationsCollectionViewController.h"
+#import "AGTAnnotations.h"
 @interface AGTBookViewController ()<ReaderViewControllerDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageBook;
 @property (weak, nonatomic) IBOutlet UIButton *tagsButton;
@@ -197,11 +198,9 @@
 }
 
 - (IBAction)favouriteButton:(id)sender {
-    if (self.model.isFavourite == YES){
-        self.model.isFavourite = NO;
-    }else{
-        self.model.isFavourite = YES;
-    }
+
+    self.model.isFavourite = !self.model.isFavourite;
+
     [self checkButtonColor];
     if ([self.delegate respondsToSelector:@selector(bookViewControllerDelegate:didSelectFavouriteBook:)]) {
         [self.delegate bookViewControllerDelegate:self didSelectFavouriteBook:self.model];
@@ -212,8 +211,16 @@
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     layout.itemSize = CGSizeMake(320, 252);
     layout.minimumLineSpacing = 20;
+    NSFetchRequest *req = [[NSFetchRequest alloc]initWithEntityName:[AGTAnnotations entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTAnnotationsAttributes.creationDate ascending:YES]];
     
-    AGTAnnotationsCollectionViewController * aCV = [[AGTAnnotationsCollectionViewController alloc]initWithNibName:@"AGTAnnotationsCollectionViewController" bundle:nil];
+    NSFetchedResultsController *frq = [[NSFetchedResultsController alloc]initWithFetchRequest:req
+                                                                         managedObjectContext:self.model.managedObjectContext
+                                                                           sectionNameKeyPath:nil
+                                                                                    cacheName:nil];
+    
+    AGTAnnotationsCollectionViewController * aCV = [[AGTAnnotationsCollectionViewController alloc]initWithFetchedResultsController:frq layout:layout];
+
     [self.navigationController pushViewController:aCV animated:YES];
     
     

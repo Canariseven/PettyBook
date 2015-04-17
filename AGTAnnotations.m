@@ -1,5 +1,5 @@
 #import "AGTAnnotations.h"
-
+#import "AGTLocation.h"
 @interface AGTAnnotations ()
 +(NSArray *)observableKeyNames;
 // Private interface goes here.
@@ -8,7 +8,7 @@
 
 @implementation AGTAnnotations
 +(NSArray *)observableKeyNames{
-    return @[AGTAnnotationsAttributes.creationDate,AGTAnnotationsAttributes.text,@"photo.imageData",@"location.latitude",@"location.longitude",@"location.address"];
+    return @[AGTAnnotationsAttributes.creationDate,AGTAnnotationsAttributes.text,@"photo.imageData",@"location.latitude",@"location.longitude",@"location.address",@"location.mapSnapShot"];
 }
 +(instancetype) annotationWithText:(NSString *)text
                            context:(NSManagedObjectContext *)context{

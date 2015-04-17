@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AGTCoreDataCollectionViewController.h"
 
-@interface AGTAnnotationsCollectionViewController : UICollectionViewController
+@interface AGTAnnotationsCollectionViewController : AGTCoreDataCollectionViewController
 
 @end

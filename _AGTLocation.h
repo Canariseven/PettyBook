@@ -1,17 +1,17 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to AGTLocation.h instead.
 
-#import <CoreData/CoreData.h>
+@import CoreData;
 
 extern const struct AGTLocationAttributes {
-	 NSString *address;
-	 NSString *latitude;
-	 NSString *longitude;
+	__unsafe_unretained NSString *address;
+	__unsafe_unretained NSString *latitude;
+	__unsafe_unretained NSString *longitude;
 } AGTLocationAttributes;
 
 extern const struct AGTLocationRelationships {
-	 NSString *annotations;
-	 NSString *mapSnapShot;
+	__unsafe_unretained NSString *annotations;
+	__unsafe_unretained NSString *mapSnapShot;
 } AGTLocationRelationships;
 
 @class AGTAnnotations;
@@ -26,11 +26,11 @@ extern const struct AGTLocationRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) AGTLocationID* objectID;
 
-@property (nonatomic, retain) NSString* address;
+@property (nonatomic, strong) NSString* address;
 
 //- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSNumber* latitude;
+@property (nonatomic, strong) NSNumber* latitude;
 
 @property (atomic) double latitudeValue;
 - (double)latitudeValue;
@@ -38,7 +38,7 @@ extern const struct AGTLocationRelationships {
 
 //- (BOOL)validateLatitude:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSNumber* longitude;
+@property (nonatomic, strong) NSNumber* longitude;
 
 @property (atomic) double longitudeValue;
 - (double)longitudeValue;
@@ -46,11 +46,11 @@ extern const struct AGTLocationRelationships {
 
 //- (BOOL)validateLongitude:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) NSSet *annotations;
+@property (nonatomic, strong) NSSet *annotations;
 
 - (NSMutableSet*)annotationsSet;
 
-@property (nonatomic, retain) AGTMapSnapShot *mapSnapShot;
+@property (nonatomic, strong) AGTMapSnapShot *mapSnapShot;
 
 //- (BOOL)validateMapSnapShot:(id*)value_ error:(NSError**)error_;
 

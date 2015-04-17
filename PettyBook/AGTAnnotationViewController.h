@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageAnnotation;
 @property (weak, nonatomic) IBOutlet UIImageView *mapSnapShotAnnotation;
 @property (weak, nonatomic) IBOutlet UITextView *textAnnotation;
+@property (nonatomic, strong) NSManagedObjectContext *context;
 
 @property (nonatomic, strong) AGTAnnotations * annotation;
 -(id)initWithAnnotation:(AGTAnnotations *)annotation;

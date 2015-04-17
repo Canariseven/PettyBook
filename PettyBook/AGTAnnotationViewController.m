@@ -25,6 +25,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    self.annotation.photo.image = self.imageAnnotation.image;
+    self.annotation.text = self.textAnnotation.text;
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
