@@ -33,7 +33,6 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.navigationController.toolbar.backgroundColor = [UIColor whiteColor];
-    
     self.tableView.delegate = self.controllerOfTable;
     self.tableView.dataSource = self.controllerOfTable;
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logoPettyBook"]];
@@ -41,10 +40,10 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [self setupKVO];
+    [self setupKVO];
 }
 -(void)dealloc{
-//    [self tearDownKVO];
+    [self tearDownKVO];
     
 }
 -(void)setupKVO{
@@ -74,21 +73,10 @@
                       context:(void *)context{
     
     if ([object isKindOfClass:[AGTTags class]]) {
-        NSError *error;
-        [self.fetchedResultsController performFetch:&error];
-        
         NSIndexSet *set = [[NSIndexSet alloc]initWithIndex:0];
         [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
-
-
--(void)bookViewControllerDelegate:(AGTBookViewController *)dt didSelectFavouriteBook:(AGTBook *)favouriteBook{
-    
-    NSIndexSet *set = [[NSIndexSet alloc]initWithIndex:0];
-    [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
 
 
 @end

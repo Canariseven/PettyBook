@@ -12,7 +12,7 @@
 #import "AGTAnnotations.h"
 #import "AGTPhoto.h"
 @interface AGTAnnotationsCollectionViewController ()
-
+@property (nonatomic, strong)UIImageView *backGround;
 @end
 
 @implementation AGTAnnotationsCollectionViewController
@@ -21,19 +21,26 @@ static NSString * const reuseIdentifier = @"annotationCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
     UINib *nib = [UINib nibWithNibName:@"AGTAnnotationCollectionViewCell" bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
+    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    self.backGround = [[UIImageView alloc]initWithFrame:frame];
+    self.backGround.image = [UIImage imageNamed:@"greyWood"];
+    self.backGround.contentMode = UIViewContentModeScaleToFill;
+    
+    
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = [UIColor clearColor];
     UIBarButtonItem *addAnnotation = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self
                                                                                   action:@selector(addNewAnnotation:)];
     self.navigationItem.rightBarButtonItem = addAnnotation;
+    [self.view insertSubview:self.backGround belowSubview:self.collectionView];
     // Do any additional setup after loading the view.
 }
 
@@ -41,7 +48,11 @@ static NSString * const reuseIdentifier = @"annotationCell";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    self.backGround.frame = frame;
+}
 /*
 #pragma mark - Navigation
 
@@ -116,7 +127,9 @@ static NSString * const reuseIdentifier = @"annotationCell";
 -(void) addNewAnnotation:(id)sender{
     AGTAnnotations *annotation = [AGTAnnotations annotationWithText:@"" context:self.fetchedResultsController.managedObjectContext];
     AGTAnnotationViewController * aVC = [[AGTAnnotationViewController alloc]initWithAnnotation:annotation];
-    [self.navigationController pushViewController:aVC animated:YES];
+    aVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+ [self presentViewController: aVC animated: YES completion: nil];
+//    [self.navigationController pushViewController:aVC animated:YES];
 }
 
 @end

@@ -9,7 +9,7 @@
 #import "AGTAnnotationViewController.h"
 #import "AGTAnnotations.h"
 #import "AGTPhoto.h"
-
+#import "AGTBook.h"
 @interface AGTAnnotationViewController ()
 
 @end
@@ -18,6 +18,7 @@
 -(id)initWithAnnotation:(AGTAnnotations *)annotation{
     if (self = [super initWithNibName:nil bundle:nil]) {
         _annotation = annotation;
+         if (self) _isPresented = YES;
     }
     return self;
 }
@@ -38,6 +39,8 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)sincronizeView{
+    self.imageBook.image = self.annotation.book.photo.image;
+    self.titleBook.text = [NSString stringWithFormat:@"Nota para el libro: %@",self.annotation.book.title];
     self.imageAnnotation.image = self.annotation.photo.image;
     self.textAnnotation.text = self.annotation.text;
 }
@@ -52,6 +55,7 @@
 */
 
 - (IBAction)cancelButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)editButton:(id)sender {

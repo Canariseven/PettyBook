@@ -209,8 +209,9 @@
 
 - (IBAction)commentsButton:(id)sender {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = CGSizeMake(320, 252);
+    layout.itemSize = CGSizeMake(320, 281);
     layout.minimumLineSpacing = 20;
+    layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
     NSFetchRequest *req = [[NSFetchRequest alloc]initWithEntityName:[AGTAnnotations entityName]];
     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTAnnotationsAttributes.creationDate ascending:YES]];
     

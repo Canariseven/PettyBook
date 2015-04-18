@@ -31,7 +31,6 @@
 		326437031ADDB93D00FE2FB5 /* AGTCoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326436FE1ADDB93D00FE2FB5 /* AGTCoreDataTableViewController.m */; };
 		326437041ADDB93D00FE2FB5 /* AGTEntityObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 326437001ADDB93D00FE2FB5 /* AGTEntityObserver.m */; };
 		326EA84C1AE1982E00252AC2 /* AGTAnnotationsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326EA84A1AE1982E00252AC2 /* AGTAnnotationsCollectionViewController.m */; };
-		326EA84D1AE1982E00252AC2 /* AGTAnnotationsCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 326EA84B1AE1982E00252AC2 /* AGTAnnotationsCollectionViewController.xib */; };
 		326EA8511AE1991F00252AC2 /* AGTAnnotationCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 326EA84F1AE1991F00252AC2 /* AGTAnnotationCollectionViewCell.m */; };
 		326EA8521AE1991F00252AC2 /* AGTAnnotationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 326EA8501AE1991F00252AC2 /* AGTAnnotationCollectionViewCell.xib */; };
 		326EA8551AE1AFDB00252AC2 /* AGTAnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326EA8541AE1AFDB00252AC2 /* AGTAnnotationViewController.m */; };
@@ -81,6 +80,7 @@
 		32A1EE221AD038E2009AE83F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A1EE211AD038E2009AE83F /* QuartzCore.framework */; };
 		32A1EE241AD038EA009AE83F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A1EE231AD038EA009AE83F /* MessageUI.framework */; };
 		32A1EE261AD038F0009AE83F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A1EE251AD038F0009AE83F /* ImageIO.framework */; };
+		32B022681AE26B7600CC260F /* AGTAnnotationsCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B022671AE26B7600CC260F /* AGTAnnotationsCollectionViewController.xib */; };
 		32B05BFB1ACFD4D800435508 /* AGTPDFReaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */; };
 		32B689E61ACC749300FE4014 /* services.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B689E51ACC749300FE4014 /* services.m */; };
 		32D16B931AC8736F00F265E5 /* AGTLibraryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D16B921AC8736F00F265E5 /* AGTLibraryTableViewCell.xib */; };
@@ -154,7 +154,6 @@
 		326437001ADDB93D00FE2FB5 /* AGTEntityObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTEntityObserver.m; sourceTree = "<group>"; };
 		326EA8491AE1982E00252AC2 /* AGTAnnotationsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTAnnotationsCollectionViewController.h; sourceTree = "<group>"; };
 		326EA84A1AE1982E00252AC2 /* AGTAnnotationsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTAnnotationsCollectionViewController.m; sourceTree = "<group>"; };
-		326EA84B1AE1982E00252AC2 /* AGTAnnotationsCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTAnnotationsCollectionViewController.xib; sourceTree = "<group>"; };
 		326EA84E1AE1991F00252AC2 /* AGTAnnotationCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTAnnotationCollectionViewCell.h; sourceTree = "<group>"; };
 		326EA84F1AE1991F00252AC2 /* AGTAnnotationCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTAnnotationCollectionViewCell.m; sourceTree = "<group>"; };
 		326EA8501AE1991F00252AC2 /* AGTAnnotationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTAnnotationCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -228,6 +227,7 @@
 		32A1EE211AD038E2009AE83F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		32A1EE231AD038EA009AE83F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		32A1EE251AD038F0009AE83F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		32B022671AE26B7600CC260F /* AGTAnnotationsCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTAnnotationsCollectionViewController.xib; sourceTree = "<group>"; };
 		32B05BF71ACFD4D800435508 /* AGTPDFReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTPDFReaderViewController.h; sourceTree = "<group>"; };
 		32B05BF81ACFD4D800435508 /* AGTPDFReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTPDFReaderViewController.m; sourceTree = "<group>"; };
 		32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTPDFReaderViewController.xib; sourceTree = "<group>"; };
@@ -584,7 +584,7 @@
 				3248789E1AC8A53300048B99 /* DataSources and Delegates */,
 				326EA8491AE1982E00252AC2 /* AGTAnnotationsCollectionViewController.h */,
 				326EA84A1AE1982E00252AC2 /* AGTAnnotationsCollectionViewController.m */,
-				326EA84B1AE1982E00252AC2 /* AGTAnnotationsCollectionViewController.xib */,
+				32B022671AE26B7600CC260F /* AGTAnnotationsCollectionViewController.xib */,
 				326EA8531AE1AFDB00252AC2 /* AGTAnnotationViewController.h */,
 				326EA8541AE1AFDB00252AC2 /* AGTAnnotationViewController.m */,
 				326EA8561AE1B01000252AC2 /* AGTAnnotationViewController.xib */,
@@ -699,13 +699,13 @@
 				32A1EE101AD0388B009AE83F /* Reader-Button-H@2x.png in Resources */,
 				32A1EE181AD0388B009AE83F /* Reader-Mark-N@2x.png in Resources */,
 				32A1EE151AD0388B009AE83F /* Reader-Export.png in Resources */,
-				326EA84D1AE1982E00252AC2 /* AGTAnnotationsCollectionViewController.xib in Resources */,
 				32A1EE111AD0388B009AE83F /* Reader-Button-N.png in Resources */,
 				3248787D1AC8820100048B99 /* AGTBookViewController.xib in Resources */,
 				32A1EE1A1AD0388B009AE83F /* Reader-Mark-Y@2x.png in Resources */,
 				32A1EE1C1AD0388B009AE83F /* Reader-Print@2x.png in Resources */,
 				3248788E1AC8989C00048B99 /* AGTTagTableViewCell.xib in Resources */,
 				32A1EE1B1AD0388B009AE83F /* Reader-Print.png in Resources */,
+				32B022681AE26B7600CC260F /* AGTAnnotationsCollectionViewController.xib in Resources */,
 				32DC7CD51AC7126600A074E8 /* Images.xcassets in Resources */,
 				32A1EE131AD0388B009AE83F /* Reader-Email.png in Resources */,
 				32A1EE121AD0388B009AE83F /* Reader-Button-N@2x.png in Resources */,

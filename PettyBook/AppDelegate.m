@@ -10,7 +10,7 @@
 
 #import "AGTLoadingDataViewController.h"
 #import "AGTCoreDataStack.h"
-
+#import "AGTAnnotationViewController.h"
 
 
 @interface AppDelegate ()
@@ -31,6 +31,20 @@
     AGTLoadingDataViewController *loading = [[AGTLoadingDataViewController alloc]initWithWindow:self.window andContext:self.stack.context];
     self.window.rootViewController = loading;
     return YES;
+}
+
+-(NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    
+    if ([self.window.rootViewController.presentedViewController isKindOfClass: [AGTAnnotationViewController class]])
+        {
+            AGTAnnotationViewController *annotationVC = (AGTAnnotationViewController *) self.window.rootViewController.presentedViewController;
+            
+            if (annotationVC.isPresented)
+                return UIInterfaceOrientationMaskPortrait;
+            else return UIInterfaceOrientationMaskAll;
+        }
+        else return UIInterfaceOrientationMaskAll;
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
