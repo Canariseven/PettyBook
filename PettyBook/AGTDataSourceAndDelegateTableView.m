@@ -21,27 +21,93 @@
 -(id)initWithFetchedResultsController:(NSFetchedResultsController *)aFetchedResultsController style:(UITableViewStyle)aStyle controller:(AGTLibraryTableViewController *)controller{
     if (self = [super init]) {
         _controller = controller;
-        _fetchedResultsController = aFetchedResultsController;
-
+        self.fetchedResultsController = aFetchedResultsController;
     }
     return self;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [AGTLibraryTableViewCell cellHeight];
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 40;
 }
+
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return @"";
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     AGTTags *tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
     return tag.books.count;
 }
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return [self.fetchedResultsController.fetchedObjects count];
 }
+
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
+    NSArray *arr = [tag.books allObjects];
+    AGTBook *book = [arr objectAtIndex:indexPath.row];
+    AGTLibraryTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CELL_FOR_LIBRARY];
+    if (cell == nil) {
+        UINib *nib = [UINib nibWithNibName:@"AGTLibraryTableViewCell" bundle:nil];
+        [tableView registerNib:nib forCellReuseIdentifier:CELL_FOR_LIBRARY];
+        cell = [tableView dequeueReusableCellWithIdentifier:CELL_FOR_LIBRARY];
+    }
+    // Configurarla
+    // Sincronizar model (personaje) -> vista(celda)
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (book.photo.image == nil){
+        cell.book = book;
+        [cell setupKVO];
+        cell.imageBook.image = [UIImage imageNamed:@"iconBook"];
+    }else{
+        cell.imageBook.image = book.photo.image;
+    }
+    cell.titleBook.text = book.title;
+
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
+    NSArray *arr = [tag.books allObjects];
+    AGTBook *book = [arr objectAtIndex:indexPath.row];
+    
+
+    if ([self.delegate respondsToSelector:@selector(dataSourceAndDelegateTableView:didSelectBook:)]) {
+        [self.delegate dataSourceAndDelegateTableView:self didSelectBook:book];
+    }
+//    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+//    NSNotification *n = [[NSNotification alloc]initWithName:PDF_CHANGED object:book userInfo:nil];
+//    [nc postNotification:n];
+    
+}
+//
+//-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//
+//        AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
+//        if ([tag.tags isEqualToString: NAME_TAG_FAVOURITES]) {
+//            NSArray *arr = [tag.books allObjects];
+//            AGTBook *book = [arr objectAtIndex:indexPath.row];
+//            book.isFavourite = NO;
+//        }else{
+//            tableView.editing = NO;
+//        }
+//       
+//    }
+//}
+-(void) dataSourceAndDelegateTableView:(AGTDataSourceAndDelegateTableView *)dt didSelectBook:(AGTBook *)book{
+    AGTBookViewController * bookVC = [[AGTBookViewController alloc] initWithModel:book];
+    bookVC.delegate = self.controller;
+    [self.controller.navigationController pushViewController:bookVC animated:YES];
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc]init];
     view.backgroundColor = [UIColor whiteColor];
@@ -60,111 +126,6 @@
     return view;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
-    NSArray *arr = [tag.books allObjects];
-    AGTBook *book = [arr objectAtIndex:indexPath.row];
-    AGTLibraryTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CELL_FOR_LIBRARY];
-    
-    
-    cell.backgroundColor = [UIColor clearColor];
-    if (cell == nil) {
-        UINib *nib = [UINib nibWithNibName:@"AGTLibraryTableViewCell" bundle:nil];
-        [tableView registerNib:nib forCellReuseIdentifier:CELL_FOR_LIBRARY];
-        cell = [tableView dequeueReusableCellWithIdentifier:CELL_FOR_LIBRARY];
-    }
-    // Configurarla
-    // Sincronizar model (personaje) -> vista(celda)
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (book.photo.image == nil){
-        cell.book = book;
-        [cell setupKVO];
-        cell.imageBook.image = [UIImage imageNamed:@"iconBook"];
-    
-       //Recibimos notificación
-
-        
-    }else{
-        cell.imageBook.image = book.photo.image;
-
-    }
-    
-    cell.titleBook.text = book.title;
-//    cell.authorBook.text = book.authors[0];
-    // Devolverla
-    return cell;
-}
-
--(void)checkFavourites{
-    NSFetchRequest * req = [[NSFetchRequest alloc]initWithEntityName:[AGTTags entityName]];
-    req.predicate = [NSPredicate predicateWithFormat:@"tags == %@",@"FAVORITOS"];
-    NSFetchedResultsController *resq = [[NSFetchedResultsController alloc] initWithFetchRequest:req
-                                                                           managedObjectContext:self.fetchedResultsController.managedObjectContext
-                                                                             sectionNameKeyPath:nil
-                                                                                      cacheName:nil];
-    NSError *error;
-    [resq performFetch:&error];
-}
-
-
-
-//-(NSIndexPath *)returnIndexPathOfBook:(AGTBook *)book{
-//    NSIndexSet *indexes = [self.fetchedResultsController.fetchedObjects indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop){
-//        AGTTags *s = (AGTTags*)obj;
-//        NSRange range = [s.objectID.description rangeOfString: book.objectID.description];
-//        return range.location != NSNotFound;
-//    }];
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:indexes.firstIndex inSection:0];
-//    return indexPath;
-//}
-
-//
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
-    NSArray *arr = [tag.books allObjects];
-    AGTBook *book = [arr objectAtIndex:indexPath.row];
-    
-
-    if ([self.delegate respondsToSelector:@selector(dataSourceAndDelegateTableView:didSelectBook:)]) {
-        [self.delegate dataSourceAndDelegateTableView:self didSelectBook:book];
-    }
-//    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-//    NSNotification *n = [[NSNotification alloc]initWithName:PDF_CHANGED object:book userInfo:nil];
-//    [nc postNotification:n];
-    
-}
--(void) dataSourceAndDelegateTableView:(AGTDataSourceAndDelegateTableView *)dt didSelectBook:(AGTBook *)book{
-    AGTBookViewController * bookVC = [[AGTBookViewController alloc] initWithModel:book];
-    bookVC.delegate = self.controller;
-    [self.controller.navigationController pushViewController:bookVC animated:YES];
-}
-
-
-//
-//-(void)receivedNotification:(NSNotification *)notifcation {
-//    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-//    [nc removeObserver:self name:notifcation.name object:notifcation.object];
-//    [self reloadRowCellWithNameNotif:notifcation.name];
-//    
-//}
-//
-//-(void)reloadRowCellWithNameNotif:(NSString *)name{
-//    NSArray *array = self.controller.tableView.visibleCells;
-//    NSArray *arrIndex = self.controller.tableView.indexPathsForVisibleRows;
-//    NSUInteger index = 0;
-//    for (AGTLibraryTableViewCell *cell in array) {
-//        if ([cell.titleBook.text isEqualToString:name]) {
-//            // Introducir delay porque carga muy rápido y rompe (dos animaciones misma celda)
-//            double delayInSeconds = 1.0;
-//            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds *NSEC_PER_SEC));
-//            dispatch_after(popTime, dispatch_get_main_queue(), ^{
-//                [self.controller.tableView reloadRowsAtIndexPaths:@[arrIndex[index]] withRowAnimation:UITableViewRowAnimationNone];
-//            });
-//            
-//        }
-//        index ++;
-//    }
-//}
 
 
 @end

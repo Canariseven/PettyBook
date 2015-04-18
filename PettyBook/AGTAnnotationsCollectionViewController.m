@@ -80,7 +80,11 @@ static NSString * const reuseIdentifier = @"annotationCell";
 }
 
 #pragma mark <UICollectionViewDelegate>
-
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    AGTAnnotations * annotation = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    AGTAnnotationViewController * aVC = [[AGTAnnotationViewController alloc]initWithAnnotation:annotation];
+    [self.navigationController pushViewController:aVC animated:YES];
+}
 /*
 // Uncomment this method to specify if the specified item should be highlighted during tracking
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {

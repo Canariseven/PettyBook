@@ -64,12 +64,11 @@
                                             <rect key="frame" x="95" y="1" width="95" height="60"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <state key="normal" image="iconFavourite">
+                                            <state key="normal" image="iconAnnotations">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
                                                 <action selector="commentsButton:" destination="-1" eventType="touchUpInside" id="Ujk-HR-BEa"/>
-                                                <action selector="favouriteButton:" destination="-1" eventType="touchUpInside" id="v7R-VM-GtE"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="o1M-eq-Y63">
@@ -134,6 +133,7 @@
     </objects>
     <resources>
         <image name="greyWood" width="743" height="690"/>
+        <image name="iconAnnotations" width="53" height="48"/>
         <image name="iconBook" width="112" height="153"/>
         <image name="iconFavourite" width="40" height="40"/>
         <image name="iconTags" width="32" height="43"/>

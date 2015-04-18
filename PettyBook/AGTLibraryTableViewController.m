@@ -25,18 +25,15 @@
     if (self = [super initWithNibName:nil bundle:nil]) {
         _fetchedResultsController = fetchedResultsController;
         _style = aStyle;
-        self.controllerOfTable = [[AGTDataSourceAndDelegateTableView alloc]initWithFetchedResultsController:self.fetchedResultsController style:self.style controller:self];
+        self.controllerOfTable = [[AGTDataSourceAndDelegateTableView alloc]initWithFetchedResultsController:self.fetchedResultsController style:UITableViewStylePlain controller:self];
     }
     return self;
 }
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-
-    NSError *error;
-    [self.fetchedResultsController performFetch:&error];
-    
     self.navigationController.toolbar.backgroundColor = [UIColor whiteColor];
+    
     self.tableView.delegate = self.controllerOfTable;
     self.tableView.dataSource = self.controllerOfTable;
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logoPettyBook"]];

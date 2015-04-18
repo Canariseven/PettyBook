@@ -88,14 +88,7 @@
                         [self configureForPad];
                 }else{
                     //                 Tipo teléfon;
-                    CGFloat height = [UIScreen mainScreen].bounds.size.height;
-                    
-                    if (height > 720.0) {
-                        [self configureForPad];
-                    } else {
-                        [self configureForPhone];
-                    }
-                    
+                    [self configureForPhone];
                 }
                 
             });
@@ -127,6 +120,7 @@
     //    if (b == nil) {
     //        b = [library bookForTag:library.tags[1] atIndex:0];
     //    }
+    
     NSFetchedResultsController *fc = [self fetchedAllTags];
     NSError *error;
     [fc performFetch:&error];

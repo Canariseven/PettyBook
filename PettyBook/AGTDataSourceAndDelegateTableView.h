@@ -24,10 +24,9 @@
 @end
 
 
-@interface AGTDataSourceAndDelegateTableView : UITableViewController <UITableViewDelegate, UITableViewDataSource ,AGTDataSourceAndDelegateTableViewDelegate>
+@interface AGTDataSourceAndDelegateTableView : AGTCoreDataTableViewController <UITableViewDelegate, AGTDataSourceAndDelegateTableViewDelegate>
 @property (nonatomic, weak) id<AGTDataSourceAndDelegateTableViewDelegate> delegate;
 @property (nonatomic, strong) AGTLibraryTableViewController *controller;
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 -(id)initWithFetchedResultsController:(NSFetchedResultsController *)aFetchedResultsController style:(UITableViewStyle)aStyle controller:(AGTLibraryTableViewController *)controller;
 @end

@@ -48,7 +48,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hLa-qO-BSh">
-                                            <rect key="frame" x="0.0" y="0.0" width="112" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="95" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -59,8 +59,21 @@
                                                 <action selector="tagsButton:" destination="-1" eventType="touchUpInside" id="RvL-ie-IRf"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="N8x-av-beG">
+                                            <rect key="frame" x="95" y="0.0" width="95" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <inset key="contentEdgeInsets" minX="23" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" image="iconAnnotations">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="commentsButton:" destination="-1" eventType="touchUpInside" id="8rK-IE-UPz"/>
+                                            </connections>
+                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="o1M-eq-Y63">
-                                            <rect key="frame" x="173" y="0.0" width="112" height="60"/>
+                                            <rect key="frame" x="190" y="0.0" width="95" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <state key="normal" image="iconFavourite">
@@ -118,6 +131,7 @@
     </objects>
     <resources>
         <image name="greyWood" width="743" height="690"/>
+        <image name="iconAnnotations" width="53" height="48"/>
         <image name="iconBook" width="112" height="153"/>
         <image name="iconFavourite" width="40" height="40"/>
         <image name="iconTags" width="32" height="43"/>

@@ -23,6 +23,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self sincronizeView];
     // Do any additional setup after loading the view.
 }
 -(void)viewDidDisappear:(BOOL)animated{
