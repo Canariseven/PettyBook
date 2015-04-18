@@ -17,7 +17,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleBook;
 @property (nonatomic) BOOL isPresented;
 
+@property (weak, nonatomic) IBOutlet UIView *photoView;
 
+@property (weak, nonatomic) IBOutlet UIView *mapSnapShotView;
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
 

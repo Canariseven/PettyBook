@@ -38,11 +38,33 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self addLabelToInfoWhitString:@"Insertar imagen..." toView:self.photoView bellowImageView:self.imageAnnotation];
+    [self addLabelToInfoWhitString:@"Insertar Mapa..." toView:self.mapSnapShotView bellowImageView:self.mapSnapShotAnnotation];
+}
 -(void)sincronizeView{
     self.imageBook.image = self.annotation.book.photo.image;
-    self.titleBook.text = [NSString stringWithFormat:@"Nota para el libro: %@",self.annotation.book.title];
+    self.titleBook.text = [NSString stringWithFormat:@"  Nota para el libro: %@",self.annotation.book.title];
     self.imageAnnotation.image = self.annotation.photo.image;
     self.textAnnotation.text = self.annotation.text;
+    self.photoView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.photoView.layer.borderWidth = 3;
+    self.mapSnapShotView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.mapSnapShotView.layer.borderWidth = 3;
+ 
+}
+
+-(void)addLabelToInfoWhitString:(NSString *)string toView:(UIView *)viewI bellowImageView:(UIImageView *)imageView{
+    UILabel *label = [[UILabel alloc]init];
+    [label setFont:[UIFont fontWithName:@"Arial" size:20]];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor whiteColor];
+    label.text = string;
+    [label sizeToFit];
+    [viewI insertSubview:label belowSubview:imageView];
+    label.frame = CGRectMake(viewI.frame.size.width/2 - label.frame.size.width/4, viewI.frame.size.height/2 + label.frame.size.height/2, label.frame.size.width, label.frame.size.height);
+
 }
 /*
 #pragma mark - Navigation
