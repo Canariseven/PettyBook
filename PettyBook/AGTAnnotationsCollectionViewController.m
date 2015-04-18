@@ -39,8 +39,7 @@ static NSString * const reuseIdentifier = @"annotationCell";
     self.backGround.image = [UIImage imageNamed:@"greyWood"];
     self.backGround.contentMode = UIViewContentModeScaleToFill;
     
-    
-    self.collectionView.dataSource = self;
+
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = [UIColor clearColor];
     UIBarButtonItem *addAnnotation = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self
@@ -56,6 +55,8 @@ static NSString * const reuseIdentifier = @"annotationCell";
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    
     CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     self.backGround.frame = frame;
 }
@@ -71,16 +72,7 @@ static NSString * const reuseIdentifier = @"annotationCell";
 
 #pragma mark <UICollectionViewDataSource>
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 
-    return 1;
-}
-
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-
-    return [self.fetchedResultsController.fetchedObjects count];
-}
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     AGTAnnotationCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
@@ -134,7 +126,9 @@ static NSString * const reuseIdentifier = @"annotationCell";
 
     
     
-    AGTAnnotations *annotation = [AGTAnnotations annotationWithBook:self.book context:self.fetchedResultsController.managedObjectContext];
+    AGTAnnotations *annotation = [AGTAnnotations annotationWithBook:self.book
+                                                            context:self.fetchedResultsController.managedObjectContext];
+    
     AGTAnnotationViewController * aVC = [[AGTAnnotationViewController alloc]initWithAnnotation:annotation];
     aVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
  [self presentViewController: aVC animated: YES completion: nil];

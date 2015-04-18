@@ -214,6 +214,7 @@
     layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
     NSFetchRequest *req = [[NSFetchRequest alloc]initWithEntityName:[AGTAnnotations entityName]];
     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTAnnotationsAttributes.creationDate ascending:YES]];
+    req.predicate = [NSPredicate predicateWithFormat:@"book == %@",self.model];
     
     NSFetchedResultsController *frq = [[NSFetchedResultsController alloc]initWithFetchRequest:req
                                                                          managedObjectContext:self.model.managedObjectContext

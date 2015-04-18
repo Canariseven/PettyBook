@@ -18,7 +18,7 @@
 -(id)initWithAnnotation:(AGTAnnotations *)annotation{
         NSString *nibName;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
-        nibName = @"AGTAnnotationViewControllerIPadSize";
+        nibName = @"AGTAnnotationViewControllerIPhoneSize";
     }else{
         nibName = @"AGTAnnotationViewControllerIPhoneSize";
     }
