@@ -34,7 +34,7 @@
 		326EA8511AE1991F00252AC2 /* AGTAnnotationCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 326EA84F1AE1991F00252AC2 /* AGTAnnotationCollectionViewCell.m */; };
 		326EA8521AE1991F00252AC2 /* AGTAnnotationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 326EA8501AE1991F00252AC2 /* AGTAnnotationCollectionViewCell.xib */; };
 		326EA8551AE1AFDB00252AC2 /* AGTAnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326EA8541AE1AFDB00252AC2 /* AGTAnnotationViewController.m */; };
-		326EA8571AE1B01000252AC2 /* AGTAnnotationViewControllerIPhoneSize.xib in Resources */ = {isa = PBXBuildFile; fileRef = 326EA8561AE1B01000252AC2 /* AGTAnnotationViewControllerIPhoneSize.xib */; };
+		326EA8571AE1B01000252AC2 /* AGTAnnotationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 326EA8561AE1B01000252AC2 /* AGTAnnotationViewController.xib */; };
 		326EA85A1AE1C72D00252AC2 /* _AGTMapSnapShot.m in Sources */ = {isa = PBXBuildFile; fileRef = 326EA8581AE1C72D00252AC2 /* _AGTMapSnapShot.m */; };
 		326EA85D1AE1C73D00252AC2 /* AGTMapSnapShot.m in Sources */ = {isa = PBXBuildFile; fileRef = 326EA85C1AE1C73D00252AC2 /* AGTMapSnapShot.m */; };
 		329452B71ADEEF42005EDFA9 /* AGTBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248787A1AC8820100048B99 /* AGTBookViewController.m */; };
@@ -164,7 +164,7 @@
 		326EA8501AE1991F00252AC2 /* AGTAnnotationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTAnnotationCollectionViewCell.xib; sourceTree = "<group>"; };
 		326EA8531AE1AFDB00252AC2 /* AGTAnnotationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTAnnotationViewController.h; sourceTree = "<group>"; };
 		326EA8541AE1AFDB00252AC2 /* AGTAnnotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTAnnotationViewController.m; sourceTree = "<group>"; };
-		326EA8561AE1B01000252AC2 /* AGTAnnotationViewControllerIPhoneSize.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTAnnotationViewControllerIPhoneSize.xib; sourceTree = "<group>"; };
+		326EA8561AE1B01000252AC2 /* AGTAnnotationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTAnnotationViewController.xib; sourceTree = "<group>"; };
 		326EA8581AE1C72D00252AC2 /* _AGTMapSnapShot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AGTMapSnapShot.m; sourceTree = SOURCE_ROOT; };
 		326EA8591AE1C72D00252AC2 /* _AGTMapSnapShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AGTMapSnapShot.h; sourceTree = SOURCE_ROOT; };
 		326EA85B1AE1C73D00252AC2 /* AGTMapSnapShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTMapSnapShot.h; sourceTree = SOURCE_ROOT; };
@@ -627,7 +627,7 @@
 				32B022671AE26B7600CC260F /* AGTAnnotationsCollectionViewController.xib */,
 				326EA8531AE1AFDB00252AC2 /* AGTAnnotationViewController.h */,
 				326EA8541AE1AFDB00252AC2 /* AGTAnnotationViewController.m */,
-				326EA8561AE1B01000252AC2 /* AGTAnnotationViewControllerIPhoneSize.xib */,
+				326EA8561AE1B01000252AC2 /* AGTAnnotationViewController.xib */,
 				32B022691AE26DA300CC260F /* AGTAnnotationViewControllerIPadSize.xib */,
 			);
 			name = Controllers;
@@ -724,7 +724,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				326EA8571AE1B01000252AC2 /* AGTAnnotationViewControllerIPhoneSize.xib in Resources */,
+				326EA8571AE1B01000252AC2 /* AGTAnnotationViewController.xib in Resources */,
 				326EA8521AE1991F00252AC2 /* AGTAnnotationCollectionViewCell.xib in Resources */,
 				32A1EE1E1AD0388B009AE83F /* Reader-Thumbs@2x.png in Resources */,
 				323FB40A1ACB3786006CB368 /* AGTLoadingDataViewController.xib in Resources */,

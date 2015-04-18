@@ -16,13 +16,7 @@
 
 @implementation AGTAnnotationViewController
 -(id)initWithAnnotation:(AGTAnnotations *)annotation{
-        NSString *nibName;
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
-        nibName = @"AGTAnnotationViewControllerIPhoneSize";
-    }else{
-        nibName = @"AGTAnnotationViewControllerIPhoneSize";
-    }
-    if (self = [super initWithNibName:nibName bundle:nil]) {
+    if (self = [super initWithNibName:nil bundle:nil]) {
         _annotation = annotation;
          if (self) _isPresented = YES;
     }
