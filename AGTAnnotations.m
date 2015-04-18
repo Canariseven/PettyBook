@@ -10,9 +10,10 @@
 +(NSArray *)observableKeyNames{
     return @[AGTAnnotationsAttributes.creationDate,AGTAnnotationsAttributes.text,@"photo.imageData",@"location.latitude",@"location.longitude",@"location.address",@"location.mapSnapShot"];
 }
-+(instancetype) annotationWithText:(NSString *)text
++(instancetype) annotationWithBook:(AGTBook *)book
                            context:(NSManagedObjectContext *)context{
     AGTAnnotations * an = [self insertInManagedObjectContext:context];
+    an.book = book;
     an.creationDate = [NSDate date];
     an.modificationDate = [NSDate date];
     return an;

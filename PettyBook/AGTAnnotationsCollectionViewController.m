@@ -13,12 +13,18 @@
 #import "AGTPhoto.h"
 @interface AGTAnnotationsCollectionViewController ()
 @property (nonatomic, strong)UIImageView *backGround;
+@property (nonatomic, strong)AGTBook *book;
 @end
 
 @implementation AGTAnnotationsCollectionViewController
 
 static NSString * const reuseIdentifier = @"annotationCell";
-
+-(id)initWithFetchedResultsController:(NSFetchedResultsController *)resultsController layout:(UICollectionViewLayout *)layout andBook:(AGTBook *)book{
+    if (self = [super initWithFetchedResultsController:resultsController layout:layout]) {
+        _book = book;
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -125,7 +131,10 @@ static NSString * const reuseIdentifier = @"annotationCell";
 }
 */
 -(void) addNewAnnotation:(id)sender{
-    AGTAnnotations *annotation = [AGTAnnotations annotationWithText:@"" context:self.fetchedResultsController.managedObjectContext];
+
+    
+    
+    AGTAnnotations *annotation = [AGTAnnotations annotationWithBook:self.book context:self.fetchedResultsController.managedObjectContext];
     AGTAnnotationViewController * aVC = [[AGTAnnotationViewController alloc]initWithAnnotation:annotation];
     aVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
  [self presentViewController: aVC animated: YES completion: nil];

@@ -220,7 +220,7 @@
                                                                            sectionNameKeyPath:nil
                                                                                     cacheName:nil];
     
-    AGTAnnotationsCollectionViewController * aCV = [[AGTAnnotationsCollectionViewController alloc]initWithFetchedResultsController:frq layout:layout];
+    AGTAnnotationsCollectionViewController * aCV = [[AGTAnnotationsCollectionViewController alloc]initWithFetchedResultsController:frq layout:layout andBook:self.model];
 
     [self.navigationController pushViewController:aCV animated:YES];
     
