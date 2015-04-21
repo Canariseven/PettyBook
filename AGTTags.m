@@ -8,7 +8,7 @@
 
 @implementation AGTTags
 +(NSArray *)observableKeyNames{
-    return @[AGTTagsAttributes.tags,AGTTagsRelationships.books];
+    return @[AGTTagsAttributes.tags];
 }
 +(instancetype)tagWithTag:(NSString *)tag book:(AGTBook *)book context:(NSManagedObjectContext *)context{
     // Buscamos el tag

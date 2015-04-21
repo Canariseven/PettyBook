@@ -11,6 +11,9 @@
 #import "AGTAnnotationViewController.h"
 #import "AGTAnnotations.h"
 #import "AGTPhoto.h"
+#import "AGTMapSnapShot.h"
+#import "AGTLocation.h"
+
 @interface AGTAnnotationsCollectionViewController ()
 @property (nonatomic, strong)UIImageView *backGround;
 @property (nonatomic, strong)AGTBook *book;
@@ -56,23 +59,11 @@ static NSString * const reuseIdentifier = @"annotationCell";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    
     CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     self.backGround.frame = frame;
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
-
-
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     AGTAnnotationCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
@@ -80,7 +71,13 @@ static NSString * const reuseIdentifier = @"annotationCell";
     
     cell.photoAnnotation.image = annotation.photo.image;
     cell.textAnnotation.text = annotation.text;
-    cell.mapSnapShot.image = [UIImage imageNamed:@"iconBook"];
+    cell.mapSnapShot.image = annotation.location.mapSnapShot.image;
+    if (annotation.photo.image == nil) {
+        cell.photoAnnotation.image = [UIImage imageNamed:@"clearPhoto"];
+    }
+    if (annotation.location.mapSnapShot.image == nil) {
+        cell.mapSnapShot.image = [UIImage imageNamed:@"clearMap"];
+    }
     // Configure the cell
     NSDateFormatter *fmt = [[NSDateFormatter alloc]init];
     fmt.timeStyle = NSDateFormatterMediumStyle;
@@ -92,36 +89,10 @@ static NSString * const reuseIdentifier = @"annotationCell";
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     AGTAnnotations * annotation = [self.fetchedResultsController objectAtIndexPath:indexPath];
     AGTAnnotationViewController * aVC = [[AGTAnnotationViewController alloc]initWithAnnotation:annotation];
-    [self.navigationController pushViewController:aVC animated:YES];
-}
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
+    aVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController: aVC animated: YES completion: nil];
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 -(void) addNewAnnotation:(id)sender{
 
     
@@ -131,7 +102,7 @@ static NSString * const reuseIdentifier = @"annotationCell";
     
     AGTAnnotationViewController * aVC = [[AGTAnnotationViewController alloc]initWithAnnotation:annotation];
     aVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
- [self presentViewController: aVC animated: YES completion: nil];
+    [self presentViewController: aVC animated: YES completion: nil];
 //    [self.navigationController pushViewController:aVC animated:YES];
 }
 

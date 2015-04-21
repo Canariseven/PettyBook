@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AGTMapLocationViewController">
+            <connections>
+                <outlet property="mapView" destination="N91-ne-Vmo" id="eb6-b0-WFM"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ayp-YG-xc0">
+                    <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Uvg-fh-UaN"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="eHa-MB-h7n"/>
+                        <barButtonItem title="Item" systemItem="save" id="BuX-bx-323">
+                            <color key="tintColor" red="0.4549019608" green="0.87843137250000003" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="saveMap:" destination="-1" id="hku-B1-bCa"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="9K6-gK-qXS"/>
+                    </items>
+                    <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                </toolbar>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyWood" translatesAutoresizingMaskIntoConstraints="NO" id="uus-wA-ov2">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                </imageView>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="N91-ne-Vmo">
+                    <rect key="frame" x="46" y="35" width="508" height="485"/>
+                </mapView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Ayp-YG-xc0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="51Q-LQ-5gm"/>
+                <constraint firstItem="N91-ne-Vmo" firstAttribute="height" secondItem="uus-wA-ov2" secondAttribute="height" constant="-71" id="EMG-dD-wyU">
+                    <variation key="heightClass=regular-widthClass=compact" constant="-200"/>
+                </constraint>
+                <constraint firstAttribute="trailing" secondItem="uus-wA-ov2" secondAttribute="trailing" id="PSO-19-YyH"/>
+                <constraint firstItem="Ayp-YG-xc0" firstAttribute="top" secondItem="uus-wA-ov2" secondAttribute="bottom" id="Tst-Oi-Ndq"/>
+                <constraint firstItem="Ayp-YG-xc0" firstAttribute="top" secondItem="uus-wA-ov2" secondAttribute="bottom" id="X9a-mv-H8l"/>
+                <constraint firstItem="N91-ne-Vmo" firstAttribute="centerY" secondItem="uus-wA-ov2" secondAttribute="centerY" constant="-0.5" id="YFD-pV-0GV"/>
+                <constraint firstAttribute="bottom" secondItem="Ayp-YG-xc0" secondAttribute="bottom" id="ed2-Q3-529"/>
+                <constraint firstItem="uus-wA-ov2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hg0-VM-6I8"/>
+                <constraint firstItem="N91-ne-Vmo" firstAttribute="centerX" secondItem="uus-wA-ov2" secondAttribute="centerX" id="hgI-hB-7Op"/>
+                <constraint firstAttribute="trailing" secondItem="Ayp-YG-xc0" secondAttribute="trailing" id="jjR-1L-Y8r"/>
+                <constraint firstItem="N91-ne-Vmo" firstAttribute="width" secondItem="uus-wA-ov2" secondAttribute="width" constant="-92" id="nsd-kT-JKm"/>
+                <constraint firstItem="uus-wA-ov2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tV5-g8-keA"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="greyWood" width="743" height="690"/>
+    </resources>
+</document>

@@ -12,6 +12,8 @@
 #import "AGTLibraryTableViewCell.h"
 #import "AGTDataSourceAndDelegateTableView.h"
 #import "AGTTags.h"
+
+
 @interface AGTLibraryTableViewController()
 // Creo la propiedad para el controlador de la tableView
 
@@ -36,6 +38,7 @@
     self.tableView.delegate = self.controllerOfTable;
     self.tableView.dataSource = self.controllerOfTable;
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logoPettyBook"]];
+    self.searchBar.delegate = self;
 
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -46,6 +49,38 @@
     [self tearDownKVO];
     
 }
+
+
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [self.searchBar resignFirstResponder];
+    [self searchOnStack:searchBar.text];
+}
+
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    
+}
+
+-(void)searchOnStack:(NSString *)stringSearch{
+    NSFetchRequest *req = [[NSFetchRequest alloc]initWithEntityName:[AGTTags entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagsAttributes.tags ascending:YES]];
+    
+    NSPredicate *predicateTitle=[NSPredicate predicateWithFormat:@"books.title contains [cd] %@",stringSearch];
+    NSPredicate *predicateTags=[NSPredicate predicateWithFormat:@"tags contains [cd] %@",stringSearch];
+
+    req.predicate =[NSCompoundPredicate orPredicateWithSubpredicates:@[predicateTitle, predicateTags]];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:req managedObjectContext:self.fetchedResultsController.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    NSError *error;
+    [self.fetchedResultsController performFetch:&error];
+    self.controllerOfTable.fetchedResultsController = self.fetchedResultsController;
+    [self.tableView reloadData];
+}
+
 -(void)setupKVO{
     NSArray *keys = [AGTTags observableKeyNames];
     AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:0];

@@ -80,6 +80,9 @@
 		32A1EE221AD038E2009AE83F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A1EE211AD038E2009AE83F /* QuartzCore.framework */; };
 		32A1EE241AD038EA009AE83F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A1EE231AD038EA009AE83F /* MessageUI.framework */; };
 		32A1EE261AD038F0009AE83F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A1EE251AD038F0009AE83F /* ImageIO.framework */; };
+		32AFA1EF1AE41B2800D0C6C8 /* AGTMapLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AFA1ED1AE41B2800D0C6C8 /* AGTMapLocationViewController.m */; };
+		32AFA1F01AE41B2800D0C6C8 /* AGTMapLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32AFA1EE1AE41B2800D0C6C8 /* AGTMapLocationViewController.xib */; };
+		32AFA1F21AE4208100D0C6C8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AFA1F11AE4208100D0C6C8 /* MapKit.framework */; };
 		32B022681AE26B7600CC260F /* AGTAnnotationsCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B022671AE26B7600CC260F /* AGTAnnotationsCollectionViewController.xib */; };
 		32B0226A1AE26DA300CC260F /* AGTAnnotationViewControllerIPadSize.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B022691AE26DA300CC260F /* AGTAnnotationViewControllerIPadSize.xib */; };
 		32B022781AE2705A00CC260F /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B022711AE2705A00CC260F /* TPKeyboardAvoidingCollectionView.m */; };
@@ -88,6 +91,8 @@
 		32B0227B1AE2705A00CC260F /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B022771AE2705A00CC260F /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		32B05BFB1ACFD4D800435508 /* AGTPDFReaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */; };
 		32B689E61ACC749300FE4014 /* services.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B689E51ACC749300FE4014 /* services.m */; };
+		32C4432A1AE406A600103F60 /* AGTTakeImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C443281AE406A600103F60 /* AGTTakeImageViewController.m */; };
+		32C4432B1AE406A600103F60 /* AGTTakeImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32C443291AE406A600103F60 /* AGTTakeImageViewController.xib */; };
 		32D16B931AC8736F00F265E5 /* AGTLibraryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D16B921AC8736F00F265E5 /* AGTLibraryTableViewCell.xib */; };
 		32D16B971AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D16B961AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m */; };
 		32DC7CD01AC7126600A074E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DC7CCF1AC7126600A074E8 /* main.m */; };
@@ -232,6 +237,10 @@
 		32A1EE211AD038E2009AE83F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		32A1EE231AD038EA009AE83F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		32A1EE251AD038F0009AE83F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		32AFA1EC1AE41B2800D0C6C8 /* AGTMapLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTMapLocationViewController.h; sourceTree = "<group>"; };
+		32AFA1ED1AE41B2800D0C6C8 /* AGTMapLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTMapLocationViewController.m; sourceTree = "<group>"; };
+		32AFA1EE1AE41B2800D0C6C8 /* AGTMapLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTMapLocationViewController.xib; sourceTree = "<group>"; };
+		32AFA1F11AE4208100D0C6C8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		32B022671AE26B7600CC260F /* AGTAnnotationsCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTAnnotationsCollectionViewController.xib; sourceTree = "<group>"; };
 		32B022691AE26DA300CC260F /* AGTAnnotationViewControllerIPadSize.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTAnnotationViewControllerIPadSize.xib; sourceTree = "<group>"; };
 		32B022701AE2705A00CC260F /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingCollectionView.h; sourceTree = "<group>"; };
@@ -247,6 +256,9 @@
 		32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTPDFReaderViewController.xib; sourceTree = "<group>"; };
 		32B689E41ACC749300FE4014 /* services.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = services.h; sourceTree = "<group>"; };
 		32B689E51ACC749300FE4014 /* services.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = services.m; sourceTree = "<group>"; };
+		32C443271AE406A600103F60 /* AGTTakeImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTTakeImageViewController.h; sourceTree = "<group>"; };
+		32C443281AE406A600103F60 /* AGTTakeImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTTakeImageViewController.m; sourceTree = "<group>"; };
+		32C443291AE406A600103F60 /* AGTTakeImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTTakeImageViewController.xib; sourceTree = "<group>"; };
 		32D16B921AC8736F00F265E5 /* AGTLibraryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTLibraryTableViewCell.xib; sourceTree = "<group>"; };
 		32D16B951AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTDataSourceAndDelegateTableView.h; sourceTree = "<group>"; };
 		32D16B961AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTDataSourceAndDelegateTableView.m; sourceTree = "<group>"; };
@@ -278,6 +290,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32AFA1F21AE4208100D0C6C8 /* MapKit.framework in Frameworks */,
 				32A1EE261AD038F0009AE83F /* ImageIO.framework in Frameworks */,
 				32A1EE241AD038EA009AE83F /* MessageUI.framework in Frameworks */,
 				32A1EE221AD038E2009AE83F /* QuartzCore.framework in Frameworks */,
@@ -470,12 +483,20 @@
 		32A1EE271AD0390D009AE83F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32AFA1F11AE4208100D0C6C8 /* MapKit.framework */,
 				32A1EE251AD038F0009AE83F /* ImageIO.framework */,
 				32A1EE231AD038EA009AE83F /* MessageUI.framework */,
 				32A1EE211AD038E2009AE83F /* QuartzCore.framework */,
 				32A1EE1F1AD038D3009AE83F /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		32AFA1E21AE415E900D0C6C8 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		32B0226B1AE26FF900CC260F /* Annotations */ = {
@@ -537,6 +558,7 @@
 		32DC7CCC1AC7126600A074E8 /* PettyBook */ = {
 			isa = PBXGroup;
 			children = (
+				32AFA1E21AE415E900D0C6C8 /* Categories */,
 				32A1EDB11AD037CA009AE83F /* VFR-Reader */,
 				32A1EDB01AD01BC8009AE83F /* Utils */,
 				32DC7CFC1AC73AB800A074E8 /* Celdas */,
@@ -585,6 +607,8 @@
 				326436F81ADD9A6100FE2FB5 /* Machinne Models */,
 				326436D71ADD9A4200FE2FB5 /* AGTAnnotations.h */,
 				326436D81ADD9A4200FE2FB5 /* AGTAnnotations.m */,
+				326EA85B1AE1C73D00252AC2 /* AGTMapSnapShot.h */,
+				326EA85C1AE1C73D00252AC2 /* AGTMapSnapShot.m */,
 				326436D91ADD9A4200FE2FB5 /* AGTLocation.h */,
 				326436DA1ADD9A4200FE2FB5 /* AGTLocation.m */,
 				326436DE1ADD9A4200FE2FB5 /* AGTBook.h */,
@@ -599,8 +623,6 @@
 				32DC7CEF1AC7128900A074E8 /* AGTBookA.m */,
 				32DC7CF11AC7133E00A074E8 /* AGTLibrary.h */,
 				32DC7CF21AC7133E00A074E8 /* AGTLibrary.m */,
-				326EA85B1AE1C73D00252AC2 /* AGTMapSnapShot.h */,
-				326EA85C1AE1C73D00252AC2 /* AGTMapSnapShot.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -629,6 +651,12 @@
 				326EA8541AE1AFDB00252AC2 /* AGTAnnotationViewController.m */,
 				326EA8561AE1B01000252AC2 /* AGTAnnotationViewController.xib */,
 				32B022691AE26DA300CC260F /* AGTAnnotationViewControllerIPadSize.xib */,
+				32C443271AE406A600103F60 /* AGTTakeImageViewController.h */,
+				32C443281AE406A600103F60 /* AGTTakeImageViewController.m */,
+				32C443291AE406A600103F60 /* AGTTakeImageViewController.xib */,
+				32AFA1EC1AE41B2800D0C6C8 /* AGTMapLocationViewController.h */,
+				32AFA1ED1AE41B2800D0C6C8 /* AGTMapLocationViewController.m */,
+				32AFA1EE1AE41B2800D0C6C8 /* AGTMapLocationViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -726,6 +754,7 @@
 			files = (
 				326EA8571AE1B01000252AC2 /* AGTAnnotationViewController.xib in Resources */,
 				326EA8521AE1991F00252AC2 /* AGTAnnotationCollectionViewCell.xib in Resources */,
+				32AFA1F01AE41B2800D0C6C8 /* AGTMapLocationViewController.xib in Resources */,
 				32A1EE1E1AD0388B009AE83F /* Reader-Thumbs@2x.png in Resources */,
 				323FB40A1ACB3786006CB368 /* AGTLoadingDataViewController.xib in Resources */,
 				32DC7CD81AC7126600A074E8 /* LaunchScreen.xib in Resources */,
@@ -742,6 +771,7 @@
 				32A1EE111AD0388B009AE83F /* Reader-Button-N.png in Resources */,
 				3248787D1AC8820100048B99 /* AGTBookViewController.xib in Resources */,
 				32A1EE1A1AD0388B009AE83F /* Reader-Mark-Y@2x.png in Resources */,
+				32C4432B1AE406A600103F60 /* AGTTakeImageViewController.xib in Resources */,
 				32A1EE1C1AD0388B009AE83F /* Reader-Print@2x.png in Resources */,
 				3248788E1AC8989C00048B99 /* AGTTagTableViewCell.xib in Resources */,
 				32A1EE1B1AD0388B009AE83F /* Reader-Print.png in Resources */,
@@ -794,6 +824,7 @@
 				32A1EDF61AD03844009AE83F /* ReaderThumbFetch.m in Sources */,
 				323FB4081ACB2ADB006CB368 /* AGTLoadingDataViewController.m in Sources */,
 				326437041ADDB93D00FE2FB5 /* AGTEntityObserver.m in Sources */,
+				32C4432A1AE406A600103F60 /* AGTTakeImageViewController.m in Sources */,
 				32A1EDAF1ACFEC09009AE83F /* Utils.m in Sources */,
 				32D16B971AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m in Sources */,
 				32A1EDDB1AD03834009AE83F /* ThumbsViewController.m in Sources */,
@@ -815,6 +846,7 @@
 				32A1EDD81AD03834009AE83F /* ReaderContentView.m in Sources */,
 				32DC7CF71AC7350C00A074E8 /* AGTLibraryTableViewController.m in Sources */,
 				32A1EDF31AD03844009AE83F /* ReaderThumbRequest.m in Sources */,
+				32AFA1EF1AE41B2800D0C6C8 /* AGTMapLocationViewController.m in Sources */,
 				32A1EDF41AD03844009AE83F /* ReaderThumbCache.m in Sources */,
 				326EA85A1AE1C72D00252AC2 /* _AGTMapSnapShot.m in Sources */,
 				32DC7CD31AC7126600A074E8 /* AppDelegate.m in Sources */,

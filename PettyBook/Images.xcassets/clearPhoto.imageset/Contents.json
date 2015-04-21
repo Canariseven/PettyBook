@@ -3,16 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "notesCell2.png"
+      "filename" : "clearPhoto.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "notesCell2@2x.png"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "clearPhoto@2x.png"
     }
   ],
   "info" : {

@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>9B1652C9-4625-4308-999E-E99C21A1CE96</string>
 	<key>IDESourceControlProjectName</key>
-	<string>PettyBook</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>5FFBEC9AC4572E37D1F4CD2E4601AC3D1F075B16</key>
 		<string>https://github.com/Canariseven/PettyBook.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>PettyBook.xcodeproj</string>
+	<string>PettyBook.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>5FFBEC9AC4572E37D1F4CD2E4601AC3D1F075B16</key>
