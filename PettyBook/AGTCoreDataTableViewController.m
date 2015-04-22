@@ -7,8 +7,8 @@
 //
 
 #import "AGTCoreDataTableViewController.h"
-#import "AGTTags.h"
-#import "AGTBook.h"
+
+
 
 @interface AGTCoreDataTableViewController()
 @property (nonatomic) BOOL beganUpdates;
@@ -71,22 +71,24 @@
 
 #pragma mark - UITableViewDataSource
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    AGTTags *tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
-    return tag.books.count;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [[self.fetchedResultsController sections] count];
 }
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return [self.fetchedResultsController.fetchedObjects count];
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
-	return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
+    return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
@@ -106,8 +108,8 @@
 
 - (void)controller:(NSFetchedResultsController *)controller
   didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-		   atIndex:(NSUInteger)sectionIndex
-	 forChangeType:(NSFetchedResultsChangeType)type
+           atIndex:(NSUInteger)sectionIndex
+     forChangeType:(NSFetchedResultsChangeType)type
 {
     if (!self.suspendAutomaticTrackingOfChangesInManagedObjectContext)
     {
@@ -120,9 +122,6 @@
             case NSFetchedResultsChangeDelete:
                 [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
                 break;
-            default:
-                // other 2 changes are irrelevant in this case
-                break;
         }
     }
 }
@@ -130,9 +129,9 @@
 
 - (void)controller:(NSFetchedResultsController *)controller
    didChangeObject:(id)anObject
-	   atIndexPath:(NSIndexPath *)indexPath
-	 forChangeType:(NSFetchedResultsChangeType)type
-	  newIndexPath:(NSIndexPath *)newIndexPath
+       atIndexPath:(NSIndexPath *)indexPath
+     forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
 {
     if (!self.suspendAutomaticTrackingOfChangesInManagedObjectContext)
     {
@@ -146,7 +145,7 @@
                 [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
                 break;
                 
-            case NSFetchedResultsChangeUpdate:            
+            case NSFetchedResultsChangeUpdate:
                 [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
                 break;
                 
@@ -160,11 +159,7 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    if (self.beganUpdates) {
-        [self.tableView endUpdates];
-        NSIndexPath * indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
-        [self.tableView scrollToRowAtIndexPath:indexpath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    }
+    if (self.beganUpdates) [self.tableView endUpdates];
 }
 
 - (void)endSuspensionOfUpdatesDueToContextChanges
@@ -179,6 +174,18 @@
     } else {
         [self performSelector:@selector(endSuspensionOfUpdatesDueToContextChanges) withObject:0 afterDelay:0];
     }
+}
+
+#pragma mark - UndoManagement
+-(void) motionEnded:(UIEventSubtype)motion
+          withEvent:(UIEvent *)event{
+    
+    if (motion == UIEventSubtypeMotionShake) {
+        // Se ha producido una sacudida
+        [self.fetchedResultsController.managedObjectContext.undoManager undo];
+    }
+    
+    
 }
 
 @end

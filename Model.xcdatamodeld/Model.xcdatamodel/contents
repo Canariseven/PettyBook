@@ -28,7 +28,7 @@
         <relationship name="location" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="mapSnapShot" inverseEntity="Location" syncable="YES"/>
     </entity>
     <entity name="Pdf" representedClassName="AGTPdf" syncable="YES">
-        <attribute name="pdfURL" attributeType="String" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="pdfData" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="pdf" inverseEntity="Book" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="AGTPhoto" syncable="YES">

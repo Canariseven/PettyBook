@@ -8,7 +8,7 @@
 
 @implementation AGTTags
 +(NSArray *)observableKeyNames{
-    return @[AGTTagsAttributes.tags];
+    return @[AGTTagsAttributes.tags, AGTTagsRelationships.books];
 }
 +(instancetype)tagWithTag:(NSString *)tag book:(AGTBook *)book context:(NSManagedObjectContext *)context{
     // Buscamos el tag
@@ -76,4 +76,23 @@
 
     }
 }
+-(NSString *)normalizedName{
+    return [self.tags capitalizedString];
+}
+
+
+-(NSComparisonResult)compare:(AGTTags *)other{
+    static NSString *fav = @"Favorite";
+    
+    if ([[self normalizedName] isEqualToString:[other normalizedName]]) {
+        return NSOrderedSame;
+    }else if ([[self normalizedName] isEqualToString:fav]){
+        return NSOrderedAscending;
+    }else if ([[other normalizedName] isEqualToString:fav]) {
+        return NSOrderedDescending;
+    }else{
+        return [self.tags compare:[other normalizedName]];
+    }
+}
+
 @end

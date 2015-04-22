@@ -14,7 +14,7 @@
 #import "AGTTags.h"
 
 
-@interface AGTLibraryTableViewController()
+@interface AGTLibraryTableViewController()<UITextFieldDelegate>
 // Creo la propiedad para el controlador de la tableView
 
 @property (weak, nonatomic) IBOutlet UIImageView *backGroundImageView;
@@ -39,36 +39,33 @@
     self.tableView.dataSource = self.controllerOfTable;
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logoPettyBook"]];
     self.searchBar.delegate = self;
-
+    
+    
+    // Lo ideal sería mostrarlo si hemos realizado una búsqueda y quitarlo cuando volvemos al estado normal.
+    UIBarButtonItem *refresh = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(reloadDataInit:)];
+    self.navigationItem.rightBarButtonItem = refresh;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setupKVO];
+    
+
+
 }
 -(void)dealloc{
     [self tearDownKVO];
     
 }
 
-
-
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [self.searchBar resignFirstResponder];
     [self searchOnStack:searchBar.text];
 }
 
--(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    
-}
-
--(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    
-}
 
 -(void)searchOnStack:(NSString *)stringSearch{
     NSFetchRequest *req = [[NSFetchRequest alloc]initWithEntityName:[AGTTags entityName]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagsAttributes.tags ascending:YES]];
-    
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagsAttributes.tags ascending:YES selector:@selector(compare:)]];
     NSPredicate *predicateTitle=[NSPredicate predicateWithFormat:@"books.title contains [cd] %@",stringSearch];
     NSPredicate *predicateTags=[NSPredicate predicateWithFormat:@"tags contains [cd] %@",stringSearch];
 
@@ -108,8 +105,11 @@
                       context:(void *)context{
     
     if ([object isKindOfClass:[AGTTags class]]) {
-        NSIndexSet *set = [[NSIndexSet alloc]initWithIndex:0];
-        [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationAutomatic];
+        // TENGO QUE OBSERVAR LOS CAMBIOS DE FAVORITOS PARA QUE LA TABLA LOS PINTE
+        // PIENSO QUE NO DEBERIA HACER FALTA PERO NO SE QUE ES LO QUE PASA
+        // PORQUE AGTCoreDataTabl.... NO LO HACE
+        [self.tableView reloadData];
+
     }
 }
 

@@ -45,7 +45,7 @@
     UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(takeImage:)];
     [self.imageAnnotation addGestureRecognizer:tapImage];
     self.imageAnnotation.userInteractionEnabled = YES;
-    
+
     UITapGestureRecognizer *tapMap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(takeSnapShot:)];
     [self.mapSnapShotAnnotation addGestureRecognizer:tapMap];
     self.mapSnapShotAnnotation.userInteractionEnabled = YES;
@@ -57,6 +57,7 @@
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [self stopObservingSnapshot];
+    [self saveDatas];
 
 }
 
@@ -117,10 +118,14 @@
 }
 
 - (IBAction)saveButton:(id)sender {
+    [self saveDatas];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)saveDatas{
     self.annotation.photo.image = self.imageAnnotation.image;
     self.annotation.location.mapSnapShot.image = self.mapSnapShotAnnotation.image;
     self.annotation.text = self.textAnnotation.text;
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

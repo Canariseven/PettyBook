@@ -98,6 +98,7 @@
     self.circle.layer.cornerRadius = 10;
     self.circle.layer.borderColor = [UIColor whiteColor].CGColor;
     self.circle.layer.borderWidth = 2;
+    
     self.numberOfTags = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     [self.numberOfTags setFont:[UIFont fontWithName:@"Arial" size:12]];
     self.numberOfTags.textAlignment = NSTextAlignmentCenter;

@@ -46,8 +46,6 @@
     return [self.fetchedResultsController.fetchedObjects count];
 }
 
-
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
     NSArray *arr = [tag.books allObjects];
