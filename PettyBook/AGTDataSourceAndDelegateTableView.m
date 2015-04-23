@@ -80,26 +80,13 @@
     if ([self.delegate respondsToSelector:@selector(dataSourceAndDelegateTableView:didSelectBook:)]) {
         [self.delegate dataSourceAndDelegateTableView:self didSelectBook:book];
     }
-//    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-//    NSNotification *n = [[NSNotification alloc]initWithName:PDF_CHANGED object:book userInfo:nil];
-//    [nc postNotification:n];
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    NSNotification *n = [[NSNotification alloc]initWithName:PDF_CHANGED object:book userInfo:nil];
+    [nc postNotification:n];
     
 }
-//
-//-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//
-//        AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
-//        if ([tag.tags isEqualToString: NAME_TAG_FAVOURITES]) {
-//            NSArray *arr = [tag.books allObjects];
-//            AGTBook *book = [arr objectAtIndex:indexPath.row];
-//            book.isFavourite = NO;
-//        }else{
-//            tableView.editing = NO;
-//        }
-//       
-//    }
-//}
+
+
 -(void) dataSourceAndDelegateTableView:(AGTDataSourceAndDelegateTableView *)dt didSelectBook:(AGTBook *)book{
     AGTBookViewController * bookVC = [[AGTBookViewController alloc] initWithModel:book];
     bookVC.delegate = self.controller;

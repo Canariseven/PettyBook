@@ -7,7 +7,6 @@
 //
 
 #import "AGTLoadingDataViewController.h"
-#import "AGTLibrary.h"
 #import "AGTBook.h"
 #import "AGTTags.h"
 #import "AGTLibraryTableViewController.h"

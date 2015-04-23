@@ -86,9 +86,7 @@
                      ofObject:(id)object
                        change:(NSDictionary *)change
                       context:(void *)context{
-    
     self.modificationDate = [NSDate date];
-    
 }
 
 
@@ -101,9 +99,6 @@
     
     // paramos el location manager, que consume mucha bateria
     [self zapLocationManager];
-    
-    
-    
     if (self.location == nil) {
         // Pillamos la última
         CLLocation *loc = [locations lastObject];
@@ -118,7 +113,6 @@
         // con este if.
         NSLog(@"No deberíamos llegar aquí jamás");
     }
-    
 }
 
 

@@ -10,7 +10,6 @@
 #import "AGTBook.h"
 #import "AGTTagsDataSourceTableView.h"
 #import "AGTTagTableViewCell.h"
-#import "AGTLibrary.h"
 #import "AGTPDFReaderViewController.h"
 #import "ReaderViewController.h"
 #import "Utils.h"

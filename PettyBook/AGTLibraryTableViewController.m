@@ -8,7 +8,6 @@
 
 #import "AGTLibraryTableViewController.h"
 #import "AGTBook.h"
-#import "AGTLibrary.h"
 #import "AGTLibraryTableViewCell.h"
 #import "AGTDataSourceAndDelegateTableView.h"
 #import "AGTTags.h"
@@ -39,8 +38,6 @@
     self.tableView.dataSource = self.controllerOfTable;
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logoPettyBook"]];
     self.searchBar.delegate = self;
-    
-    
     // Lo ideal sería mostrarlo si hemos realizado una búsqueda y quitarlo cuando volvemos al estado normal.
     UIBarButtonItem *refresh = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(reloadDataInit:)];
     self.navigationItem.rightBarButtonItem = refresh;
@@ -62,15 +59,22 @@
     [self searchOnStack:searchBar.text];
 }
 
+-(void)reloadDataInit:(id)sender{
+    NSFetchRequest *req = [[NSFetchRequest alloc]initWithEntityName:[AGTTags entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagsAttributes.tags ascending:YES selector:@selector(compare:)]];
+    self.fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:req managedObjectContext:self.fetchedResultsController.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    NSError *error;
+    [self.fetchedResultsController performFetch:&error];
+    self.controllerOfTable.fetchedResultsController = self.fetchedResultsController;
+    [self.tableView reloadData];
+}
 
 -(void)searchOnStack:(NSString *)stringSearch{
     NSFetchRequest *req = [[NSFetchRequest alloc]initWithEntityName:[AGTTags entityName]];
     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagsAttributes.tags ascending:YES selector:@selector(compare:)]];
     NSPredicate *predicateTitle=[NSPredicate predicateWithFormat:@"books.title contains [cd] %@",stringSearch];
     NSPredicate *predicateTags=[NSPredicate predicateWithFormat:@"tags contains [cd] %@",stringSearch];
-
     req.predicate =[NSCompoundPredicate orPredicateWithSubpredicates:@[predicateTitle, predicateTags]];
-    
     self.fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:req managedObjectContext:self.fetchedResultsController.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     NSError *error;
     [self.fetchedResultsController performFetch:&error];
@@ -109,9 +113,10 @@
         // PIENSO QUE NO DEBERIA HACER FALTA PERO NO SE QUE ES LO QUE PASA
         // PORQUE AGTCoreDataTabl.... NO LO HACE
         [self.tableView reloadData];
-
+       
     }
 }
+
 
 
 @end

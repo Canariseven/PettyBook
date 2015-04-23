@@ -83,7 +83,6 @@
 
 -(NSComparisonResult)compare:(AGTTags *)other{
     static NSString *fav = @"Favorite";
-    
     if ([[self normalizedName] isEqualToString:[other normalizedName]]) {
         return NSOrderedSame;
     }else if ([[self normalizedName] isEqualToString:fav]){

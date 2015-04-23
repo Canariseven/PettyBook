@@ -272,10 +272,6 @@
 		32DC7CDD1AC7126600A074E8 /* PettyBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PettyBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32DC7CE21AC7126600A074E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32DC7CE31AC7126600A074E8 /* PettyBookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PettyBookTests.m; sourceTree = "<group>"; };
-		32DC7CEE1AC7128900A074E8 /* AGTBookA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTBookA.h; sourceTree = "<group>"; };
-		32DC7CEF1AC7128900A074E8 /* AGTBookA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTBookA.m; sourceTree = "<group>"; };
-		32DC7CF11AC7133E00A074E8 /* AGTLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTLibrary.h; sourceTree = "<group>"; };
-		32DC7CF21AC7133E00A074E8 /* AGTLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTLibrary.m; sourceTree = "<group>"; };
 		32DC7CF51AC7350C00A074E8 /* AGTLibraryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTLibraryTableViewController.h; sourceTree = "<group>"; };
 		32DC7CF61AC7350C00A074E8 /* AGTLibraryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTLibraryTableViewController.m; sourceTree = "<group>"; };
 		32DC7CF81AC735F000A074E8 /* AGTLibraryTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTLibraryTableViewController.xib; sourceTree = "<group>"; };
@@ -619,10 +615,6 @@
 				326436E91ADD9A4200FE2FB5 /* AGTPhoto.m */,
 				326436EA1ADD9A4200FE2FB5 /* AGTTags.h */,
 				326436EB1ADD9A4200FE2FB5 /* AGTTags.m */,
-				32DC7CEE1AC7128900A074E8 /* AGTBookA.h */,
-				32DC7CEF1AC7128900A074E8 /* AGTBookA.m */,
-				32DC7CF11AC7133E00A074E8 /* AGTLibrary.h */,
-				32DC7CF21AC7133E00A074E8 /* AGTLibrary.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
