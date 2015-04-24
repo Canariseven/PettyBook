@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AGTCoreDataTableViewController.h"
 
-#define PDF_CHANGED @"pdf_changed"
+#define SELECT_BOOK_CHANGED @"select_book_changed"
 @import CoreData;
 
 @class  AGTLibrary;

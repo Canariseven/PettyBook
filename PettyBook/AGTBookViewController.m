@@ -60,22 +60,16 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
     self.tableView.dataSource = self.DT;
-
     [self setupKVO];
     [self settingsOfViews];
     [self sincronizeDataOfView];
     [self animateViewBook];
     [self addGestureBookImage];
-    
-   
-    
 }
 
--(void)pushToCommentsVC:(id)sender{
-    
-}
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [self tearDownKVO];

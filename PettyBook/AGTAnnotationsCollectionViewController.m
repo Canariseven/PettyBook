@@ -13,6 +13,7 @@
 #import "AGTPhoto.h"
 #import "AGTMapSnapShot.h"
 #import "AGTLocation.h"
+#import "AGTDataSourceAndDelegateTableView.h"
 
 @interface AGTAnnotationsCollectionViewController ()
 @property (nonatomic, strong)UIImageView *backGround;
@@ -51,7 +52,13 @@ static NSString * const reuseIdentifier = @"annotationCell";
     [self.view insertSubview:self.backGround belowSubview:self.collectionView];
     // Do any additional setup after loading the view.
 }
-
+-(void)registerNotification{
+    NSNotificationCenter *n = [NSNotificationCenter defaultCenter];
+    [n addObserver:self selector:@selector(dismissByChangeBook:) name:SELECT_BOOK_CHANGED object:nil];
+}
+-(void)dismissByChangeBook:(NSNotification *)notification{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -89,21 +96,15 @@ static NSString * const reuseIdentifier = @"annotationCell";
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     AGTAnnotations * annotation = [self.fetchedResultsController objectAtIndexPath:indexPath];
     AGTAnnotationViewController * aVC = [[AGTAnnotationViewController alloc]initWithAnnotation:annotation];
-    aVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController: aVC animated: YES completion: nil];
+    [self.navigationController pushViewController:aVC animated:YES];
 }
 
 -(void) addNewAnnotation:(id)sender{
-
-    
-    
     AGTAnnotations *annotation = [AGTAnnotations annotationWithBook:self.book
                                                             context:self.fetchedResultsController.managedObjectContext];
-    
     AGTAnnotationViewController * aVC = [[AGTAnnotationViewController alloc]initWithAnnotation:annotation];
     aVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController: aVC animated: YES completion: nil];
-//    [self.navigationController pushViewController:aVC animated:YES];
+    [self.navigationController pushViewController:aVC animated:YES];
 }
 
 @end

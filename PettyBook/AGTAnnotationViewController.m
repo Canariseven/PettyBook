@@ -31,11 +31,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    
-
 }
-
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -76,10 +72,6 @@
     if (self.mapSnapShotAnnotation.image == nil) {
         self.mapSnapShotAnnotation.image = [UIImage imageNamed:@"clearMap"];
     }
-//    self.mapSnapShotAnnotation.image = self.annotation.location.mapSnapShot;
-//    if (self.imageAnnotation.image == nil) {
-//        self.imageAnnotation.image = [UIImage imageNamed:@"iconBook"];
-//    }
     
     self.textAnnotation.text = self.annotation.text;
     self.photoView.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -107,21 +99,6 @@
     }
 }
 
-- (IBAction)cancelButton:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self.annotation.managedObjectContext deleteObject:self.annotation];
-
-}
-
-- (IBAction)editButton:(id)sender {
-    
-}
-
-- (IBAction)saveButton:(id)sender {
-    [self saveDatas];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 -(void)saveDatas{
     self.annotation.photo.image = self.imageAnnotation.image;
     self.annotation.location.mapSnapShot.image = self.mapSnapShotAnnotation.image;
@@ -131,12 +108,10 @@
 
 #pragma mark -  KVO
 -(void) startObservingSnapshot{
-    
     [self.annotation addObserver:self
                       forKeyPath:[NSString stringWithFormat:@"%@.%@.%@",AGTAnnotationsRelationships.location,AGTLocationRelationships.mapSnapShot,AGTMapSnapShotAttributes.snapShotData]
                     options:NSKeyValueObservingOptionNew
                     context:NULL];
-    
 }
 
 -(void) stopObservingSnapshot{

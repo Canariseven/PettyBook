@@ -25,8 +25,5 @@
 
 @property (nonatomic, strong) AGTAnnotations * annotation;
 -(id)initWithAnnotation:(AGTAnnotations *)annotation;
-- (IBAction)cancelButton:(id)sender;
-- (IBAction)editButton:(id)sender;
-- (IBAction)saveButton:(id)sender;
 
 @end

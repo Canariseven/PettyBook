@@ -90,9 +90,6 @@
 }
 
 
-
-
-
 #pragma mark - CLLocationManagerDelegate
 -(void) locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray *)locations{
@@ -100,17 +97,10 @@
     // paramos el location manager, que consume mucha bateria
     [self zapLocationManager];
     if (self.location == nil) {
-        // Pillamos la última
         CLLocation *loc = [locations lastObject];
-        
-        // Creamos una AGTLocation
         self.location = [AGTLocation locationWithCLLocation:loc
                                                     forAnnotation:self];
     }else{
-        // Hay un bug desde iOS 4 que hace que a veces un location mana
-        // siga mandando mensajes después de habersele dicho que pare.
-        // No está claro que esté del todo resuelto, así que nos precavemos
-        // con este if.
         NSLog(@"No deberíamos llegar aquí jamás");
     }
 }

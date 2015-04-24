@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AGTTakeImageViewController">
             <connections>
+                <outlet property="activityView" destination="Tbv-ys-isE" id="Iig-Rp-ooT"/>
                 <outlet property="backPhotoView" destination="Mjg-wH-nF2" id="zAo-hZ-qGd"/>
                 <outlet property="frontPhotoView" destination="N5N-YI-7xJ" id="eGO-nO-55d"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -62,6 +63,13 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N5N-YI-7xJ">
                     <rect key="frame" x="70" y="58" width="460" height="440"/>
                 </imageView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Tbv-ys-isE">
+                    <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                    <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <variation key="widthClass=regular" fixedFrame="YES">
+                        <rect key="frame" x="382" y="259" width="37" height="37"/>
+                    </variation>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -95,6 +103,16 @@
                 </constraint>
                 <constraint firstItem="dCF-NE-zb7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zLS-zL-8jb"/>
             </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="Tbv-ys-isE"/>
+                </mask>
+            </variation>
+            <variation key="widthClass=regular">
+                <mask key="subviews">
+                    <include reference="Tbv-ys-isE"/>
+                </mask>
+            </variation>
         </view>
     </objects>
     <resources>

@@ -81,7 +81,7 @@
         [self.delegate dataSourceAndDelegateTableView:self didSelectBook:book];
     }
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    NSNotification *n = [[NSNotification alloc]initWithName:PDF_CHANGED object:book userInfo:nil];
+    NSNotification *n = [[NSNotification alloc]initWithName:SELECT_BOOK_CHANGED object:book userInfo:nil];
     [nc postNotification:n];
     
 }

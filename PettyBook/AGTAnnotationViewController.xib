@@ -24,42 +24,6 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyWood" translatesAutoresizingMaskIntoConstraints="NO" id="cXQ-Tt-GCn">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0jI-7q-rt6">
-                    <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="1Zd-Gw-mOQ"/>
-                        <constraint firstAttribute="height" constant="44" id="qHi-Ij-yEq"/>
-                    </constraints>
-                    <items>
-                        <barButtonItem systemItem="cancel" id="Kiz-EN-gPn">
-                            <connections>
-                                <action selector="cancelButton:" destination="-1" id="ZgT-E0-cku"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="TeO-tr-2fj"/>
-                        <barButtonItem systemItem="edit" id="D5j-pI-2ge">
-                            <connections>
-                                <action selector="editButton:" destination="-1" id="Zvj-lW-MrI"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="3eV-IE-mGG"/>
-                        <barButtonItem systemItem="save" id="9kU-9Y-S3l">
-                            <connections>
-                                <action selector="saveButton:" destination="-1" id="PJj-ZH-Tzt"/>
-                            </connections>
-                        </barButtonItem>
-                    </items>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="qHi-Ij-yEq"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=regular-widthClass=compact">
-                        <mask key="constraints">
-                            <include reference="qHi-Ij-yEq"/>
-                        </mask>
-                    </variation>
-                </toolbar>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="enC-2g-9OE" customClass="TPKeyboardAvoidingScrollView">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                     <subviews>
@@ -237,7 +201,7 @@
                         <constraint firstAttribute="bottom" secondItem="lxD-U2-SPZ" secondAttribute="bottom" constant="30" id="Lsd-7x-ACq">
                             <variation key="heightClass=compact" constant="19"/>
                             <variation key="heightClass=regular" constant="49"/>
-                            <variation key="widthClass=regular" constant="34"/>
+                            <variation key="widthClass=regular" constant="78"/>
                             <variation key="heightClass=compact-widthClass=compact" constant="8"/>
                             <variation key="heightClass=compact-widthClass=regular" constant="38"/>
                             <variation key="heightClass=regular-widthClass=compact" constant="23"/>
@@ -290,6 +254,7 @@
                         <constraint firstAttribute="bottom" secondItem="Xw2-1I-VdD" secondAttribute="bottom" constant="242" id="VxJ-zY-PcQ">
                             <variation key="heightClass=compact" constant="19"/>
                             <variation key="heightClass=regular" constant="319"/>
+                            <variation key="widthClass=regular" constant="286"/>
                             <variation key="heightClass=compact-widthClass=compact" constant="8"/>
                             <variation key="heightClass=compact-widthClass=regular" constant="38"/>
                             <variation key="heightClass=regular-widthClass=compact" constant="315"/>
@@ -414,17 +379,13 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="0jI-7q-rt6" secondAttribute="bottom" id="0G4-0U-wT7"/>
                 <constraint firstItem="cXQ-Tt-GCn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7jr-e4-Gue"/>
                 <constraint firstItem="cXQ-Tt-GCn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9XS-xP-9Ha"/>
                 <constraint firstItem="enC-2g-9OE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FVr-t8-Xyx"/>
-                <constraint firstItem="0jI-7q-rt6" firstAttribute="top" secondItem="enC-2g-9OE" secondAttribute="bottom" id="L8H-27-7ZB"/>
                 <constraint firstAttribute="trailing" secondItem="enC-2g-9OE" secondAttribute="trailing" id="Q1P-aR-9yn"/>
                 <constraint firstItem="enC-2g-9OE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QpR-uv-LWl"/>
-                <constraint firstAttribute="centerX" secondItem="0jI-7q-rt6" secondAttribute="centerX" id="Sgs-dN-XFd"/>
-                <constraint firstItem="0jI-7q-rt6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="YlQ-zc-Sqz"/>
+                <constraint firstItem="enC-2g-9OE" firstAttribute="bottom" secondItem="cXQ-Tt-GCn" secondAttribute="bottom" id="Vvb-qP-wXt"/>
                 <constraint firstAttribute="trailing" secondItem="cXQ-Tt-GCn" secondAttribute="trailing" id="aU6-WH-dLm"/>
-                <constraint firstAttribute="trailing" secondItem="0jI-7q-rt6" secondAttribute="trailing" id="gaS-4S-5Hb"/>
                 <constraint firstItem="enC-2g-9OE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="lEu-0r-p1X"/>
                 <constraint firstAttribute="bottom" secondItem="cXQ-Tt-GCn" secondAttribute="bottom" id="p2P-R3-GFY"/>
             </constraints>
@@ -432,6 +393,12 @@
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="FVr-t8-Xyx"/>
+                    <exclude reference="Vvb-qP-wXt"/>
+                </mask>
+            </variation>
+            <variation key="widthClass=regular">
+                <mask key="constraints">
+                    <include reference="Vvb-qP-wXt"/>
                 </mask>
             </variation>
             <variation key="heightClass=compact-widthClass=compact">

@@ -37,6 +37,9 @@
 		326EA8571AE1B01000252AC2 /* AGTAnnotationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 326EA8561AE1B01000252AC2 /* AGTAnnotationViewController.xib */; };
 		326EA85A1AE1C72D00252AC2 /* _AGTMapSnapShot.m in Sources */ = {isa = PBXBuildFile; fileRef = 326EA8581AE1C72D00252AC2 /* _AGTMapSnapShot.m */; };
 		326EA85D1AE1C73D00252AC2 /* AGTMapSnapShot.m in Sources */ = {isa = PBXBuildFile; fileRef = 326EA85C1AE1C73D00252AC2 /* AGTMapSnapShot.m */; };
+		32772C971AEAAF21001EAF91 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 32772C921AEAAF21001EAF91 /* UIImage+Alpha.m */; };
+		32772C981AEAAF21001EAF91 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 32772C941AEAAF21001EAF91 /* UIImage+Resize.m */; };
+		32772C991AEAAF21001EAF91 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32772C961AEAAF21001EAF91 /* UIImage+RoundedCorner.m */; };
 		329452B71ADEEF42005EDFA9 /* AGTBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248787A1AC8820100048B99 /* AGTBookViewController.m */; };
 		32A1EDAF1ACFEC09009AE83F /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDAE1ACFEC09009AE83F /* Utils.m */; };
 		32A1EDD31AD03834009AE83F /* ReaderConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDC01AD03834009AE83F /* ReaderConstants.m */; };
@@ -174,6 +177,12 @@
 		326EA8591AE1C72D00252AC2 /* _AGTMapSnapShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AGTMapSnapShot.h; sourceTree = SOURCE_ROOT; };
 		326EA85B1AE1C73D00252AC2 /* AGTMapSnapShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTMapSnapShot.h; sourceTree = SOURCE_ROOT; };
 		326EA85C1AE1C73D00252AC2 /* AGTMapSnapShot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTMapSnapShot.m; sourceTree = SOURCE_ROOT; };
+		32772C911AEAAF21001EAF91 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		32772C921AEAAF21001EAF91 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		32772C931AEAAF21001EAF91 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		32772C941AEAAF21001EAF91 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		32772C951AEAAF21001EAF91 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		32772C961AEAAF21001EAF91 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		32A1EDAD1ACFEC09009AE83F /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		32A1EDAE1ACFEC09009AE83F /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		32A1EDBF1AD03834009AE83F /* ReaderConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderConstants.h; sourceTree = "<group>"; };
@@ -491,6 +500,12 @@
 		32AFA1E21AE415E900D0C6C8 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				32772C911AEAAF21001EAF91 /* UIImage+Alpha.h */,
+				32772C921AEAAF21001EAF91 /* UIImage+Alpha.m */,
+				32772C931AEAAF21001EAF91 /* UIImage+Resize.h */,
+				32772C941AEAAF21001EAF91 /* UIImage+Resize.m */,
+				32772C951AEAAF21001EAF91 /* UIImage+RoundedCorner.h */,
+				32772C961AEAAF21001EAF91 /* UIImage+RoundedCorner.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -802,6 +817,7 @@
 				32A1EDD91AD03834009AE83F /* ReaderContentPage.m in Sources */,
 				32A1EDF21AD03844009AE83F /* ReaderDocumentOutline.m in Sources */,
 				32A1EDF51AD03844009AE83F /* ReaderThumbQueue.m in Sources */,
+				32772C971AEAAF21001EAF91 /* UIImage+Alpha.m in Sources */,
 				3248788D1AC8989C00048B99 /* AGTTagTableViewCell.m in Sources */,
 				32B0227A1AE2705A00CC260F /* TPKeyboardAvoidingTableView.m in Sources */,
 				326EA85D1AE1C73D00252AC2 /* AGTMapSnapShot.m in Sources */,
@@ -821,6 +837,7 @@
 				32D16B971AC87C7000F265E5 /* AGTDataSourceAndDelegateTableView.m in Sources */,
 				32A1EDDB1AD03834009AE83F /* ThumbsViewController.m in Sources */,
 				326436D31ADD8C5700FE2FB5 /* Model.xcdatamodeld in Sources */,
+				32772C991AEAAF21001EAF91 /* UIImage+RoundedCorner.m in Sources */,
 				326436F71ADD9A4200FE2FB5 /* AGTTags.m in Sources */,
 				326436F21ADD9A4200FE2FB5 /* _AGTAnnotations.m in Sources */,
 				3248789D1AC8A40800048B99 /* AGTTagsDataSourceTableView.m in Sources */,
@@ -847,6 +864,7 @@
 				32A1EDD71AD03834009AE83F /* ReaderMainPagebar.m in Sources */,
 				32B022781AE2705A00CC260F /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				326436F11ADD9A4200FE2FB5 /* AGTPdf.m in Sources */,
+				32772C981AEAAF21001EAF91 /* UIImage+Resize.m in Sources */,
 				326436F61ADD9A4200FE2FB5 /* AGTPhoto.m in Sources */,
 				32DC7D001AC73AF800A074E8 /* AGTLibraryTableViewCell.m in Sources */,
 				32DC7CD01AC7126600A074E8 /* main.m in Sources */,

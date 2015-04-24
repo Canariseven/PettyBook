@@ -49,7 +49,6 @@
 #pragma mark - Download images
 +(void)downLoadPhotoWithURL:(NSURL *)url statusOperationWith:(void(^)(NSData *data))success failure:(void (^)(NSError *error))failure{
 
-
     [services downloadDataWithURL:url statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
         success(data);
     } failure:^(NSURLResponse *response, NSError *error) {
