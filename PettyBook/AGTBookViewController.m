@@ -92,7 +92,9 @@
     [self.tableView reloadData];
     [self checkButtonColor];
     if (self.model.photo.image !=nil){
+            dispatch_async(dispatch_get_main_queue(), ^{
         self.imageBook.image = self.model.photo.image;
+            });
     }else{
         [self setupKVO];
     }
