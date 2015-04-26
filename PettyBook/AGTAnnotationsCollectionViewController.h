@@ -10,5 +10,7 @@
 #import "AGTCoreDataCollectionViewController.h"
 @class AGTBook;
 @interface AGTAnnotationsCollectionViewController : AGTCoreDataCollectionViewController
+
+
 -(id)initWithFetchedResultsController:(NSFetchedResultsController *)resultsController layout:(UICollectionViewLayout *)layout andBook:(AGTBook *)book;
 @end

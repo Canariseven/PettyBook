@@ -1,5 +1,6 @@
 #import "AGTAnnotations.h"
 #import "AGTLocation.h"
+#import "AGTBook.h"
 @import CoreLocation;
 @interface AGTAnnotations ()<CLLocationManagerDelegate>
 @property (nonatomic,strong) CLLocationManager *locationManager;
@@ -105,6 +106,17 @@
     }
 }
 
++(NSFetchedResultsController *)searcAnnotationsWithBook:(AGTBook *)book{
+    NSFetchRequest *req = [[NSFetchRequest alloc]initWithEntityName:[AGTAnnotations entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTAnnotationsAttributes.creationDate ascending:YES]];
+    req.predicate = [NSPredicate predicateWithFormat:@"book == %@",book];
+    
+    NSFetchedResultsController *frq = [[NSFetchedResultsController alloc]initWithFetchRequest:req
+                                                                         managedObjectContext:book.managedObjectContext
+                                                                           sectionNameKeyPath:nil
+                                                                                    cacheName:nil];
+    return frq;
+}
 
 
 #pragma mark - Utils

@@ -40,6 +40,7 @@
 		32772C971AEAAF21001EAF91 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 32772C921AEAAF21001EAF91 /* UIImage+Alpha.m */; };
 		32772C981AEAAF21001EAF91 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 32772C941AEAAF21001EAF91 /* UIImage+Resize.m */; };
 		32772C991AEAAF21001EAF91 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32772C961AEAAF21001EAF91 /* UIImage+RoundedCorner.m */; };
+		32772C9C1AEABCF2001EAF91 /* UtilsFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = 32772C9B1AEABCF2001EAF91 /* UtilsFetch.m */; };
 		329452B71ADEEF42005EDFA9 /* AGTBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3248787A1AC8820100048B99 /* AGTBookViewController.m */; };
 		32A1EDAF1ACFEC09009AE83F /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDAE1ACFEC09009AE83F /* Utils.m */; };
 		32A1EDD31AD03834009AE83F /* ReaderConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A1EDC01AD03834009AE83F /* ReaderConstants.m */; };
@@ -183,6 +184,8 @@
 		32772C941AEAAF21001EAF91 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		32772C951AEAAF21001EAF91 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		32772C961AEAAF21001EAF91 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		32772C9A1AEABCF2001EAF91 /* UtilsFetch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsFetch.h; sourceTree = "<group>"; };
+		32772C9B1AEABCF2001EAF91 /* UtilsFetch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilsFetch.m; sourceTree = "<group>"; };
 		32A1EDAD1ACFEC09009AE83F /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		32A1EDAE1ACFEC09009AE83F /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		32A1EDBF1AD03834009AE83F /* ReaderConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderConstants.h; sourceTree = "<group>"; };
@@ -344,9 +347,9 @@
 				326436D51ADD9A4200FE2FB5 /* _AGTLocation.h */,
 				326436D61ADD9A4200FE2FB5 /* _AGTLocation.m */,
 				326436DB1ADD9A4200FE2FB5 /* _AGTBook.h */,
+				326436E31ADD9A4200FE2FB5 /* _AGTBook.m */,
 				326436DC1ADD9A4200FE2FB5 /* _AGTPdf.h */,
 				326436DD1ADD9A4200FE2FB5 /* _AGTPdf.m */,
-				326436E31ADD9A4200FE2FB5 /* _AGTBook.m */,
 				326436E41ADD9A4200FE2FB5 /* _AGTPhoto.h */,
 				326436E51ADD9A4200FE2FB5 /* _AGTPhoto.m */,
 				326436E61ADD9A4200FE2FB5 /* _AGTTags.h */,
@@ -637,33 +640,17 @@
 		32DC7CF41AC7348000A074E8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				323FB4061ACB2ADB006CB368 /* AGTLoadingDataViewController.h */,
-				323FB4071ACB2ADB006CB368 /* AGTLoadingDataViewController.m */,
-				323FB4091ACB3786006CB368 /* AGTLoadingDataViewController.xib */,
-				32DC7CF51AC7350C00A074E8 /* AGTLibraryTableViewController.h */,
-				32DC7CF61AC7350C00A074E8 /* AGTLibraryTableViewController.m */,
-				32DC7CF81AC735F000A074E8 /* AGTLibraryTableViewController.xib */,
-				324878791AC8820100048B99 /* AGTBookViewController.h */,
-				3248787A1AC8820100048B99 /* AGTBookViewController.m */,
-				3248787B1AC8820100048B99 /* AGTBookViewController.xib */,
-				32FFD5351AD069EA00FFCD5A /* AGTBookIphoneViewController.xib */,
-				32B05BF71ACFD4D800435508 /* AGTPDFReaderViewController.h */,
-				32B05BF81ACFD4D800435508 /* AGTPDFReaderViewController.m */,
-				32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */,
+				32F6246F1AED4AAE00F84D19 /* FirstViewC */,
+				32F6246E1AED4A9C00F84D19 /* LibraryViewC */,
+				32F6246D1AED4A8800F84D19 /* PDFReader */,
+				32F6246C1AED4A7C00F84D19 /* BookViewC */,
 				3248789E1AC8A53300048B99 /* DataSources and Delegates */,
-				326EA8491AE1982E00252AC2 /* AGTAnnotationsCollectionViewController.h */,
-				326EA84A1AE1982E00252AC2 /* AGTAnnotationsCollectionViewController.m */,
-				32B022671AE26B7600CC260F /* AGTAnnotationsCollectionViewController.xib */,
-				326EA8531AE1AFDB00252AC2 /* AGTAnnotationViewController.h */,
-				326EA8541AE1AFDB00252AC2 /* AGTAnnotationViewController.m */,
-				326EA8561AE1B01000252AC2 /* AGTAnnotationViewController.xib */,
-				32B022691AE26DA300CC260F /* AGTAnnotationViewControllerIPadSize.xib */,
-				32C443271AE406A600103F60 /* AGTTakeImageViewController.h */,
-				32C443281AE406A600103F60 /* AGTTakeImageViewController.m */,
-				32C443291AE406A600103F60 /* AGTTakeImageViewController.xib */,
-				32AFA1EC1AE41B2800D0C6C8 /* AGTMapLocationViewController.h */,
-				32AFA1ED1AE41B2800D0C6C8 /* AGTMapLocationViewController.m */,
-				32AFA1EE1AE41B2800D0C6C8 /* AGTMapLocationViewController.xib */,
+				32F624701AED4AC200F84D19 /* AnnotationsCollectionView */,
+				32F624711AED4AD300F84D19 /* AnnotationsVC */,
+				32F624721AED4AEC00F84D19 /* TakePhoto */,
+				32F624731AED4AF700F84D19 /* MapViewC */,
+				32772C9A1AEABCF2001EAF91 /* UtilsFetch.h */,
+				32772C9B1AEABCF2001EAF91 /* UtilsFetch.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -676,6 +663,88 @@
 				32B0226B1AE26FF900CC260F /* Annotations */,
 			);
 			name = Celdas;
+			sourceTree = "<group>";
+		};
+		32F6246C1AED4A7C00F84D19 /* BookViewC */ = {
+			isa = PBXGroup;
+			children = (
+				32FFD5351AD069EA00FFCD5A /* AGTBookIphoneViewController.xib */,
+				324878791AC8820100048B99 /* AGTBookViewController.h */,
+				3248787A1AC8820100048B99 /* AGTBookViewController.m */,
+				3248787B1AC8820100048B99 /* AGTBookViewController.xib */,
+			);
+			name = BookViewC;
+			sourceTree = "<group>";
+		};
+		32F6246D1AED4A8800F84D19 /* PDFReader */ = {
+			isa = PBXGroup;
+			children = (
+				32B05BF71ACFD4D800435508 /* AGTPDFReaderViewController.h */,
+				32B05BF81ACFD4D800435508 /* AGTPDFReaderViewController.m */,
+				32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */,
+			);
+			name = PDFReader;
+			sourceTree = "<group>";
+		};
+		32F6246E1AED4A9C00F84D19 /* LibraryViewC */ = {
+			isa = PBXGroup;
+			children = (
+				32DC7CF51AC7350C00A074E8 /* AGTLibraryTableViewController.h */,
+				32DC7CF61AC7350C00A074E8 /* AGTLibraryTableViewController.m */,
+				32DC7CF81AC735F000A074E8 /* AGTLibraryTableViewController.xib */,
+			);
+			name = LibraryViewC;
+			sourceTree = "<group>";
+		};
+		32F6246F1AED4AAE00F84D19 /* FirstViewC */ = {
+			isa = PBXGroup;
+			children = (
+				323FB4061ACB2ADB006CB368 /* AGTLoadingDataViewController.h */,
+				323FB4071ACB2ADB006CB368 /* AGTLoadingDataViewController.m */,
+				323FB4091ACB3786006CB368 /* AGTLoadingDataViewController.xib */,
+			);
+			name = FirstViewC;
+			sourceTree = "<group>";
+		};
+		32F624701AED4AC200F84D19 /* AnnotationsCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				326EA8491AE1982E00252AC2 /* AGTAnnotationsCollectionViewController.h */,
+				326EA84A1AE1982E00252AC2 /* AGTAnnotationsCollectionViewController.m */,
+				32B022671AE26B7600CC260F /* AGTAnnotationsCollectionViewController.xib */,
+			);
+			name = AnnotationsCollectionView;
+			sourceTree = "<group>";
+		};
+		32F624711AED4AD300F84D19 /* AnnotationsVC */ = {
+			isa = PBXGroup;
+			children = (
+				32B022691AE26DA300CC260F /* AGTAnnotationViewControllerIPadSize.xib */,
+				326EA8531AE1AFDB00252AC2 /* AGTAnnotationViewController.h */,
+				326EA8541AE1AFDB00252AC2 /* AGTAnnotationViewController.m */,
+				326EA8561AE1B01000252AC2 /* AGTAnnotationViewController.xib */,
+			);
+			name = AnnotationsVC;
+			sourceTree = "<group>";
+		};
+		32F624721AED4AEC00F84D19 /* TakePhoto */ = {
+			isa = PBXGroup;
+			children = (
+				32C443271AE406A600103F60 /* AGTTakeImageViewController.h */,
+				32C443281AE406A600103F60 /* AGTTakeImageViewController.m */,
+				32C443291AE406A600103F60 /* AGTTakeImageViewController.xib */,
+			);
+			name = TakePhoto;
+			sourceTree = "<group>";
+		};
+		32F624731AED4AF700F84D19 /* MapViewC */ = {
+			isa = PBXGroup;
+			children = (
+				32AFA1EC1AE41B2800D0C6C8 /* AGTMapLocationViewController.h */,
+				32AFA1ED1AE41B2800D0C6C8 /* AGTMapLocationViewController.m */,
+				32AFA1EE1AE41B2800D0C6C8 /* AGTMapLocationViewController.xib */,
+			);
+			name = MapViewC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -840,6 +909,7 @@
 				32772C991AEAAF21001EAF91 /* UIImage+RoundedCorner.m in Sources */,
 				326436F71ADD9A4200FE2FB5 /* AGTTags.m in Sources */,
 				326436F21ADD9A4200FE2FB5 /* _AGTAnnotations.m in Sources */,
+				32772C9C1AEABCF2001EAF91 /* UtilsFetch.m in Sources */,
 				3248789D1AC8A40800048B99 /* AGTTagsDataSourceTableView.m in Sources */,
 				326436F31ADD9A4200FE2FB5 /* _AGTBook.m in Sources */,
 				326436EE1ADD9A4200FE2FB5 /* AGTLocation.m in Sources */,

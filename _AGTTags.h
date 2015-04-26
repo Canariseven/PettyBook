@@ -1,14 +1,14 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to AGTTags.h instead.
 
-@import CoreData;
+#import <CoreData/CoreData.h>
 
 extern const struct AGTTagsAttributes {
-	__unsafe_unretained NSString *tags;
+	 NSString *tags;
 } AGTTagsAttributes;
 
 extern const struct AGTTagsRelationships {
-	__unsafe_unretained NSString *books;
+	 NSString *books;
 } AGTTagsRelationships;
 
 @class AGTBook;
@@ -22,11 +22,11 @@ extern const struct AGTTagsRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) AGTTagsID* objectID;
 
-@property (nonatomic, strong) NSString* tags;
+@property (nonatomic, retain) NSString* tags;
 
 //- (BOOL)validateTags:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSSet *books;
+@property (nonatomic, retain) NSSet *books;
 
 - (NSMutableSet*)booksSet;
 

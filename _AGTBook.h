@@ -1,18 +1,18 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to AGTBook.h instead.
 
-@import CoreData;
+#import <CoreData/CoreData.h>
 
 extern const struct AGTBookAttributes {
-	__unsafe_unretained NSString *authors;
-	__unsafe_unretained NSString *title;
+	 NSString *authors;
+	 NSString *title;
 } AGTBookAttributes;
 
 extern const struct AGTBookRelationships {
-	__unsafe_unretained NSString *annotations;
-	__unsafe_unretained NSString *pdf;
-	__unsafe_unretained NSString *photo;
-	__unsafe_unretained NSString *tags;
+	 NSString *annotations;
+	 NSString *pdf;
+	 NSString *photo;
+	 NSString *tags;
 } AGTBookRelationships;
 
 @class AGTAnnotations;
@@ -29,27 +29,27 @@ extern const struct AGTBookRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) AGTBookID* objectID;
 
-@property (nonatomic, strong) NSString* authors;
+@property (nonatomic, retain) NSString* authors;
 
 //- (BOOL)validateAuthors:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* title;
+@property (nonatomic, retain) NSString* title;
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSSet *annotations;
+@property (nonatomic, retain) NSSet *annotations;
 
 - (NSMutableSet*)annotationsSet;
 
-@property (nonatomic, strong) AGTPdf *pdf;
+@property (nonatomic, retain) AGTPdf *pdf;
 
 //- (BOOL)validatePdf:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) AGTPhoto *photo;
+@property (nonatomic, retain) AGTPhoto *photo;
 
 //- (BOOL)validatePhoto:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSSet *tags;
+@property (nonatomic, retain) NSSet *tags;
 
 - (NSMutableSet*)tagsSet;
 

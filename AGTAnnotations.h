@@ -4,4 +4,5 @@
 @property (nonatomic, readonly) BOOL hasLocation;
 +(instancetype) annotationWithBook:(AGTBook *)book
                            context:(NSManagedObjectContext *)context;
++(NSFetchedResultsController *)searcAnnotationsWithBook:(AGTBook *)book;
 @end

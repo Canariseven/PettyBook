@@ -1,14 +1,14 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to AGTMapSnapShot.h instead.
 
-@import CoreData;
+#import <CoreData/CoreData.h>
 
 extern const struct AGTMapSnapShotAttributes {
-	__unsafe_unretained NSString *snapShotData;
+	 NSString *snapShotData;
 } AGTMapSnapShotAttributes;
 
 extern const struct AGTMapSnapShotRelationships {
-	__unsafe_unretained NSString *location;
+	 NSString *location;
 } AGTMapSnapShotRelationships;
 
 @class AGTLocation;
@@ -22,11 +22,11 @@ extern const struct AGTMapSnapShotRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) AGTMapSnapShotID* objectID;
 
-@property (nonatomic, strong) NSData* snapShotData;
+@property (nonatomic, retain) NSData* snapShotData;
 
 //- (BOOL)validateSnapShotData:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) AGTLocation *location;
+@property (nonatomic, retain) AGTLocation *location;
 
 //- (BOOL)validateLocation:(id*)value_ error:(NSError**)error_;
 

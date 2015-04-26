@@ -37,17 +37,8 @@
     [super viewWillAppear:animated];
     [self startObservingSnapshot];
     [self sincronizeView];
- 
-    UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(takeImage:)];
-    [self.imageAnnotation addGestureRecognizer:tapImage];
-    self.imageAnnotation.userInteractionEnabled = YES;
+    [self addGesturesRecognizer];
 
-    UITapGestureRecognizer *tapMap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(takeSnapShot:)];
-    [self.mapSnapShotAnnotation addGestureRecognizer:tapMap];
-    self.mapSnapShotAnnotation.userInteractionEnabled = YES;
-    if (self.mapSnapShotAnnotation.image == nil) {
-        self.mapSnapShotAnnotation.image = [UIImage imageNamed:@"clearMap"];
-    }
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -62,24 +53,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)sincronizeView{
-    self.imageBook.image = self.annotation.book.photo.image;
-    self.titleBook.text = [NSString stringWithFormat:@"  Nota para el libro: %@",self.annotation.book.title];
-    self.imageAnnotation.image = self.annotation.photo.image;
-    if (self.imageAnnotation.image == nil) {
-        self.imageAnnotation.image = [UIImage imageNamed:@"clearPhoto"];
-    }
-    if (self.mapSnapShotAnnotation.image == nil) {
-        self.mapSnapShotAnnotation.image = [UIImage imageNamed:@"clearMap"];
-    }
-    
-    self.textAnnotation.text = self.annotation.text;
-    self.photoView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.photoView.layer.borderWidth = 3;
-    self.mapSnapShotView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.mapSnapShotView.layer.borderWidth = 3;
- 
-}
+
 
 -(void)takeImage:(UITapGestureRecognizer *)tapGesture{
     if (self.annotation.photo == nil) {
@@ -104,7 +78,36 @@
     self.annotation.location.mapSnapShot.image = self.mapSnapShotAnnotation.image;
     self.annotation.text = self.textAnnotation.text;
 }
-
+-(void)sincronizeView{
+    self.imageBook.image = self.annotation.book.photo.image;
+    self.titleBook.text = [NSString stringWithFormat:@"  Nota para el libro: %@",self.annotation.book.title];
+    self.imageAnnotation.image = self.annotation.photo.image;
+    if (self.imageAnnotation.image == nil) {
+        self.imageAnnotation.image = [UIImage imageNamed:@"clearPhoto"];
+    }
+    if (self.mapSnapShotAnnotation.image == nil) {
+        self.mapSnapShotAnnotation.image = [UIImage imageNamed:@"clearMap"];
+    }
+    
+    self.textAnnotation.text = self.annotation.text;
+    self.photoView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.photoView.layer.borderWidth = 3;
+    self.mapSnapShotView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.mapSnapShotView.layer.borderWidth = 3;
+    
+}
+-(void)addGesturesRecognizer{
+    UITapGestureRecognizer *tapImage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(takeImage:)];
+    [self.imageAnnotation addGestureRecognizer:tapImage];
+    self.imageAnnotation.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tapMap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(takeSnapShot:)];
+    [self.mapSnapShotAnnotation addGestureRecognizer:tapMap];
+    self.mapSnapShotAnnotation.userInteractionEnabled = YES;
+    if (self.mapSnapShotAnnotation.image == nil) {
+        self.mapSnapShotAnnotation.image = [UIImage imageNamed:@"clearMap"];
+    }
+}
 
 #pragma mark -  KVO
 -(void) startObservingSnapshot{
@@ -135,4 +138,7 @@
     
 }
 
+- (IBAction)saveButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

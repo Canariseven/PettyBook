@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIView *mapSnapShotView;
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+- (IBAction)saveButton:(id)sender;
 
 @property (nonatomic, strong) AGTAnnotations * annotation;
 -(id)initWithAnnotation:(AGTAnnotations *)annotation;

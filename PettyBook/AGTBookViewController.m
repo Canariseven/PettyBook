@@ -72,9 +72,11 @@
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [self tearDownKVO];
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self];
+}
+-(void)dealloc{
+    [self tearDownKVO];
 }
 -(void)addGestureBookImage{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self
@@ -206,20 +208,10 @@
     layout.itemSize = CGSizeMake(320, 281);
     layout.minimumLineSpacing = 20;
     layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
-    NSFetchRequest *req = [[NSFetchRequest alloc]initWithEntityName:[AGTAnnotations entityName]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTAnnotationsAttributes.creationDate ascending:YES]];
-    req.predicate = [NSPredicate predicateWithFormat:@"book == %@",self.model];
-    
-    NSFetchedResultsController *frq = [[NSFetchedResultsController alloc]initWithFetchRequest:req
-                                                                         managedObjectContext:self.model.managedObjectContext
-                                                                           sectionNameKeyPath:nil
-                                                                                    cacheName:nil];
-    
+    NSFetchedResultsController *frq = [AGTAnnotations searcAnnotationsWithBook:self.model];
     AGTAnnotationsCollectionViewController * aCV = [[AGTAnnotationsCollectionViewController alloc]initWithFetchedResultsController:frq layout:layout andBook:self.model];
-
+    aCV.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self.navigationController pushViewController:aCV animated:YES];
-    
-    
 }
 
 #pragma mark - DELEGATE
@@ -254,7 +246,6 @@
 
 #pragma mark - NOTIFICACIONES
 #pragma mark - Notification Title of BOOK  KVO
-
 #pragma mark - KVO
 -(void) setupKVO{
     NSArray * keys = [AGTPhoto observableKeyNames];

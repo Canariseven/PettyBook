@@ -112,7 +112,7 @@
         // TENGO QUE OBSERVAR LOS CAMBIOS DE FAVORITOS PARA QUE LA TABLA LOS PINTE
         // PIENSO QUE NO DEBERIA HACER FALTA PERO NO SE QUE ES LO QUE PASA
         // PORQUE AGTCoreDataTabl.... NO LO HACE
-//        [self.tableView reloadData];
+        [self.tableView reloadData];
        
     }
 }
