@@ -27,7 +27,6 @@
     [self.window makeKeyAndVisible];
     [self appereances];
     self.stack = [AGTCoreDataStack coreDataStackWithModelName:@"Model"];
-    [self.stack zapAllData];
     AGTLoadingDataViewController *loading = [[AGTLoadingDataViewController alloc]initWithWindow:self.window andContext:self.stack.context];
     self.window.rootViewController = loading;
     return YES;

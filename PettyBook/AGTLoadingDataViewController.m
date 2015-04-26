@@ -105,6 +105,25 @@
     });
     
 }
+-(AGTBook *)checkLastBook{
+    AGTBook *book;
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSString * str = [ud valueForKey:SAVE_LAST_BOOK];
+    if (str.length != 0) {
+      book = [self searchBookOnCoreDataWithObjecID:str];
+    }
+    return book;
+}
+-(AGTBook *)searchBookOnCoreDataWithObjecID:(NSString *)objecID{
+    NSURL *urlObjectID = [NSURL URLWithString:objecID];
+    NSManagedObjectID *objID = [[self.context persistentStoreCoordinator] managedObjectIDForURIRepresentation:urlObjectID];
+    NSError *error;
+    AGTBook *book = (AGTBook *)[self.context existingObjectWithID:objID error:&error];
+    if (error != nil) {
+        return nil;
+    }
+    return book;
+}
 -(BOOL)compareDatasOfCoreDataAndJsonDataWithAmountObjects:(NSUInteger)count{
     NSFetchRequest * req = [NSFetchRequest fetchRequestWithEntityName:[AGTTags entityName]];
     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagsAttributes.tags ascending:YES selector:@selector(compare:)]];
@@ -136,22 +155,22 @@
     AGTLibraryTableViewController *tLibrary = [[AGTLibraryTableViewController alloc]initWithFetchedResultsController:[self fetchedAllTags] style:UITableViewStyleGrouped];
     UINavigationController *navLibrary = [[UINavigationController alloc] initWithRootViewController:tLibrary];
     
-    // Cambiar el libro inicial por el que se cerró.
-    //    NSString *str = SECTION_FAVOURITES;
-    //    AGTBook * b= [library bookForTag:str atIndex:0];
-    //    if (b == nil) {
-    //        b = [library bookForTag:library.tags[1] atIndex:0];
-    //    }
-    
     NSFetchedResultsController *fc = [self fetchedAllTags];
     NSError *error;
     [fc performFetch:&error];
+    
     AGTTags *tag =   fc.fetchedObjects.firstObject;
-    AGTBook *b = [tag.books allObjects].firstObject;
-    if (b==nil) {
-        tag = fc.fetchedObjects[1];
+    // Abrimos un libro
+    AGTBook *b = [self checkLastBook];
+    
+    if (b == nil) {
         b = [tag.books allObjects].firstObject;
+        if (b==nil) {
+            tag = fc.fetchedObjects[1];
+            b = [tag.books allObjects].firstObject;
+        }
     }
+
     
     AGTBookViewController *book = [[AGTBookViewController alloc] initWithModel:b];
     UINavigationController *navBook = [[UINavigationController alloc] initWithRootViewController:book];

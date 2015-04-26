@@ -38,7 +38,7 @@
         [AGTPhoto downLoadPhotoWithURL:url statusOperationWith:^(NSData *data) {
             photo.imageData = data;
         } failure:^(NSError *error) {
-            photo.imageData = nil;
+
         }];
         
     }];

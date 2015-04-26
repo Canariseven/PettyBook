@@ -75,7 +75,9 @@
     AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
     NSArray *arr = [tag.books allObjects];
     AGTBook *book = [arr objectAtIndex:indexPath.row];
-    
+    NSString *objecID = [NSString stringWithFormat:@"%@",book.objectID.URIRepresentation];
+    NSLog(@"%hhd",[book.objectID isTemporaryID]);
+    [self addLastBookToUserDefaultWithObjectId:objecID];
 
     if ([self.delegate respondsToSelector:@selector(dataSourceAndDelegateTableView:didSelectBook:)]) {
         [self.delegate dataSourceAndDelegateTableView:self didSelectBook:book];
@@ -111,6 +113,11 @@
     return view;
 }
 
+-(void)addLastBookToUserDefaultWithObjectId:(NSString *)objectId{
 
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:objectId forKey:SAVE_LAST_BOOK];
+    [ud synchronize];
+}
 
 @end
