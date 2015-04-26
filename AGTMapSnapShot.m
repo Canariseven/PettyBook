@@ -1,5 +1,6 @@
 #import "AGTMapSnapShot.h"
 #import "AGTLocation.h"
+#import "AGTAnnotations.h"
 @interface AGTMapSnapShot ()
 
 // Private interface goes here.
@@ -8,7 +9,9 @@
 
 @implementation AGTMapSnapShot
 
-
++(NSArray *)observableKeyNames{
+    return @[AGTAnnotationsRelationships.location,AGTLocationRelationships.mapSnapShot,AGTMapSnapShotAttributes.snapShotData];
+}
 -(UIImage *) image{
     
     return [UIImage imageWithData:self.snapShotData];

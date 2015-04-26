@@ -95,6 +95,7 @@
 		32B0227B1AE2705A00CC260F /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B022771AE2705A00CC260F /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 		32B05BFB1ACFD4D800435508 /* AGTPDFReaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32B05BF91ACFD4D800435508 /* AGTPDFReaderViewController.xib */; };
 		32B689E61ACC749300FE4014 /* services.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B689E51ACC749300FE4014 /* services.m */; };
+		32B804B81AED5D0D0037490E /* AGTPDFReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B05BF81ACFD4D800435508 /* AGTPDFReaderViewController.m */; };
 		32C4432A1AE406A600103F60 /* AGTTakeImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C443281AE406A600103F60 /* AGTTakeImageViewController.m */; };
 		32C4432B1AE406A600103F60 /* AGTTakeImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32C443291AE406A600103F60 /* AGTTakeImageViewController.xib */; };
 		32D16B931AC8736F00F265E5 /* AGTLibraryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D16B921AC8736F00F265E5 /* AGTLibraryTableViewCell.xib */; };
@@ -941,6 +942,7 @@
 				32A1EDDA1AD03834009AE83F /* ReaderContentTile.m in Sources */,
 				32A1EDD51AD03834009AE83F /* ReaderViewController.m in Sources */,
 				326EA8551AE1AFDB00252AC2 /* AGTAnnotationViewController.m in Sources */,
+				32B804B81AED5D0D0037490E /* AGTPDFReaderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,8 +24,6 @@
         [AGTTags searchTagFavourite:self.managedObjectContext andInserBook:self actionDelete:YES];
     }
     _isFavourite = isFavourite;
-//    [self saveOrDeleteStatusOnUserDefault];
-//    [self createNotificactionFavouriteChanged];
 }
 
 +(instancetype) bookWithDict:(NSDictionary *)dict
@@ -35,7 +33,7 @@
     book.authors = [dict objectForKey:@"authors"];
     [self extractFromJSONString:[dict objectForKey:@"tags"] book:book context:context];
     book.photo = [AGTPhoto photoWithImageURL:[dict objectForKey:@"image_url"] context:context];
-//    book.pdf = [AGTPdf pdfWithPdfURL:[dict objectForKey:@"pdf_url"] context:context];
+    book.pdf = [AGTPdf pdfWithURL:[dict objectForKey:@"pdf_url"]  context:context];
     book.annotations = nil;
     return book;
 }

@@ -72,29 +72,53 @@
     
     if (JSONObjects != nil) {
         if ([JSONObjects isKindOfClass:[NSArray class]]) {
-            
-            for (NSDictionary *dict in JSONObjects){
-                [AGTBook bookWithDict:dict context:self.context];
-            }
-            [AGTTags tagWithTag:NAME_TAG_FAVOURITES book:nil context:self.context];
-            // Hilo principal, para salir de inmediato
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.activityIndicator stopAnimating];
-                self.activityIndicator.hidden = YES;
-                
-                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
-                    // Tipo tableta
-                        [self configureForPad];
-                }else{
-                    //                 Tipo teléfon;
-                    [self configureForPhone];
+            NSArray *arr = JSONObjects;
+            BOOL datas = [self compareDatasOfCoreDataAndJsonDataWithAmountObjects:arr.count];
+            if (!datas){
+                for (NSDictionary *dict in JSONObjects){
+                    [AGTBook bookWithDict:dict context:self.context];
                 }
-                
-            });
+                [self jumpNextVC];
+            }else{
+                [self jumpNextVC];
+            }
         }
-        
     }else{
         NSLog(@"Fallo JSON");
+    }
+    
+}
+
+-(void)jumpNextVC{
+    [AGTTags tagWithTag:NAME_TAG_FAVOURITES book:nil context:self.context];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.activityIndicator stopAnimating];
+        self.activityIndicator.hidden = YES;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+            // Tipo tableta
+            [self configureForPad];
+        }else{
+            // Tipo teléfono
+            [self configureForPhone];
+        }
+        
+    });
+    
+}
+-(BOOL)compareDatasOfCoreDataAndJsonDataWithAmountObjects:(NSUInteger)count{
+    NSFetchRequest * req = [NSFetchRequest fetchRequestWithEntityName:[AGTTags entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagsAttributes.tags ascending:YES selector:@selector(compare:)]];
+    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc]initWithFetchRequest:req
+                                                                        managedObjectContext:self.context
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
+    NSError *error;
+    [fc performFetch:&error];
+    NSArray *array =  fc.fetchedObjects;
+    if (array.count < count) {
+        return false;
+    }else{
+        return true;
     }
     
 }

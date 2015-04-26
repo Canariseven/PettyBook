@@ -12,20 +12,7 @@
 +(NSArray *)observableKeyNames{
     return @[AGTPdfAttributes.pdfData];
 }
--(NSData *)pdfData{
-    
-    __block NSData *dataPDF;
-    NSURL *url = [NSURL URLWithString:self.pdfURL];
-    
-    [AGTPdf downLoadPDFWithURL:url statusOperationWith:^(NSData *data) {
-        dataPDF = data;
-    } failure:^(NSError *error) {
-        dataPDF = nil;
-    }];
 
-    return dataPDF;
-    
-}
 
 #pragma mark - Download images
 +(instancetype) pdfWithURL:(NSString *)pdfURL
@@ -34,19 +21,19 @@
     AGTPdf *pdf = [self insertInManagedObjectContext:context];
     
     pdf.pdfURL = pdfURL;
-    pdf.pdfData = nil;
+    pdf.pdfData = nil;	
     return pdf;
 }
 
 
 #pragma mark - Download images
-+(void)downLoadPDFWithURL:(NSURL *)url statusOperationWith:(void(^)(NSData *data))success failure:(void (^)(NSError *error))failure{
-    
+-(void)downLoadPDF{
+    NSURL *url = [NSURL URLWithString:self.pdfURL];
     [services downloadDataWithURL:url statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
-        success(data);
+        self.pdfData = data;
     } failure:^(NSURLResponse *response, NSError *error) {
         NSLog(@"Error al cargar la imagen");
-        failure(error);
+        
     }];
     
 }

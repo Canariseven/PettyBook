@@ -5,9 +5,10 @@
 //  Created by Carmelo Ruymán Quintana Santana on 4/4/15.
 //  Copyright (c) 2015 Carmelo Ruymán Quintana Santana. All rights reserved.
 //
-
+#import "AGTDataSourceAndDelegateTableView.h"
 #import "AGTPDFReaderViewController.h"
 #import "AGTBook.h"
+#import "AGTPdf.h"
 #import "services.h"
 #import "Utils.h"
 @interface AGTPDFReaderViewController ()
@@ -32,63 +33,37 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self startObserving];
     [self sincronizeView];
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc addObserver:self selector:@selector(changePDFWithNotification:) name:PDF_CHANGED object:self.model];
+    [nc addObserver:self selector:@selector(changePDFWithNotification:) name:SELECT_BOOK_CHANGED object:nil];
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self];
+    [self stopObserving];
 }
 
 -(void)sincronizeView{
-    NSString *name = [self.model.urlPDF lastPathComponent];
-    [self checkPDFonCacheWithName:name];
-}
-
--(void)downloadPDFWithURL:(NSURL *)url andName:(NSString *)name{
     [self.activityIndicator startAnimating];
     self.activityIndicator.hidden = NO;
-    
-[services downloadDataWithURL:url
-         statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
-             [self.activityIndicator stopAnimating];
-             self.activityIndicator.hidden = YES;
-             [self loadAndSaveData:data withName:name];
-         } failure:^(NSURLResponse *response, NSError *error) {
-             [self.activityIndicator stopAnimating];
-             self.activityIndicator.hidden = YES;
-         }];
-}
-
--(void)checkPDFonCacheWithName:(NSString *)name{
-    
-    NSData *data = [Utils dataWithNameFile:name andDirectory:NSCachesDirectory];
-    if (data == nil) {
-        // llamamos al servicio
-        NSURL * url = [NSURL URLWithString:self.model.urlPDF];
-        [self downloadPDFWithURL:url andName:name];
+    if (self.model.pdf.pdfData == nil) {
+        [self.model.pdf downLoadPDF];
     }else{
-        // lo cargamos
-        [self loadPDFOnWebView:data];
+        [self loadPDFOnWebView:self.model.pdf.pdfData];
     }
 }
--(void)loadAndSaveData:(NSData *)data withName:(NSString *)name{
 
-    BOOL rc = [Utils saveWithData:data name:name andDirectory:NSCachesDirectory];
-    if (rc == YES) {
-        [self loadPDFOnWebView:data];
-    }else{
-        //volvemos a descargar el archivo o mostramos el error
 
-    }
-}
+
+
 -(void)loadPDFOnWebView:(NSData *)pdfData{
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"Reader" ofType:@"pdf"];
-//    NSURL *targetURL = [NSURL fileURLWithPath:path];
-//    NSData *pdfData = [[NSData alloc] initWithContentsOfURL:targetURL];
-    [self.pdfView loadData:pdfData MIMEType:@"application/pdf" textEncodingName:@"utf-8" baseURL:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.activityIndicator stopAnimating];
+        self.activityIndicator.hidden = YES;
+        [self.pdfView loadData:pdfData MIMEType:@"application/pdf" textEncodingName:@"utf-8" baseURL:nil];
+    });
 }
 
 
@@ -98,10 +73,36 @@
 }
 
 -(void)changePDFWithNotification:(NSNotification *)notification{
+    [self stopObserving];
+    self.model.pdf.pdfData = nil;
+    [self.pdfView loadData:nil MIMEType:nil textEncodingName:nil baseURL:nil];
     self.model = notification.object;
+    [self startObserving];
     [self sincronizeView];
 }
+#pragma mark -  KVO
+-(void) startObserving{
+    for (NSString *key in [AGTPdf observableKeyNames]) {
+        [self.model.pdf addObserver:self
+                         forKeyPath:key
+                            options:NSKeyValueObservingOptionNew
+                            context:NULL];
+    }
+}
 
+-(void) stopObserving{
+    for (NSString *key in [AGTPdf observableKeyNames]) {
+        [self.model.pdf removeObserver:self forKeyPath:key];
+    }
+    
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath
+                     ofObject:(id)object
+                       change:(NSDictionary *)change
+                      context:(void *)context{
+    [self sincronizeView];
+}
 
 
 

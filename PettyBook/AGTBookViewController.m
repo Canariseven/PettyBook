@@ -32,17 +32,20 @@
 @property (nonatomic, strong) UIView *circle;
 @property (weak, nonatomic) IBOutlet UIView *readerButtonContentView;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, weak) UILabel *labelTitle;
+@property (nonatomic, weak) UILabel *labelAuthors;
+@property (nonatomic, weak) UILabel *titleAndAuthor;
 @property BOOL openTableViewTag;
 @end
 
 @implementation AGTBookViewController
 -(id)initWithModel:(AGTBook*)model{
     NSString *nibName;
-     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
-         nibName = @"AGTBookViewController";
-     }else{
-         nibName = @"AGTBookIphoneViewController";
-     }
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        nibName = @"AGTBookViewController";
+    }else{
+        nibName = @"AGTBookIphoneViewController";
+    }
     
     if (self = [super initWithNibName:nibName bundle:nil]) {
         _model = model;
@@ -63,7 +66,7 @@
     
     self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
     self.tableView.dataSource = self.DT;
-    [self setupKVO];
+    
     [self settingsOfViews];
     [self sincronizeDataOfView];
     [self animateViewBook];
@@ -74,49 +77,15 @@
     [super viewDidDisappear:animated];
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self];
+    
 }
--(void)dealloc{
-    [self tearDownKVO];
-}
+
 -(void)addGestureBookImage{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self
                                                                          action:@selector(readBookButton:)];
     [self.imageBook addGestureRecognizer:tap];
     self.imageBook.userInteractionEnabled = YES;
 }
--(void) addNumberOfTagsCircleView{
-    CGRect rect = CGRectMake(self.tagsButton.frame.size.width/2 + 7,
-                             self.tagsButton.frame.origin.y + 3,
-                             20, 20);
-    self.circle = [[UIView alloc]initWithFrame:rect];
-    self.circle.backgroundColor = [UIColor redColor];
-    self.circle.layer.cornerRadius = 10;
-    self.circle.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.circle.layer.borderWidth = 2;
-    
-    self.numberOfTags = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [self.numberOfTags setFont:[UIFont fontWithName:@"Arial" size:12]];
-    self.numberOfTags.textAlignment = NSTextAlignmentCenter;
-    self.numberOfTags.textColor = [UIColor whiteColor];
-    [self.circle addSubview:self.numberOfTags];
-    [self.tagsButton addSubview:self.circle];
-    
-}
-
--(void)settingsOfViews{
-    self.openTableViewTag = NO;
-    [self addNumberOfTagsCircleView];
-    self.backBookView.layer.cornerRadius = 10;
-    self.macroView.layer.cornerRadius = 10;
-    [self addShadowToView:self.backBookForRadius radius:5 opacity:1];
-    [self addShadowToView:self.macroView radius:20 opacity:0.5];
-    self.tableView.frame = CGRectMake(self.imageBook.frame.size.width/2 + self.imageBook.frame.origin.x - [AGTTagTableViewCell cellWidth]/2 -20 ,
-                                      -self.tableView.frame.size.height,
-                                      [AGTTagTableViewCell cellWidth] + 40,
-                                      self.imageBook.frame.size.height - 30);
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-}
-
 -(void)sincronizeDataOfView{
     self.readerButtonContentView.transform = CGAffineTransformMakeRotation(M_PI + M_PI_2/2);
     [self titleAndAuthorOnNavigationBar];
@@ -125,7 +94,7 @@
     if (self.model.photo.image !=nil){
         self.imageBook.image = self.model.photo.image;
     }else{
-        
+        [self setupKVO];
     }
     self.numberOfTags.text = [NSString stringWithFormat:@"%lu",(unsigned long)self.model.tags.count];
     [self animateImage];
@@ -139,40 +108,7 @@
         self.favouriteBook.backgroundColor = [UIColor colorWithHue:0.53 saturation:0.79 brightness:0.70 alpha:1];
     }
 }
--(void)titleAndAuthorOnNavigationBar{
-    UILabel *labelTitle =[[UILabel alloc]initWithFrame:CGRectMake(0,0, 200, 15)];
-    labelTitle.text = self.model.title;
-    labelTitle.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:18.0];
-    labelTitle.textAlignment = NSTextAlignmentCenter;
-    labelTitle.minimumScaleFactor = 0.1;
-    labelTitle.baselineAdjustment = UIBaselineAdjustmentNone;
-    labelTitle.textColor = [UIColor colorWithHue:0.53 saturation:0.79 brightness:0.99 alpha:1];
-    
-    UILabel *labelAuthors =[[UILabel alloc]initWithFrame:CGRectMake(0, 18, 200, 15)];
-    labelAuthors.text = self.model.authors;
-    labelAuthors.font = [UIFont fontWithName:@"HelveticaNeue" size:14.0];
-    labelAuthors.textAlignment = NSTextAlignmentCenter;
-    labelAuthors.minimumScaleFactor = 0.5;
-    labelAuthors.textColor = [UIColor colorWithHue:0 saturation:0 brightness:0.18 alpha:1];
-    
-    UIView * titleAndAuthor = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
-    [titleAndAuthor addSubview:labelTitle];
-    [titleAndAuthor addSubview:labelAuthors];
 
-    labelTitle.frame = CGRectMake(labelTitle.frame.origin.x, 0, 200, 15);
-    [labelTitle sizeToFit];
-    labelAuthors.frame = CGRectMake(labelAuthors.frame.origin.x, 18, 200, 15);
-    [labelAuthors sizeToFit];
-    self.navigationItem.titleView = titleAndAuthor;
-    [self animateTitleText:titleAndAuthor];
-}
--(void)addShadowToView:(UIView *)view
-                radius:(CGFloat)radius
-               opacity:(CGFloat)opacity{
-    view.layer.shadowColor = [UIColor blackColor].CGColor;
-    view.layer.shadowRadius = radius;
-    view.layer.shadowOpacity = opacity;
-}
 
 #pragma mark - IBACTIONS
 - (IBAction)tagsButton:(id)sender {
@@ -188,15 +124,15 @@
 }
 
 - (IBAction)readBookButton:(id)sender {
-
+    
     [self alertShow];
     
 }
 
 - (IBAction)favouriteButton:(id)sender {
-
+    
     self.model.isFavourite = !self.model.isFavourite;
-
+    
     [self checkButtonColor];
     if ([self.delegate respondsToSelector:@selector(bookViewControllerDelegate:didSelectFavouriteBook:)]) {
         [self.delegate bookViewControllerDelegate:self didSelectFavouriteBook:self.model];
@@ -234,11 +170,12 @@
     // Al cambiar de libro borro el obserador de la notificacion anterior
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self name:self.model.title object:self.model];
-    [self tearDownKVO];
+    if (self.model.photo.observationInfo != nil) {
+        [self tearDownKVO];
+    }
     self.model = book;
     self.DT.book = self.model;
-
-    [self setupKVO];
+    self.title = self.model.title;
     [self sincronizeDataOfView];
 }
 
@@ -251,9 +188,9 @@
     NSArray * keys = [AGTPhoto observableKeyNames];
     for (NSString *key in keys) {
         [self.model.photo addObserver:self
-                     forKeyPath:key
-                        options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                        context:NULL];
+                           forKeyPath:key
+                              options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                              context:NULL];
     }
     
 }
@@ -262,7 +199,7 @@
     NSArray * keys = [AGTPhoto observableKeyNames];
     for (NSString *key in keys) {
         [self.model.photo removeObserver:self
-                   forKeyPath:key];
+                              forKeyPath:key];
     }
 }
 
@@ -273,6 +210,7 @@
                       context:(void *)context{
     
     if ([object isKindOfClass:[AGTPhoto class]]) {
+        [self tearDownKVO];
         [self sincronizeDataOfView];
     }
     
@@ -286,6 +224,135 @@
         [self sincronizeDataOfView];
         
     });
+}
+
+
+-(void)alertShow{
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Lector PDF" message:@"Como desea ver el PDF?" delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"UIWebView",@"vfr-Reader", nil];
+    
+    [alert show];
+    
+}
+
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {
+        // Presento el webView
+        AGTPDFReaderViewController * pdfView = [[AGTPDFReaderViewController alloc]initWithModel:self.model];
+        [self.navigationController pushViewController:pdfView animated:YES];
+        
+    }else if (buttonIndex == 2){
+        //        [self checkPDFonCacheWithName:[self.model.urlPDF lastPathComponent]];
+        
+    }
+}
+
+
+
+#pragma mark - Delegate ReaderViewController
+-(void)dismissReaderViewController:(ReaderViewController *)viewController{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+//-(void)loadPDF{
+//    NSString *filePath = [NSString stringWithFormat:@"%@",[Utils urlWithNameFile:[self.model.urlPDF lastPathComponent] andDirectory:NSCachesDirectory]];
+//
+//    filePath = [filePath stringByReplacingOccurrencesOfString:@"file:///" withString:@""];
+//    NSString *phrase = nil; // Document password (for unlocking most encrypted PDF files)
+//
+//    ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:phrase];
+//
+//    if (document != nil) // Must have a valid ReaderDocument object in order to proceed
+//    {
+//
+//        ReaderViewController * readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
+//
+//        readerViewController.delegate = self; // Set the ReaderViewController delegate to self
+//
+//        readerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//        readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+//
+//        [self presentViewController:readerViewController animated:YES completion:NULL];
+//
+//    }
+//
+//
+//}
+
+#pragma mark - Custom View
+-(void) addNumberOfTagsCircleView{
+    CGRect rect = CGRectMake(self.tagsButton.frame.size.width/2 + 7,
+                             self.tagsButton.frame.origin.y + 3,
+                             20, 20);
+    self.circle = [[UIView alloc]initWithFrame:rect];
+    self.circle.backgroundColor = [UIColor redColor];
+    self.circle.layer.cornerRadius = 10;
+    self.circle.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.circle.layer.borderWidth = 2;
+    
+    self.numberOfTags = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [self.numberOfTags setFont:[UIFont fontWithName:@"Arial" size:12]];
+    self.numberOfTags.textAlignment = NSTextAlignmentCenter;
+    self.numberOfTags.textColor = [UIColor whiteColor];
+    [self.circle addSubview:self.numberOfTags];
+    [self.tagsButton addSubview:self.circle];
+    
+}
+
+-(void)settingsOfViews{
+    self.openTableViewTag = NO;
+    [self addNumberOfTagsCircleView];
+    self.backBookView.layer.cornerRadius = 10;
+    self.macroView.layer.cornerRadius = 10;
+    [self addShadowToView:self.backBookForRadius radius:5 opacity:1];
+    [self addShadowToView:self.macroView radius:20 opacity:0.5];
+    self.tableView.frame = CGRectMake(self.imageBook.frame.size.width/2 + self.imageBook.frame.origin.x - [AGTTagTableViewCell cellWidth]/2 -20 ,
+                                      -self.tableView.frame.size.height,
+                                      [AGTTagTableViewCell cellWidth] + 40,
+                                      self.imageBook.frame.size.height - 30);
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+
+-(void)titleAndAuthorOnNavigationBar{
+    [self.labelAuthors removeFromSuperview];
+    [self.labelTitle removeFromSuperview];
+    [self.titleAndAuthor removeFromSuperview];
+    self.labelTitle.frame = CGRectMake(0,0, 200, 15);
+    self.labelTitle.text = self.model.title;
+    self.labelTitle.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:18.0];
+    self.labelTitle.textAlignment = NSTextAlignmentCenter;
+    self.labelTitle.minimumScaleFactor = 0.1;
+    self.labelTitle.baselineAdjustment = UIBaselineAdjustmentNone;
+    self.labelTitle.textColor = [UIColor colorWithHue:0.53 saturation:0.79 brightness:0.99 alpha:1];
+    
+    self.labelAuthors.frame = CGRectMake(0, 18, 200, 15);
+    self.labelAuthors.text = self.model.authors;
+    self.labelAuthors.font = [UIFont fontWithName:@"HelveticaNeue" size:14.0];
+    self.labelAuthors.textAlignment = NSTextAlignmentCenter;
+    self.labelAuthors.minimumScaleFactor = 0.5;
+    self.labelAuthors.textColor = [UIColor colorWithHue:0 saturation:0 brightness:0.18 alpha:1];
+    
+    self.titleAndAuthor.frame = CGRectMake(0, 0, self.view.frame.size.width, 30);
+    [self.titleAndAuthor addSubview: self.labelTitle];
+    [self.titleAndAuthor addSubview: self.labelAuthors];
+    
+    self.labelTitle.frame = CGRectMake( self.labelTitle.frame.origin.x, 0, 200, 15);
+    [self.labelTitle sizeToFit];
+    self.labelAuthors.frame = CGRectMake( self.labelAuthors.frame.origin.x, 18, 200, 15);
+    [self.labelAuthors sizeToFit];
+    self.navigationItem.titleView =  self.titleAndAuthor;
+    [self animateTitleText: self.titleAndAuthor];
+}
+
+
+-(void)addShadowToView:(UIView *)view
+                radius:(CGFloat)radius
+               opacity:(CGFloat)opacity{
+    view.layer.shadowColor = [UIColor blackColor].CGColor;
+    view.layer.shadowRadius = radius;
+    view.layer.shadowOpacity = opacity;
 }
 
 #pragma mark - Animations
@@ -331,14 +398,14 @@
                      completion:nil];
 }
 -(void) animateViewBook {
-
+    
     self.viewIcon.transform = CGAffineTransformMakeTranslation(1, 1);
     [UIView setAnimationRepeatCount:1];
     [UIView animateWithDuration:1
                           delay:0
                         options: UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat
                      animations:^{
-
+                         
                          self.viewIcon.transform = CGAffineTransformMakeTranslation(1, 10);
                          
                      }
@@ -360,98 +427,4 @@
                      }
                      completion:nil];
 }
-
--(void)alertShow{
-    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Lector PDF" message:@"Como desea ver el PDF?" delegate:self cancelButtonTitle:@"Cancelar" otherButtonTitles:@"UIWebView",@"vfr-Reader", nil];
-    
-    [alert show];
-    
-}
-
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-
-    if (buttonIndex == 1) {
-        // Presento el webView
-//        AGTPDFReaderViewController * pdfView = [[AGTPDFReaderViewController alloc]initWithModel:self.model];
-//        [self.navigationController pushViewController:pdfView animated:YES];
-        
-    }else if (buttonIndex == 2){
-//        [self checkPDFonCacheWithName:[self.model.urlPDF lastPathComponent]];
-        
-    }
-}
-
-
-
-#pragma mark - Delegate ReaderViewController
--(void)dismissReaderViewController:(ReaderViewController *)viewController{
-    [self dismissViewControllerAnimated:YES completion:NULL];
-}
-
-// ESTO TENDRIA QUE REFACTORIZARLO PERO POR NO TENER MUCHO TIEMPO COPIO Y PEGO del AGTPDFReaderViewController
-
-
-
--(void)downloadPDFWithURL:(NSURL *)url andName:(NSString *)name{
-    [self.activityIndicator startAnimating];
-    self.activityIndicator.hidden = NO;
-    
-    [services downloadDataWithURL:url
-              statusOperationWith:^(NSData *data, NSURLResponse *response, NSError *error) {
-                  [self.activityIndicator stopAnimating];
-                  self.activityIndicator.hidden = YES;
-                  [self loadAndSaveData:data withName:name];
-              } failure:^(NSURLResponse *response, NSError *error) {
-                  [self.activityIndicator stopAnimating];
-                  self.activityIndicator.hidden = YES;
-              }];
-}
-
--(void)checkPDFonCacheWithName:(NSString *)name{
-    
-    NSData *data = [Utils dataWithNameFile:name andDirectory:NSCachesDirectory];
-    if (data == nil) {
-        // llamamos al servicio
-//        NSURL * url = [NSURL URLWithString:self.model.urlPDF];
-//        [self downloadPDFWithURL:url andName:name];
-    }else{
-        // lo cargamos
-//        [self loadPDF];
-    }
-}
--(void)loadAndSaveData:(NSData *)data withName:(NSString *)name{
-    
-    BOOL rc = [Utils saveWithData:data name:name andDirectory:NSCachesDirectory];
-    if (rc == YES) {
-//        [self loadPDF];
-    }else{
-        //volvemos a descargar el archivo o mostramos el error
-        
-    }
-}
-//-(void)loadPDF{
-//    NSString *filePath = [NSString stringWithFormat:@"%@",[Utils urlWithNameFile:[self.model.urlPDF lastPathComponent] andDirectory:NSCachesDirectory]];
-//    
-//    filePath = [filePath stringByReplacingOccurrencesOfString:@"file:///" withString:@""];
-//    NSString *phrase = nil; // Document password (for unlocking most encrypted PDF files)
-//    
-//    ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:phrase];
-//    
-//    if (document != nil) // Must have a valid ReaderDocument object in order to proceed
-//    {
-//        
-//        ReaderViewController * readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
-//        
-//        readerViewController.delegate = self; // Set the ReaderViewController delegate to self
-//        
-//        readerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//        readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-//        
-//        [self presentViewController:readerViewController animated:YES completion:NULL];
-//        
-//    }
-//
-//
-//}
 @end

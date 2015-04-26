@@ -25,7 +25,7 @@
 -(id)initWithAnnotation:(AGTAnnotations *)annotation{
     if (self = [super initWithNibName:nil bundle:nil]) {
         _annotation = annotation;
-         if (self) _isPresented = YES;
+        if (self) _isPresented = YES;
     }
     return self;
 }
@@ -38,14 +38,14 @@
     [self startObservingSnapshot];
     [self sincronizeView];
     [self addGesturesRecognizer];
-
+    
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [self stopObservingSnapshot];
     [self saveDatas];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -111,15 +111,19 @@
 
 #pragma mark -  KVO
 -(void) startObservingSnapshot{
-    [self.annotation addObserver:self
-                      forKeyPath:[NSString stringWithFormat:@"%@.%@.%@",AGTAnnotationsRelationships.location,AGTLocationRelationships.mapSnapShot,AGTMapSnapShotAttributes.snapShotData]
-                    options:NSKeyValueObservingOptionNew
-                    context:NULL];
+    for (NSString *key in [AGTMapSnapShot observableKeyNames]) {
+        [self.annotation addObserver:self
+                          forKeyPath:key
+                             options:NSKeyValueObservingOptionNew
+                             context:NULL];
+    }
 }
 
 -(void) stopObservingSnapshot{
-    [self.annotation removeObserver:self
-                         forKeyPath:[NSString stringWithFormat:@"%@.%@.%@",AGTAnnotationsRelationships.location,AGTLocationRelationships.mapSnapShot,AGTMapSnapShotAttributes.snapShotData]];
+    for (NSString *key in [AGTMapSnapShot observableKeyNames]) {
+        [self.annotation removeObserver:self
+                             forKeyPath:key];
+    }
     
 }
 
