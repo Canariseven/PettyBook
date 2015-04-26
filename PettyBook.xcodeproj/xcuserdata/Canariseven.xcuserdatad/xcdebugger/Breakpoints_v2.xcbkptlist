@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PettyBook/AGTLibraryTableViewCell.m"
-            timestampString = "451779370.400485"
+            timestampString = "451780220.830705"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "@implementation AGTLibraryTableViewCell"
             landmarkType = "3">
          </BreakpointContent>

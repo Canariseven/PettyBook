@@ -92,9 +92,9 @@
     [self.tableView reloadData];
     [self checkButtonColor];
     if (self.model.photo.image !=nil){
-            dispatch_async(dispatch_get_main_queue(), ^{
-        self.imageBook.image = self.model.photo.image;
-            });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.imageBook.image = self.model.photo.image;
+        });
     }else{
         [self setupKVO];
     }
@@ -126,8 +126,9 @@
 }
 
 - (IBAction)readBookButton:(id)sender {
-    
-    [self alertShow];
+    AGTPDFReaderViewController * pdfView = [[AGTPDFReaderViewController alloc]initWithModel:self.model];
+    [self.navigationController pushViewController:pdfView animated:YES];
+    //    [self alertShow];
     
 }
 
@@ -172,9 +173,6 @@
     // Al cambiar de libro borro el obserador de la notificacion anterior
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc removeObserver:self name:self.model.title object:self.model];
-    if (self.model.photo.observationInfo != nil) {
-        [self tearDownKVO];
-    }
     self.model = book;
     self.DT.book = self.model;
     self.title = self.model.title;
@@ -189,10 +187,12 @@
 -(void) setupKVO{
     NSArray * keys = [AGTPhoto observableKeyNames];
     for (NSString *key in keys) {
+        
         [self.model.photo addObserver:self
                            forKeyPath:key
                               options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
                               context:NULL];
+        
     }
     
 }
@@ -200,8 +200,10 @@
 -(void) tearDownKVO{
     NSArray * keys = [AGTPhoto observableKeyNames];
     for (NSString *key in keys) {
-        [self.model.photo removeObserver:self
-                              forKeyPath:key];
+        if (self.model.photo.observationInfo != nil) {
+            [self.model.photo removeObserver:self
+                                  forKeyPath:key];
+        };
     }
 }
 

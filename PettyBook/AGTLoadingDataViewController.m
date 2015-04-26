@@ -78,6 +78,10 @@
                 for (NSDictionary *dict in JSONObjects){
                     [AGTBook bookWithDict:dict context:self.context];
                 }
+                
+                // Guardo para evitar los objectID Temporales
+                NSError *error;
+                [self.context save:&error];
                 [self jumpNextVC];
             }else{
                 [self jumpNextVC];

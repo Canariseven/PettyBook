@@ -65,8 +65,10 @@
 -(void) tearDownKVO{
     NSArray * keys = [AGTPhoto observableKeyNames];
     for (NSString *key in keys) {
+        if (self.book.photo.observationInfo != nil) {
         [self.book.photo removeObserver:self
                              forKeyPath:key];
+        }
     }
 }
 

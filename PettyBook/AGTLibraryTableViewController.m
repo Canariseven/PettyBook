@@ -96,8 +96,10 @@
     NSArray * keys = [AGTTags observableKeyNames];
     AGTTags * tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:0];
     for (NSString *key in keys) {
-        [tag removeObserver:self
-                   forKeyPath:key];
+        if (tag.observationInfo != nil) {
+            [tag removeObserver:self
+                     forKeyPath:key];
+        }
     }
 }
 
@@ -111,7 +113,7 @@
         // PIENSO QUE NO DEBERIA HACER FALTA PERO NO SE QUE ES LO QUE PASA
         // PORQUE AGTCoreDataTabl.... NO LO HACE
         [self.tableView reloadData];
-       
+        
     }
 }
 

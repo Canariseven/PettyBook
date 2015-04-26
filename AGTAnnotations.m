@@ -77,9 +77,11 @@
 
 -(void) tearDownKVO{
     NSArray * keys = [AGTAnnotations observableKeyNames];
+            if (self.observationInfo != nil) {
     for (NSString *key in keys) {
         [self removeObserver:self
                   forKeyPath:key];
+    }
     }
 }
 
