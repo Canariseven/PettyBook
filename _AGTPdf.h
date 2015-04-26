@@ -1,14 +1,14 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to AGTPdf.h instead.
 
-#import <CoreData/CoreData.h>
+@import CoreData;
 
 extern const struct AGTPdfAttributes {
-	 NSString *pdfData;
+	__unsafe_unretained NSString *pdfData;
 } AGTPdfAttributes;
 
 extern const struct AGTPdfRelationships {
-	 NSString *book;
+	__unsafe_unretained NSString *book;
 } AGTPdfRelationships;
 
 @class AGTBook;
@@ -22,11 +22,11 @@ extern const struct AGTPdfRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) AGTPdfID* objectID;
 
-@property (nonatomic, retain) NSData* pdfData;
+@property (nonatomic, strong) NSData* pdfData;
 
 //- (BOOL)validatePdfData:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) AGTBook *book;
+@property (nonatomic, strong) AGTBook *book;
 
 //- (BOOL)validateBook:(id*)value_ error:(NSError**)error_;
 

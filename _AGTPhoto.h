@@ -1,15 +1,15 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to AGTPhoto.h instead.
 
-#import <CoreData/CoreData.h>
+@import CoreData;
 
 extern const struct AGTPhotoAttributes {
-	 NSString *imageData;
+	__unsafe_unretained NSString *imageData;
 } AGTPhotoAttributes;
 
 extern const struct AGTPhotoRelationships {
-	 NSString *annotation;
-	 NSString *book;
+	__unsafe_unretained NSString *annotation;
+	__unsafe_unretained NSString *book;
 } AGTPhotoRelationships;
 
 @class AGTAnnotations;
@@ -24,15 +24,15 @@ extern const struct AGTPhotoRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) AGTPhotoID* objectID;
 
-@property (nonatomic, retain) NSData* imageData;
+@property (nonatomic, strong) NSData* imageData;
 
 //- (BOOL)validateImageData:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) AGTAnnotations *annotation;
+@property (nonatomic, strong) AGTAnnotations *annotation;
 
 //- (BOOL)validateAnnotation:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, retain) AGTBook *book;
+@property (nonatomic, strong) AGTBook *book;
 
 //- (BOOL)validateBook:(id*)value_ error:(NSError**)error_;
 
